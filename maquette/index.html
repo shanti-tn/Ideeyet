@@ -163,9 +163,10 @@ html[lang="ar"] .coop-word .pill { font-style: normal; }
 }
 
 /* ---------- valeurs : le venn ---------- */
-.values .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
+.values .wrap { display: grid; }
+.values .values-text { max-width: 46rem; }
 .values-text { display: grid; gap: 2rem; min-width: 0; }
-.venn { width: 100%; max-width: 32rem; justify-self: center; overflow: visible; }
+.venn { width: 100%; max-width: 30rem; justify-self: center; overflow: visible; margin-block: .5rem 1rem; }
 .venn .ring { fill: transparent; stroke-width: 3; cursor: pointer; transition: stroke-width .2s, fill .3s; outline: none; }
 .venn .ring:hover, .venn .ring:focus-visible { stroke-width: 4.5; }
 .venn .ring.on { stroke-width: 6; }
@@ -183,12 +184,12 @@ html[lang="ar"] .vlist h3 { text-transform: none; letter-spacing: 0; font-weight
 html[lang="ar"] .vcore { font-style: normal; }
 .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
 .chips span { border: 1px solid var(--line); border-radius: 999px; padding: .35rem .85rem; font-size: .9rem; background: var(--paper); }
-@media (max-width: 860px) { .values .wrap { grid-template-columns: 1fr; } .venn { order: -1; } }
+
 
 /* ---------- mission ---------- */
 .mission { background: var(--paper); }
 .mission .wrap { display: grid; grid-template-columns: auto 1fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; }
-.mission .illu { width: clamp(8rem, 16vw, 12rem); }
+.mission .illu { width: clamp(9rem, 18vw, 14rem); height: auto; }
 .mission-text { display: grid; gap: 2rem; min-width: 0; }
 .pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; border-top: 1px solid var(--line); padding-top: 2rem; }
 .pillars div { display: grid; gap: .35rem; align-content: start; }
@@ -252,6 +253,10 @@ textarea { min-height: 5.5rem; resize: vertical; }
     <filter id="wobble" x="-5%" y="-5%" width="110%" height="110%">
       <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="4" result="n"/>
       <feDisplacementMap in="SourceGraphic" in2="n" scale="4"/>
+    </filter>
+    <filter id="wobble-soft" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency=".03" numOctaves="1" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/>
     </filter>
     <filter id="wash" x="-40%" y="-40%" width="180%" height="180%">
       <feTurbulence type="fractalNoise" baseFrequency=".022" numOctaves="3" seed="9" result="n"/>
@@ -337,7 +342,22 @@ textarea { min-height: 5.5rem; resize: vertical; }
       </div>
       <nav class="doors" aria-label="Découvrir">
         <a class="door" href="#mission">
-          <span class="pic"><img src="assets/illu-mission.webp" alt="" width="152" height="160"></span>
+          <span class="pic"><svg  viewBox="0 0 200 180" aria-hidden="true">
+            <g filter="url(#wash)" opacity=".85">
+              <ellipse cx="86" cy="106" rx="54" ry="13" fill="#E9B9C6" transform="rotate(-38 86 106)"/>
+              <ellipse cx="110" cy="86" rx="32" ry="10" fill="#F5B04A" transform="rotate(-38 110 86)"/>
+            </g>
+            <g filter="url(#wobble-soft)" fill="none" stroke="#141414" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M144 32C146 46 150 50 164 52 150 54 146 58 144 72 142 58 138 54 124 52 138 50 142 46 144 32Z" fill="#F9DA58" stroke-width="2.4"/>
+              <path d="M126 60C106 72 88 80 60 90"/>
+              <path d="M130 70C106 88 86 104 56 124"/>
+              <path d="M138 78C118 100 100 116 74 138"/>
+              <path d="M112 96 98 104 106 108 90 116" stroke-width="2.2"/>
+              <path d="M62 34V46M56 40H68" stroke-width="2.4"/>
+              <path d="M164 126V136M159 131H169" stroke-width="2.2"/>
+              <circle cx="44" cy="100" r="2.4" fill="#141414" stroke="none"/><circle cx="178" cy="90" r="2.4" fill="#141414" stroke="none"/><circle cx="116" cy="150" r="2" fill="#141414" stroke="none"/>
+            </g>
+          </svg></span>
           <span class="label" style="color:#8C9FD6"><span class="fr">Mission</span><span class="ar">مهمتنا</span></span>
         </a>
         <a class="door" href="#valeurs">
@@ -439,7 +459,10 @@ textarea { min-height: 5.5rem; resize: vertical; }
   <!-- VALEURS -->
   <section class="values band section" id="valeurs" aria-labelledby="val-title" style="padding-top:0">
     <div class="wrap">
-      <svg class="venn" viewBox="0 0 560 520" role="img" aria-label="Propreté, dignité et sérénité se rejoignent au centre, dans la main d’Ideeyet">
+      <div class="values-text">
+        <h2 class="title" id="val-title"><span class="oval o-yellow"><span class="fr">Valeurs</span><span class="ar">قيمنا</span></span></h2>
+        <p class="prose"><span class="fr">Ideeyet place la confiance, le respect et la sérénité au cœur de ses actions. Nous valorisons la dignité des travailleuses domestiques tout en respectant la vie privée de nos clients.</span><span class="ar">في Ideeyet، الثقة والاحترام وراحة البال في قلب كل خدمة. نثمّنو كرامة عاملات المنازل ونحترمو الحياة الخاصة متاع حرفائنا.</span></p>
+  <svg class="venn" viewBox="0 0 560 520" role="group" aria-label="Propreté, dignité et sérénité se rejoignent au centre, dans la main d’Ideeyet">
         <defs>
           <clipPath id="c1"><circle cx="280" cy="190" r="160"/></clipPath>
           <clipPath id="c2"><circle cx="185" cy="335" r="160"/></clipPath>
@@ -453,9 +476,6 @@ textarea { min-height: 5.5rem; resize: vertical; }
         <text x="140" y="390" text-anchor="middle" fill="#8C9FD6"><tspan class="fr">DIGNITÉ</tspan><tspan class="ar">الكرامة</tspan></text>
         <text x="420" y="390" text-anchor="middle" fill="#D9B52A"><tspan class="fr">SÉRÉNITÉ</tspan><tspan class="ar">راحة البال</tspan></text>
       </svg>
-      <div class="values-text">
-        <h2 class="title" id="val-title"><span class="oval o-yellow"><span class="fr">Valeurs</span><span class="ar">قيمنا</span></span></h2>
-        <p class="prose"><span class="fr">Ideeyet place la confiance, le respect et la sérénité au cœur de ses actions. Nous valorisons la dignité des travailleuses domestiques tout en respectant la vie privée de nos clients.</span><span class="ar">في Ideeyet، الثقة والاحترام وراحة البال في قلب كل خدمة. نثمّنو كرامة عاملات المنازل ونحترمو الحياة الخاصة متاع حرفائنا.</span></p>
         <p class="vhint"><span class="fr">Cliquez sur un cercle pour lire sa définition.</span><span class="ar">انقر على دائرة باش تقرا معناها.</span></p>
         <ul class="vlist" aria-live="polite">
           <li data-v="proprete" style="--vc:#4BE470"><h3><span class="fr">Propreté</span><span class="ar">النظافة</span></h3><p><span class="fr">Un travail soigné et rigoureux, avec du matériel adapté et des formations techniques régulières.</span><span class="ar">خدمة نظيفة ودقيقة، بمعدّات مناسبة وتكوين تقني متواصل.</span></p></li>
@@ -476,7 +496,22 @@ textarea { min-height: 5.5rem; resize: vertical; }
   <!-- MISSION -->
   <section class="mission band section" id="mission" aria-labelledby="mis-title">
     <div class="wrap">
-      <img class="illu" src="assets/illu-mission.webp" alt="" width="152" height="160">
+      <svg class="illu" viewBox="0 0 200 180" aria-hidden="true">
+            <g filter="url(#wash)" opacity=".85">
+              <ellipse cx="86" cy="106" rx="54" ry="13" fill="#E9B9C6" transform="rotate(-38 86 106)"/>
+              <ellipse cx="110" cy="86" rx="32" ry="10" fill="#F5B04A" transform="rotate(-38 110 86)"/>
+            </g>
+            <g filter="url(#wobble-soft)" fill="none" stroke="#141414" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M144 32C146 46 150 50 164 52 150 54 146 58 144 72 142 58 138 54 124 52 138 50 142 46 144 32Z" fill="#F9DA58" stroke-width="2.4"/>
+              <path d="M126 60C106 72 88 80 60 90"/>
+              <path d="M130 70C106 88 86 104 56 124"/>
+              <path d="M138 78C118 100 100 116 74 138"/>
+              <path d="M112 96 98 104 106 108 90 116" stroke-width="2.2"/>
+              <path d="M62 34V46M56 40H68" stroke-width="2.4"/>
+              <path d="M164 126V136M159 131H169" stroke-width="2.2"/>
+              <circle cx="44" cy="100" r="2.4" fill="#141414" stroke="none"/><circle cx="178" cy="90" r="2.4" fill="#141414" stroke="none"/><circle cx="116" cy="150" r="2" fill="#141414" stroke="none"/>
+            </g>
+          </svg>
       <div class="mission-text">
         <h2 class="title" id="mis-title"><span class="oval o-violet"><span class="fr">Mission</span><span class="ar">مهمتنا</span></span></h2>
         <p class="prose"><span class="fr">Ideeyet dépasse le simple rôle de mise en relation : nous avons une mission sociale. En renforçant l’autonomie des travailleuses domestiques, nous combattons les discriminations et leur ouvrons l’accès à des opportunités stables et justes, pour un marché du travail plus équitable et plus humain.</span><span class="ar">Ideeyet موش مجرّد وسيط: عندنا مهمة اجتماعية. كي نقوّيو استقلالية عاملات المنازل، نحاربو التمييز ونحلّولهم أبواب فرص ثابتة وعادلة، باش يولّي سوق الشغل أعدل وأكثر إنسانية.</span></p>
