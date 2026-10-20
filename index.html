@@ -1,5 +1,9 @@
+<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Coopérative Ideeyet</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Coopérative Ideeyet : ménage et aide à la personne à Tunis, par une coopérative gouvernée par des travailleuses domestiques.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -238,10 +242,11 @@ textarea { min-height: 5.5rem; resize: vertical; }
 /* ---------- footer ---------- */
 .foot .wrap { border-top: 1px solid var(--line); padding-block: 2rem 2.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; font-size: .9rem; }
 .foot b { color: var(--ink); font-weight: 600; }
-.mock { font-size: .8rem; text-align: center; padding-block: .45rem; background: var(--paper); border-bottom: 1px solid var(--line); }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } html { scroll-behavior: auto; } }
 </style>
+</head>
+<body>
 
 <!-- symboles : logo officiel (main + étincelle) et filtres "dessin à la main" -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -274,8 +279,6 @@ textarea { min-height: 5.5rem; resize: vertical; }
     </linearGradient>
   </defs>
 </svg>
-
-<div class="mock band"><span class="fr">Maquette · textes en derja et photos à valider avec les membres</span><span class="ar">نسخة تجريبية · النصوص والتصاور لازم يتثبّتو مع العضوات</span></div>
 
 <header class="top band">
   <div class="wrap">
@@ -660,3 +663,5 @@ textarea { min-height: 5.5rem; resize: vertical; }
   document.getElementById("contact-form").addEventListener("submit", function (e) { e.preventDefault(); document.getElementById("form-note").hidden = false; });
 })();
 </script>
+</body>
+</html>
