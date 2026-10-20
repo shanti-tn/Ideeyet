@@ -22,6 +22,7 @@
   --green: #4BE470;
   --yellow: #F9DA58;
   --grad: linear-gradient(90deg, var(--yellow) 0%, var(--green) 50%, var(--periwinkle) 100%);
+  --grad-flow: linear-gradient(90deg, var(--yellow), var(--green), var(--periwinkle), var(--green), var(--yellow));
   --grad-soft:
     radial-gradient(60% 60% at 25% 20%, var(--green) 0%, transparent 70%),
     radial-gradient(60% 60% at 80% 30%, var(--periwinkle) 0%, transparent 70%),
@@ -67,7 +68,7 @@ html[lang="ar"] .title { text-transform: none; font-weight: 600; line-height: 1.
 .oval { position: relative; display: inline-block; isolation: isolate; padding: .15em .1em; }
 .oval::before {
   content: ""; position: absolute; inset: -.32em -.55em; border-radius: 50%; padding: 1.5px; z-index: -1;
-  background: var(--o, var(--grad)); transform: rotate(-2.5deg);
+  background: var(--o, var(--grad-flow)); transform: rotate(-2.5deg);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
 }
@@ -82,6 +83,14 @@ html[lang="ar"] .title { text-transform: none; font-weight: 600; line-height: 1.
 .btn-line:hover { background: var(--ink); color: var(--cream); }
 .btn svg { width: 1.05em; height: 1.05em; flex: none; }
 html[lang="ar"] .flip { transform: scaleX(-1); }
+
+/* dégradés vivants : un glissement lent, discret */
+@keyframes flow { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+@keyframes drift { from { background-position: 0% 0%; } to { background-position: 100% 100%; } }
+.wordmark .coop { background-image: var(--grad-flow) !important; background-size: 300% 100% !important; animation: flow 12s ease-in-out infinite alternate; }
+.oval::before, .phone::before, .cert-paper::before, .tab[aria-selected="true"]::after { background-size: 250% 100% !important; animation: flow 10s ease-in-out infinite alternate; }
+.coop-word .pill::before { background-size: 220% 100% !important; animation: flow 11s ease-in-out infinite alternate; }
+.portrait { background-size: 160% 160% !important; animation: drift 16s ease-in-out infinite alternate; }
 
 /* ---------- header ---------- */
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: color-mix(in srgb, var(--cream) 92%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
@@ -150,7 +159,7 @@ html[lang="ar"] .coop-word .pill { font-style: normal; }
 .tabs { display: flex; gap: 2rem; border-bottom: 1px solid var(--line); }
 .tab { border: 0; background: none; cursor: pointer; font: 600 1.05rem var(--f-body); color: var(--grey-soft); padding: 0 0 1rem; position: relative; }
 .tab[aria-selected="true"] { color: var(--ink); }
-.tab[aria-selected="true"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--grad); }
+.tab[aria-selected="true"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--grad-flow); }
 .svc-panel { display: grid; gap: 3rem; }
 .svc-list { list-style: none; margin: 0; padding: 0; }
 .svc-list li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: .5rem 3rem; padding-block: 1.6rem; border-bottom: 1px solid var(--line); align-items: baseline; }
@@ -201,6 +210,62 @@ html[lang="ar"] .vlist h3 { text-transform: none; letter-spacing: 0; font-weight
 .pillars span { font-size: .95rem; }
 @media (max-width: 760px) { .mission .wrap { grid-template-columns: 1fr; } .pillars { grid-template-columns: 1fr; gap: 1.25rem; } }
 
+/* ---------- formations : bandeau qui défile + certificat ---------- */
+.tr-mini { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .5rem 2rem; margin-top: clamp(3.5rem, 7vw, 5.5rem); }
+.tr-hint { font-size: .9rem; color: var(--grey-soft); }
+.mission .fcard { background: var(--cream); }
+.marquee { overflow: hidden; margin-top: 1.25rem; -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
+.track { display: flex; width: max-content; direction: ltr; padding-block: .75rem; animation: defile 45s linear infinite; }
+.marquee:hover .track, .marquee:focus-within .track { animation-play-state: paused; }
+html[dir="rtl"] .track { animation-direction: reverse; }
+@keyframes defile { to { transform: translateX(-50%); } }
+.fcard { width: 17rem; margin-right: 1rem; display: grid; gap: .6rem; align-content: start; text-align: start; padding: 1.5rem; border-radius: 1.5rem; border: 1px solid var(--line); background: var(--paper); color: var(--grey); font: inherit; cursor: pointer; transition: transform .25s ease, border-color .25s ease; }
+html[dir="rtl"] .fcard { direction: rtl; }
+.fcard:hover { transform: translateY(-4px) rotate(-.6deg); border-color: var(--fc); }
+.fdot { width: 2.4rem; height: 2.4rem; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFFBF6 0 12%, var(--fc) 13% 100%); }
+.fname { color: var(--ink); font-weight: 800; font-size: 1.2rem; line-height: 1.25; }
+html[lang="ar"] .fname { font-weight: 600; }
+.fdesc { font-size: .95rem; line-height: 1.55; }
+.fmore { font-weight: 600; font-size: .9rem; color: var(--ink); text-decoration: underline; text-decoration-color: var(--fc); text-decoration-thickness: 2px; text-underline-offset: .3em; }
+@media (prefers-reduced-motion: reduce) { .marquee { overflow-x: auto; } .track { animation: none; } }
+
+.cert { border: 0; padding: 0; background: transparent; max-width: min(40rem, calc(100vw - 32px)); width: 100%; }
+.cert::backdrop { background: rgba(28, 28, 28, .55); backdrop-filter: blur(3px); }
+.cert-paper { position: relative; overflow: hidden; background: #FFFDF8; color: var(--grey); border-radius: 1rem; padding: clamp(2.5rem, 6vw, 3.25rem) clamp(2.25rem, 5vw, 3rem); text-align: center; display: grid; gap: 1rem; justify-items: center; outline: 1px solid var(--line); outline-offset: -12px; box-shadow: 0 30px 80px -30px rgba(0,0,0,.5); }
+.cert-paper::before { content: ""; position: absolute; inset: 18px; border-radius: .6rem; padding: 2px; background: var(--grad-flow); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); pointer-events: none; }
+.cert-close { position: absolute; top: 1.4rem; inset-inline-end: 1.4rem; border: 0; background: var(--cream); color: var(--ink); width: 2.4rem; height: 2.4rem; border-radius: 50%; display: grid; place-items: center; cursor: pointer; z-index: 2; }
+.cert-stamp { position: absolute; top: 2.6rem; inset-inline-start: -3rem; transform: rotate(-30deg); background: #F08A7A; color: #FFFDF8; font-family: "Krona One", sans-serif; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; padding: .35rem 4rem; }
+html[dir="rtl"] .cert-stamp { transform: rotate(30deg); }
+.cert-logo { width: 2.4rem; height: auto; color: var(--periwinkle); }
+.cert-kicker { font-family: "Krona One", sans-serif; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; }
+html[lang="ar"] .cert-kicker { font-family: var(--f-body); letter-spacing: 0; font-size: 1rem; }
+.cert h3 { font-family: var(--f-title); font-size: clamp(1.4rem, 1rem + 2vw, 2.2rem); text-transform: uppercase; line-height: 1.15; }
+html[lang="ar"] .cert h3 { text-transform: none; font-weight: 600; }
+.cert-text { max-width: 26rem; }
+.cert-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; width: 100%; margin: .5rem 0 0; border-block: 1px solid var(--line); padding-block: 1rem; }
+.cert-fields dt { font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; }
+.cert-fields dd { margin: 0; color: var(--ink); font-weight: 600; }
+.cert-sign { display: flex; justify-content: space-between; gap: 1.5rem; width: 100%; margin-top: 1.5rem; font-size: .85rem; }
+.cert-sign > span { flex: 1; border-top: 1px solid var(--grey); padding-top: .4rem; }
+.cert-note { font-size: .8rem; font-style: italic; color: var(--grey-soft); }
+
+/* ---------- témoignages ---------- */
+.voices .wrap { display: grid; gap: 1.5rem; }
+.vgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.vcard { margin: 0; padding: 1.75rem; border-radius: 1.5rem; background: var(--paper); border: 1px solid var(--line); display: grid; gap: 1.25rem; align-content: space-between; text-decoration: none; color: var(--grey); min-width: 0; }
+.vcard blockquote { margin: 0; color: var(--ink); font-size: 1.15rem; line-height: 1.5; font-weight: 300; }
+.vcard blockquote::before { content: "“"; display: block; font-family: "Krona One", sans-serif; font-size: 2.6rem; line-height: .8; background: var(--grad-flow); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: flow 14s ease-in-out infinite alternate; }
+.vcard q { quotes: none; }
+.vcard figcaption { font-size: .9rem; border-top: 1px solid var(--line); padding-top: .9rem; }
+.vcard figcaption b { color: var(--ink); font-weight: 600; }
+.vcard { position: relative; }
+.vtag { position: absolute; top: 1.25rem; inset-inline-end: 1.25rem; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--grey-soft); border: 1px dashed var(--line); border-radius: 999px; padding: .15rem .55rem; }
+.vcta { background: transparent; border-style: dashed; transition: border-color .25s; }
+.vcta:hover { border-color: var(--vc); }
+.vcta-t { color: var(--ink); font-weight: 800; font-size: 1.2rem; }
+.vcta .fmore { --fc: var(--vc); }
+@media (max-width: 860px) { .vgrid { grid-template-columns: 1fr; } }
+
 /* ---------- histoire ---------- */
 .story .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
 .portrait { position: relative; aspect-ratio: 4 / 5; max-width: 100%; border-radius: 999px 999px 1.5rem 1.5rem; background: var(--grad-soft); overflow: hidden; display: grid; place-items: center; }
@@ -220,7 +285,7 @@ html[lang="ar"] .quote { letter-spacing: 0; line-height: 1.6; }
 .contact .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
 .contact-info { display: grid; gap: 2rem; min-width: 0; }
 .phone { font-family: "Krona One", sans-serif; font-size: clamp(1.6rem, 1rem + 2.8vw, 2.8rem); color: var(--ink); direction: ltr; unicode-bidi: isolate; user-select: all; position: relative; isolation: isolate; padding: .2em .1em; justify-self: start; }
-.phone::before { content: ""; position: absolute; inset: -.15em -.45em; border-radius: 50%; background: var(--grad); opacity: .55; z-index: -1; transform: rotate(-2deg); }
+.phone::before { content: ""; position: absolute; inset: -.15em -.45em; border-radius: 50%; background: var(--grad-flow); opacity: .55; z-index: -1; transform: rotate(-2deg); }
 .icon-btn { border: 1px solid var(--line); background: var(--paper); border-radius: 999px; padding: .6rem 1rem; font: 600 .9rem var(--f-body); color: var(--ink); cursor: pointer; display: inline-flex; gap: .45rem; align-items: center; text-decoration: none; }
 .icon-btn:hover { border-color: var(--ink); }
 .icon-btn svg { width: 1rem; height: 1rem; }
@@ -272,7 +337,8 @@ textarea { min-height: 5.5rem; resize: vertical; }
       <feDisplacementMap in="SourceGraphic" in2="n" scale="28" result="d"/>
       <feGaussianBlur in="d" stdDeviation="5"/>
     </filter>
-    <linearGradient id="core-grad" x1="0" y1="1" x2="1" y2="0">
+    <linearGradient id="core-grad" x1="0" y1="1" x2="1" y2="0" gradientTransform="rotate(0 .5 .5)">
+      <animateTransform class="smil" attributeName="gradientTransform" type="rotate" values="0 .5 .5;35 .5 .5;-20 .5 .5;0 .5 .5" dur="16s" repeatCount="indefinite"/>
       <stop offset="0" stop-color="#A5B7E5"/>
       <stop offset=".5" stop-color="#4BE470"/>
       <stop offset="1" stop-color="#F9DA58"/>
@@ -544,7 +610,108 @@ textarea { min-height: 5.5rem; resize: vertical; }
         </div>
       </div>
     </div>
+    <div class="wrap tr-mini" id="formations">
+      <p class="label"><span class="fr">Nos formations · certificats à l’appui</span><span class="ar">تكويناتنا · بالشهايد</span></p>
+      <p class="tr-hint"><span class="fr">Cliquez sur une formation pour voir son certificat.</span><span class="ar">انقر على تكوين باش تشوف الشهادة متاعو.</span></p>
+    </div>
+    <div class="marquee">
+      <div class="track">
+          <button type="button" class="fcard" data-cert="hygiene" data-fr="Hygiène et propreté" data-ar="النظافة والصحة" style="--fc:#4BE470">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Hygiène et propreté</span><span class="ar">النظافة والصحة</span></span>
+            <span class="fdesc"><span class="fr">Produits, gestes et protocoles pour un nettoyage sûr et efficace.</span><span class="ar">المواد، الحركات والطرق باش التنظيف يكون آمن ومضبوط.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+          <button type="button" class="fcard" data-cert="cuisine" data-fr="Cuisine" data-ar="الطبخ" style="--fc:#F9DA58">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Cuisine</span><span class="ar">الطبخ</span></span>
+            <span class="fdesc"><span class="fr">Préparer des repas équilibrés, dans le respect de l’hygiène alimentaire.</span><span class="ar">نحضّرو ماكلة متوازنة، مع احترام نظافة الماكلة.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+          <button type="button" class="fcard" data-cert="aide" data-fr="Aide à la personne" data-ar="العناية بالأشخاص" style="--fc:#A5B7E5">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Aide à la personne</span><span class="ar">العناية بالأشخاص</span></span>
+            <span class="fdesc"><span class="fr">Accompagner les personnes âgées ou dépendantes au quotidien.</span><span class="ar">نرافقو كبار السن والناس اللي تستحق معاونة في حياتهم اليومية.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+          <button type="button" class="fcard" data-cert="enfants" data-fr="Garde d’enfants" data-ar="التلهّي بالصغار" style="--fc:#4BE470">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Garde d’enfants</span><span class="ar">التلهّي بالصغار</span></span>
+            <span class="fdesc"><span class="fr">Veiller sur les enfants, les occuper, assurer leur sécurité.</span><span class="ar">نتلهّاو بالصغار، نلهّيوهم، ونحافظو على سلامتهم.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+          <button type="button" class="fcard" data-cert="secours" data-fr="Premiers secours" data-ar="الإسعافات الأولية" style="--fc:#F9DA58">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Premiers secours</span><span class="ar">الإسعافات الأولية</span></span>
+            <span class="fdesc"><span class="fr">Réagir face à une chute, une brûlure ou un malaise.</span><span class="ar">كيفاش نتصرّفو كي يصير طيحة، حرقة ولا تعب مفاجئ.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+          <button type="button" class="fcard" data-cert="droits" data-fr="Droits des travailleuses" data-ar="حقوق العاملات" style="--fc:#A5B7E5">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Droits des travailleuses</span><span class="ar">حقوق العاملات</span></span>
+            <span class="fdesc"><span class="fr">Connaître ses droits, son contrat et sa protection sociale.</span><span class="ar">نعرفو حقوقنا، العقد متاعنا والتغطية الاجتماعية.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+          <button type="button" class="fcard" data-cert="hygiene" data-fr="Hygiène et propreté" data-ar="النظافة والصحة" style="--fc:#4BE470" tabindex="-1" aria-hidden="true">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Hygiène et propreté</span><span class="ar">النظافة والصحة</span></span>
+            <span class="fdesc"><span class="fr">Produits, gestes et protocoles pour un nettoyage sûr et efficace.</span><span class="ar">المواد، الحركات والطرق باش التنظيف يكون آمن ومضبوط.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+          <button type="button" class="fcard" data-cert="cuisine" data-fr="Cuisine" data-ar="الطبخ" style="--fc:#F9DA58" tabindex="-1" aria-hidden="true">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Cuisine</span><span class="ar">الطبخ</span></span>
+            <span class="fdesc"><span class="fr">Préparer des repas équilibrés, dans le respect de l’hygiène alimentaire.</span><span class="ar">نحضّرو ماكلة متوازنة، مع احترام نظافة الماكلة.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+          <button type="button" class="fcard" data-cert="aide" data-fr="Aide à la personne" data-ar="العناية بالأشخاص" style="--fc:#A5B7E5" tabindex="-1" aria-hidden="true">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Aide à la personne</span><span class="ar">العناية بالأشخاص</span></span>
+            <span class="fdesc"><span class="fr">Accompagner les personnes âgées ou dépendantes au quotidien.</span><span class="ar">نرافقو كبار السن والناس اللي تستحق معاونة في حياتهم اليومية.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+          <button type="button" class="fcard" data-cert="enfants" data-fr="Garde d’enfants" data-ar="التلهّي بالصغار" style="--fc:#4BE470" tabindex="-1" aria-hidden="true">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Garde d’enfants</span><span class="ar">التلهّي بالصغار</span></span>
+            <span class="fdesc"><span class="fr">Veiller sur les enfants, les occuper, assurer leur sécurité.</span><span class="ar">نتلهّاو بالصغار، نلهّيوهم، ونحافظو على سلامتهم.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+          <button type="button" class="fcard" data-cert="secours" data-fr="Premiers secours" data-ar="الإسعافات الأولية" style="--fc:#F9DA58" tabindex="-1" aria-hidden="true">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Premiers secours</span><span class="ar">الإسعافات الأولية</span></span>
+            <span class="fdesc"><span class="fr">Réagir face à une chute, une brûlure ou un malaise.</span><span class="ar">كيفاش نتصرّفو كي يصير طيحة، حرقة ولا تعب مفاجئ.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+          <button type="button" class="fcard" data-cert="droits" data-fr="Droits des travailleuses" data-ar="حقوق العاملات" style="--fc:#A5B7E5" tabindex="-1" aria-hidden="true">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Droits des travailleuses</span><span class="ar">حقوق العاملات</span></span>
+            <span class="fdesc"><span class="fr">Connaître ses droits, son contrat et sa protection sociale.</span><span class="ar">نعرفو حقوقنا، العقد متاعنا والتغطية الاجتماعية.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+      </div>
+    </div>
   </section>
+
+  <dialog class="cert" id="cert" aria-labelledby="cert-title">
+    <div class="cert-paper">
+      <button type="button" class="cert-close" id="cert-close" aria-label="Fermer"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      <span class="cert-stamp" aria-hidden="true"><span class="fr">Exemple</span><span class="ar">مثال</span></span>
+      <svg class="cert-logo" viewBox="0 0 130 178" aria-hidden="true"><use href="#hand"/></svg>
+      <p class="cert-kicker"><span class="fr">Certificat de formation</span><span class="ar">شهادة تكوين</span></p>
+      <h3 id="cert-title"></h3>
+      <p class="cert-text"><span class="fr">Délivré à une membre de la Coopérative Ideeyet, qui a suivi avec succès l’ensemble de la formation.</span><span class="ar">تعطات لعضوة في تعاونية Ideeyet، كمّلت التكوين بنجاح.</span></p>
+      <dl class="cert-fields">
+        <div><dt><span class="fr">Organisme</span><span class="ar">الهيكل</span></dt><dd>—</dd></div>
+        <div><dt><span class="fr">Durée</span><span class="ar">المدة</span></dt><dd>—</dd></div>
+        <div><dt><span class="fr">Date</span><span class="ar">التاريخ</span></dt><dd>—</dd></div>
+      </dl>
+      <div class="cert-sign">
+        <span><span class="fr">L’organisme de formation</span><span class="ar">هيكل التكوين</span></span>
+        <span><span class="fr">Coopérative Ideeyet</span><span class="ar">تعاونية Ideeyet</span></span>
+      </div>
+      <p class="cert-note"><span class="fr">Mise en page d’exemple : le certificat réel sera ajouté ici.</span><span class="ar">هذا مثال برك: الشهادة الحقيقية باش تتحط هنا.</span></p>
+    </div>
+  </dialog>
 
   <!-- HISTOIRE -->
   <section class="story band section" id="histoire" aria-labelledby="story-title">
@@ -557,6 +724,30 @@ textarea { min-height: 5.5rem; resize: vertical; }
         <p class="prose"><span class="fr">Ideeyet est née en 2018 pour sortir le travail domestique de la précarité et des préjugés. Pour Lamia, la coopérative a tout changé : reconnaître son métier, se former, et faire évoluer le regard des autres.</span><span class="ar">Ideeyet تولدت في 2018 باش تخرّج خدمة الديار من الهشاشة والنظرة الخايبة. بالنسبة للمياء، التعاونية بدّلت كل شي: عرفت قيمة صنعتها، تكوّنت، وبدّلت نظرة الناس.</span></p>
         <a class="more" href="https://bibliotheque.shanti.tn/articles/au-coeur-de-la-cooperative-ideyeet-le-chemin-de-lamia-yarmani/" target="_blank" rel="noopener"><span class="fr">Lire son histoire</span><span class="ar">اقرا حكايتها</span><svg class="flip" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
         <p class="partners"><span class="fr">Avec le soutien du projet TAGHYIR, porté par l’ACPP et financé par l’AECID.</span><span class="ar">بدعم من مشروع TAGHYIR، اللي تحملو ACPP وتموّلو AECID.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TÉMOIGNAGES -->
+  <section class="voices band section" id="temoignages" aria-labelledby="voices-title" style="padding-top:0">
+    <div class="wrap">
+      <p class="label" id="voices-title"><span class="fr">Témoignages</span><span class="ar">شهادات</span></p>
+      <div class="vgrid">
+        <figure class="vcard" style="--vc:#A5B7E5">
+          <span class="vtag"><span class="fr">Exemple</span><span class="ar">مثال</span></span>
+          <blockquote><q class="fr">Une aide précieuse pour ma mère. La même personne vient chaque semaine, elle est attentive et ma mère l’attend avec plaisir.</q><q class="ar">معاونة غالية لأمي. نفس العاملة تجي كل جمعة، تهتمّ بيها، وأمي تستنّاها بفرحة.</q></blockquote>
+          <figcaption><span class="fr"><b>Cliente particulière</b> · aide à une personne âgée</span><span class="ar"><b>حريفة</b> · العناية بكبار السن</span></figcaption>
+        </figure>
+        <figure class="vcard" style="--vc:#4BE470">
+          <span class="vtag"><span class="fr">Exemple</span><span class="ar">مثال</span></span>
+          <blockquote><q class="fr">Nos bureaux sont entretenus deux fois par semaine. L’équipe est ponctuelle et sérieuse, et nous savons à qui profite notre contrat.</q><q class="ar">المكاتب متاعنا تتنظّف مرتين في الجمعة. الفريق يجي في الوقت وجدّي، ونعرفو لمن يمشي العقد متاعنا.</q></blockquote>
+          <figcaption><span class="fr"><b>Entreprise</b> · entretien de bureaux</span><span class="ar"><b>شركة</b> · تنظيف المكاتب</span></figcaption>
+        </figure>
+        <figure class="vcard" style="--vc:#F9DA58">
+          <span class="vtag"><span class="fr">Exemple</span><span class="ar">مثال</span></span>
+          <blockquote><q class="fr">Pour notre événement, l’équipe a tout géré : mise en place, service, puis remise en état. Efficace et souriante.</q><q class="ar">في المناسبة متاعنا، الفريق تلهّى بكل شي: التحضير، الخدمة، والتنظيف من بعد. خدمة مضبوطة وبالضحكة.</q></blockquote>
+          <figcaption><span class="fr"><b>Association</b> · événement</span><span class="ar"><b>جمعية</b> · مناسبة</span></figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -646,6 +837,23 @@ textarea { min-height: 5.5rem; resize: vertical; }
     r.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showValue(r.dataset.v); } });
   });
   showValue("proprete");
+
+  // animations réduites : on coupe aussi le dégradé animé du schéma
+  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.querySelectorAll(".smil").forEach(function (a) { a.remove(); });
+  }
+
+  // formations : ouverture du certificat
+  var cert = document.getElementById("cert");
+  document.querySelectorAll(".fcard").forEach(function (c) {
+    c.addEventListener("click", function () {
+      // Plus tard : remplacer ce faux certificat par l'image réelle (ex. assets/certificats/hygiene.jpg)
+      document.getElementById("cert-title").innerHTML = '<span class="fr">' + c.dataset.fr + '</span><span class="ar">' + c.dataset.ar + '</span>';
+      if (cert.showModal) cert.showModal(); else cert.setAttribute("open", "");
+    });
+  });
+  document.getElementById("cert-close").addEventListener("click", function () { cert.close(); });
+  cert.addEventListener("click", function (e) { if (e.target === cert) cert.close(); });
 
   // contact
   var orgField = document.getElementById("org-field");
