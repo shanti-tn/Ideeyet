@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Coopérative Ideeyet</title>
+<meta name="description" content="Coopérative Ideeyet : ménage et aide à la personne à Tunis, par une coopérative gouvernée par des travailleuses domestiques.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Krona+One&family=Nunito:wght@300;400;600;800&family=Readex+Pro:wght@300;400;600&display=swap">
+<style>
+/* Layout : une page éditoriale très aérée sur crème. Le dessin à la main et l'ovale dégradé portent l'émotion,
+   la typo large porte le côté premium. Charte : Monument Extended (titrage) -> Krona One, Helvetica Rounded (labeur) -> Nunito. */
+:root {
+  --cream: #FFF6ED;
+  --paper: #FFFBF6;
+  --ink: #1C1C1C;
+  --grey: #606060;
+  --grey-soft: #8A8580;
+  --line: #EADFD2;
+  --periwinkle: #A5B7E5;
+  --green: #4BE470;
+  --yellow: #F9DA58;
+  --grad: linear-gradient(90deg, var(--yellow) 0%, var(--green) 50%, var(--periwinkle) 100%);
+  --grad-soft:
+    radial-gradient(60% 60% at 25% 20%, var(--green) 0%, transparent 70%),
+    radial-gradient(60% 60% at 80% 30%, var(--periwinkle) 0%, transparent 70%),
+    radial-gradient(70% 60% at 40% 90%, var(--yellow) 0%, transparent 70%),
+    var(--periwinkle);
+
+  --f-title: "Krona One", "Readex Pro", system-ui, sans-serif;
+  --f-body: "Nunito", "Readex Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --gl: max(20px, env(safe-area-inset-left, 0px));
+  --gr: max(20px, env(safe-area-inset-right, 0px));
+  --wrap: 70rem;
+  --space: clamp(5rem, 11vw, 9.5rem);
+  color-scheme: light;
+}
+html[lang="ar"] { --f-title: "Readex Pro", system-ui, Tahoma, sans-serif; --f-body: "Readex Pro", system-ui, Tahoma, sans-serif; }
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(4.5rem + env(safe-area-inset-top, 0px)); }
+body { background: var(--cream); color: var(--grey); font-family: var(--f-body); font-size: 1.0625rem; line-height: 1.7; font-weight: 400; -webkit-font-smoothing: antialiased; }
+html[lang="ar"] body { font-weight: 300; line-height: 1.95; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--cream); }
+html[lang="ar"] .fr, html:not([lang="ar"]) .ar { display: none !important; }
+
+h1, h2, h3 { margin: 0; color: var(--ink); text-wrap: balance; font-weight: 400; }
+p { margin: 0; }
+a { color: inherit; }
+img { display: block; max-width: 100%; height: auto; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; border-radius: 4px; }
+
+.band { padding-left: var(--gl); padding-right: var(--gr); }
+.wrap { max-width: var(--wrap); margin-inline: auto; }
+.section { padding-block: var(--space); }
+
+.label { font-family: var(--f-title); font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--grey); }
+html[lang="ar"] .label { letter-spacing: 0; font-size: .95rem; font-weight: 600; }
+.title { font-family: var(--f-title); text-transform: uppercase; font-size: clamp(1.9rem, 1.2rem + 3.2vw, 3.6rem); line-height: 1.05; letter-spacing: -.01em; }
+html[lang="ar"] .title { text-transform: none; font-weight: 600; line-height: 1.35; letter-spacing: 0; }
+.prose { max-width: 36rem; font-size: 1.12rem; }
+
+/* ovale dégradé, tracé à la main autour d'un titre */
+.oval { position: relative; display: inline-block; isolation: isolate; padding: .15em .1em; }
+.oval::before {
+  content: ""; position: absolute; inset: -.32em -.55em; border-radius: 50%; padding: 1.5px; z-index: -1;
+  background: var(--o, var(--grad)); transform: rotate(-2.5deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+.oval.o-green { --o: linear-gradient(90deg, var(--green), #A9E3D3); }
+.oval.o-yellow { --o: linear-gradient(90deg, #FBE9A0, #F5A84A); }
+.oval.o-violet { --o: linear-gradient(90deg, #F5A84A, #F08A7A 40%, var(--periwinkle)); }
+
+.btn { display: inline-flex; align-items: center; gap: .6rem; font: 600 1rem/1 var(--f-body); padding: 1rem 1.5rem; border-radius: 999px; border: 1px solid var(--ink); cursor: pointer; text-decoration: none; transition: background-color .2s, color .2s; }
+.btn-ink { background: var(--ink); color: var(--cream); }
+.btn-ink:hover { background: transparent; color: var(--ink); }
+.btn-line { background: transparent; color: var(--ink); }
+.btn-line:hover { background: var(--ink); color: var(--cream); }
+.btn svg { width: 1.05em; height: 1.05em; flex: none; }
+html[lang="ar"] .flip { transform: scaleX(-1); }
+
+/* ---------- header ---------- */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: color-mix(in srgb, var(--cream) 92%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.top .wrap { display: flex; align-items: center; gap: 2rem; min-height: 4.5rem; }
+.logo { display: flex; align-items: center; gap: .55rem; text-decoration: none; color: var(--grey); }
+.logo svg { width: 2.1rem; height: 2.9rem; color: var(--periwinkle); flex: none; }
+.nav { display: flex; gap: 1.75rem; margin-inline-start: auto; font-size: .95rem; }
+.nav a { text-decoration: none; }
+.nav a:hover { color: var(--ink); }
+.lang { display: flex; gap: .25rem; font-size: .9rem; }
+.lang button { border: 0; background: none; font: inherit; color: var(--grey-soft); cursor: pointer; padding: .3rem .45rem; border-radius: 6px; }
+.lang button[aria-pressed="true"] { color: var(--ink); font-weight: 600; text-decoration: underline; text-decoration-color: var(--green); text-decoration-thickness: 2px; text-underline-offset: .35em; }
+@media (max-width: 900px) { .nav { display: none; } .lang { margin-inline-start: auto; } }
+
+/* ---------- hero ---------- */
+.hero .wrap { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(2rem, 6vw, 6rem); align-items: end; padding-block: clamp(3rem, 8vw, 6rem) clamp(2.5rem, 5vw, 4rem); }
+.hero-copy { display: grid; gap: 2rem; min-width: 0; }
+.wordmark { display: grid; line-height: .82; direction: ltr; justify-items: start; }
+html[lang="ar"] .wordmark { justify-items: end; }
+.wordmark .coop { font-family: "Krona One", sans-serif; font-size: clamp(1rem, .5rem + 2.3vw, 2.25rem); letter-spacing: .02em; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; padding-inline-start: .15em; padding-block: .2em .05em; }
+.wordmark .name { font-family: "Nunito", sans-serif; font-weight: 800; font-size: clamp(4.4rem, 2rem + 12vw, 11.5rem); letter-spacing: -.05em; color: var(--grey); }
+.slogan { font-size: clamp(1.3rem, 1rem + 1.3vw, 1.9rem); line-height: 1.35; color: var(--ink); font-weight: 300; max-width: 30rem; }
+.slogan b { font-weight: 800; }
+html[lang="ar"] .slogan { font-weight: 300; }
+html[lang="ar"] .slogan b { font-weight: 600; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: .75rem; }
+.trio { display: flex; flex-wrap: wrap; gap: .5rem 2rem; font-family: "Krona One", sans-serif; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; }
+html[lang="ar"] .trio { font-family: var(--f-title); letter-spacing: 0; font-size: 1rem; }
+.trio span { display: inline-flex; align-items: center; gap: .6rem; }
+.trio i { width: .6rem; height: .6rem; border-radius: 50%; display: inline-block; }
+@media (max-width: 820px) {
+  .hero .wrap { grid-template-columns: 1fr; }
+}
+
+/* ---------- la coop-érative ---------- */
+.coop-word { font-family: var(--f-title); font-size: clamp(2.6rem, 1.2rem + 7vw, 7rem); line-height: 1.05; color: var(--ink); text-transform: uppercase; display: grid; gap: .1em; }
+.coop-word .pill { position: relative; display: inline-block; isolation: isolate; font-style: italic; }
+.coop-word .pill::before { content: ""; position: absolute; inset: -.08em -.35em; border-radius: 50%; background: linear-gradient(90deg, #F3E58A, var(--green) 55%, var(--periwinkle)); opacity: .75; z-index: -1; }
+html[lang="ar"] .coop-word { text-transform: none; font-weight: 600; font-style: normal; }
+html[lang="ar"] .coop-word .pill { font-style: normal; }
+.coop .wrap { display: grid; gap: clamp(3rem, 7vw, 6rem); }
+.coop-intro { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: end; }
+.coop-intro .prose { display: grid; gap: 1.2rem; }
+.coop-intro strong { color: var(--ink); font-weight: 600; }
+.doors { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+.door { display: grid; justify-items: center; gap: 1.25rem; text-decoration: none; padding-block: 1rem; border-radius: 1.5rem; transition: background-color .25s; }
+.door:hover { background: var(--paper); }
+.door .pic { height: clamp(7rem, 14vw, 10rem); display: grid; place-items: center; }
+.door img, .door svg { height: clamp(7rem, 14vw, 10rem); width: auto; max-width: 100%; object-fit: contain; transition: transform .35s ease; }
+.door:hover img, .door:hover svg { transform: rotate(-3deg) scale(1.04); }
+.door .label { font-size: clamp(.8rem, .6rem + .6vw, 1.1rem); }
+@media (max-width: 820px) { .coop-intro { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .doors { grid-template-columns: 1fr; } }
+
+/* ---------- services ---------- */
+.svc { transition: background-color .4s ease, color .4s ease; }
+.svc .wrap { display: grid; gap: 3rem; }
+.svc[data-mode="pro"] { --ink: #FFF6ED; --grey: #CFC8C0; --grey-soft: #9A938C; --line: #4A4846; --paper: #353433; background: #2A2928; color: var(--grey); }
+.svc[data-mode="pro"] .btn-ink { background: var(--cream); color: #1C1C1C; border-color: var(--cream); }
+.svc[data-mode="pro"] .btn-ink:hover { background: transparent; color: var(--cream); }
+.svc[data-mode="pro"] #illu-pro .ln { stroke: #FFF6ED; }
+.svc-head { display: grid; grid-template-columns: 1fr auto; gap: 2rem 3rem; align-items: end; }
+.svc-head > div:first-child { display: grid; gap: 2.25rem; min-width: 0; }
+.svc-head .illu { width: clamp(9rem, 18vw, 14rem); }
+.svc-head .illu img, .svc-head .illu svg { display: block; width: 100%; height: auto; }
+.tabs { display: flex; gap: 2rem; border-bottom: 1px solid var(--line); }
+.tab { border: 0; background: none; cursor: pointer; font: 600 1.05rem var(--f-body); color: var(--grey-soft); padding: 0 0 1rem; position: relative; }
+.tab[aria-selected="true"] { color: var(--ink); }
+.tab[aria-selected="true"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--grad); }
+.svc-panel { display: grid; gap: 3rem; }
+.svc-list { list-style: none; margin: 0; padding: 0; }
+.svc-list li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: .5rem 3rem; padding-block: 1.6rem; border-bottom: 1px solid var(--line); align-items: baseline; }
+.svc-list h3 { font-family: var(--f-body); font-weight: 600; font-size: clamp(1.25rem, 1rem + .9vw, 1.7rem); letter-spacing: -.01em; }
+.svc-note { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem; align-items: center; }
+.pro-why { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; padding: clamp(1.75rem, 4vw, 3rem); border-radius: 2rem; background: var(--paper); }
+.pro-why div { display: grid; gap: .5rem; align-content: start; }
+.pro-why b { color: var(--ink); font-weight: 600; font-size: 1.1rem; }
+@media (max-width: 760px) {
+  .svc-head { grid-template-columns: 1fr; }
+  .svc-head .illu { order: -1; justify-self: end; width: 8rem; margin-bottom: -2rem; }
+  .svc-list li { grid-template-columns: 1fr; }
+  .pro-why { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+/* ---------- valeurs : le venn ---------- */
+.values .wrap { display: grid; grid-template-columns: auto minmax(0, 46rem); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+.values .illu { width: clamp(9rem, 18vw, 14rem); height: auto; margin-top: 1rem; }
+@media (max-width: 760px) { .values .wrap { grid-template-columns: 1fr; } .values .illu { width: 9rem; justify-self: end; margin-bottom: -2rem; } }
+.values .values-text { max-width: 46rem; }
+.values-text { display: grid; gap: 2rem; min-width: 0; }
+.venn { width: 100%; max-width: 30rem; justify-self: center; overflow: visible; margin-block: .5rem 1rem; }
+.venn .ring { fill: transparent; stroke-width: 3; cursor: pointer; transition: stroke-width .2s, fill .3s; outline: none; }
+.venn .ring:hover, .venn .ring:focus-visible { stroke-width: 4.5; }
+.venn .ring.on { stroke-width: 6; }
+.venn .ring.on.r-g { fill: color-mix(in srgb, var(--green) 10%, transparent); }
+.venn .ring.on.r-v { fill: color-mix(in srgb, var(--periwinkle) 14%, transparent); }
+.venn .ring.on.r-y { fill: color-mix(in srgb, var(--yellow) 16%, transparent); }
+.venn text { font-family: "Nunito", sans-serif; font-weight: 800; font-style: italic; font-size: 23px; letter-spacing: .02em; pointer-events: none; }
+html[lang="ar"] .venn text { font-family: "Readex Pro", sans-serif; font-style: normal; font-weight: 600; font-size: 26px; }
+.vlist { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.4rem; min-height: 6.5rem; }
+.vhint { font-size: .9rem; color: var(--grey-soft); margin-bottom: -1rem; }
+.vlist li { display: grid; gap: .3rem; padding-inline-start: 1.25rem; border-inline-start: 2px solid var(--vc); }
+.vlist h3 { font-family: var(--f-title); font-size: 1rem; text-transform: uppercase; letter-spacing: .06em; }
+html[lang="ar"] .vlist h3 { text-transform: none; letter-spacing: 0; font-weight: 600; font-size: 1.25rem; }
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+.chips span { border: 1px solid var(--line); border-radius: 999px; padding: .35rem .85rem; font-size: .9rem; background: var(--paper); }
+
+
+/* ---------- mission ---------- */
+.mission { background: var(--paper); }
+.mission .wrap { display: grid; grid-template-columns: auto 1fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+.mission .illu { width: clamp(9rem, 18vw, 14rem); height: auto; }
+.mission-text { display: grid; gap: 2rem; min-width: 0; }
+.pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; border-top: 1px solid var(--line); padding-top: 2rem; }
+.pillars div { display: grid; gap: .35rem; align-content: start; }
+.pillars b { color: var(--ink); font-weight: 600; }
+.pillars span { font-size: .95rem; }
+@media (max-width: 760px) { .mission .wrap { grid-template-columns: 1fr; } .pillars { grid-template-columns: 1fr; gap: 1.25rem; } }
+
+/* ---------- histoire ---------- */
+.story .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
+.portrait { position: relative; aspect-ratio: 4 / 5; max-width: 100%; border-radius: 999px 999px 1.5rem 1.5rem; background: var(--grad-soft); overflow: hidden; display: grid; place-items: center; }
+.portrait::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 55%, color-mix(in srgb, var(--cream) 50%, transparent)); }
+.portrait span { position: relative; z-index: 1; font-size: .85rem; background: color-mix(in srgb, var(--cream) 85%, transparent); padding: .35rem .8rem; border-radius: 999px; }
+.story-text { display: grid; gap: 2rem; min-width: 0; }
+.quote { font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.5rem); line-height: 1.3; color: var(--ink); font-weight: 300; letter-spacing: -.01em; margin: 0; }
+html[lang="ar"] .quote { letter-spacing: 0; line-height: 1.6; }
+.quote q { quotes: "« " " »"; }
+.who { font-size: .95rem; }
+.who b { color: var(--ink); font-weight: 600; }
+.more { font-weight: 600; color: var(--ink); text-decoration-color: var(--green); text-decoration-thickness: 2px; text-underline-offset: .35em; display: inline-flex; gap: .4rem; align-items: center; justify-self: start; }
+.partners { font-size: .85rem; color: var(--grey-soft); }
+@media (max-width: 820px) { .story .wrap { grid-template-columns: 1fr; } .portrait { width: min(17rem, 100%); } }
+
+/* ---------- contact ---------- */
+.contact .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
+.contact-info { display: grid; gap: 2rem; min-width: 0; }
+.phone { font-family: "Krona One", sans-serif; font-size: clamp(1.6rem, 1rem + 2.8vw, 2.8rem); color: var(--ink); direction: ltr; unicode-bidi: isolate; user-select: all; position: relative; isolation: isolate; padding: .2em .1em; justify-self: start; }
+.phone::before { content: ""; position: absolute; inset: -.15em -.45em; border-radius: 50%; background: var(--grad); opacity: .55; z-index: -1; transform: rotate(-2deg); }
+.icon-btn { border: 1px solid var(--line); background: var(--paper); border-radius: 999px; padding: .6rem 1rem; font: 600 .9rem var(--f-body); color: var(--ink); cursor: pointer; display: inline-flex; gap: .45rem; align-items: center; text-decoration: none; }
+.icon-btn:hover { border-color: var(--ink); }
+.icon-btn svg { width: 1rem; height: 1rem; }
+.links { display: flex; flex-wrap: wrap; gap: .6rem; }
+form { display: grid; gap: 1.5rem; grid-template-columns: 1fr 1fr; min-width: 0; }
+form .full { grid-column: 1 / -1; }
+label { display: grid; gap: .2rem; font-size: .85rem; font-weight: 600; color: var(--grey); min-width: 0; }
+input, select, textarea { font: 400 1.05rem var(--f-body); color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid #CFC3B5; border-radius: 0; padding: .55rem 0; width: 100%; }
+input:focus, select:focus, textarea:focus { outline: none; border-bottom-color: var(--ink); }
+textarea { min-height: 5.5rem; resize: vertical; }
+.seg { display: flex; gap: .5rem; flex-wrap: wrap; }
+.seg label { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid var(--line); border-radius: 999px; padding: .55rem 1rem; cursor: pointer; font-weight: 600; background: var(--paper); }
+.seg label:has(input:checked) { border-color: var(--ink); color: var(--ink); }
+.seg input { width: auto; accent-color: var(--ink); margin: 0; }
+.form-note { font-size: .9rem; color: var(--ink); }
+@media (max-width: 820px) { .contact .wrap { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { form { grid-template-columns: 1fr; } }
+
+/* ---------- footer ---------- */
+.foot .wrap { border-top: 1px solid var(--line); padding-block: 2rem 2.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; font-size: .9rem; }
+.foot b { color: var(--ink); font-weight: 600; }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<!-- symboles : logo officiel (main + étincelle) et filtres "dessin à la main" -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="hand" viewBox="-288 570 130 178">
+      <path fill="var(--spark, #F9DA58)" d="M-188.54,631c-.23-2.78-1.27-11.24-8.03-18.74-8.1-8.98-18.6-10.15-21-10.35,2.32-.31,10.77-1.73,17.620-9.17,6.98-7.58,7.59-16.33,7.68-18.63,1.28,5.32,3.94,12.37,9.67,18.27,1.87,1.93,3.59,3.24,4.3,3.76,6.01,4.43,12.1,5.93,15.74,6.51-8.65,1.78-13.27,5.94-15.21,8-2.55,2.7-4.1,5.6-5.96,9.05-2.41,4.49-3.9,8.46-4.82,11.3Z"/>
+      <path fill="currentColor" d="M-193.1,649.96c-8.26,1.65-8.21,13.67-13.13,18.82-.45-.05-.77-.37-1.1-.63-7.57-6.08-20.75-35.29-24.37-45.1-1.06-2.88-2.78-11.79-5.35-13.1-1.87-.95-3.95.53-4.78,2.24-3.32,6.91,5.65,27.59,7.44,35.58.69,3.08.75,6.15.05,9.21-.63.78-5.57-6.99-5.98-7.67-6.13-10.27-10.12-22.92-17.7-32.22-1.97-2.42-5.7-6.71-8.94-4.48-2.23,1.53-.74,4.51-.03,6.63,1.74,5.17,4.36,10.56,6.79,15.46,3.76,7.56,11.7,18.82,14.06,26.13.51,1.59.31,3.47.4,5.11-.43.75-2.15-1.51-2.47-1.86-9.62-10.54-16.46-23.82-24.73-35.41-3.43-3.53-8.56-3.05-7.51,2.92,2.3,13.03,18.51,31.75,25.25,43.89.67,1.2,2.55,4.93.97,5.97-1.37.9-6.54-3.76-7.58-4.87-4.87-5.19-11.37-18.78-18.15-20.12-4.48-.88-4.81,1.24-3.65,5.09,4.17,13.78,22.34,31.31,31.83,42.46,4.24,4.98,12.06,13.34,13.34,19.58.77,3.72-1.29,16.61-2.05,21.43,2.73-.04,5.46-.1,8.19-.19,7.31-.26,14.63-.86,21.83-2.06.18-1.77.46-3.53.88-5.26,1.72-7.11,5.7-12.77,8.31-19.34,3.89-9.78,6.2-21.3,7.72-31.7.45-3.03.24-6.07.87-9.17.67-3.34,2.17-6.54,3.04-9.82,1.09-4.16,4.97-19.2-3.47-17.51Z"/>
+    </symbol>
+    <filter id="wobble" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="4"/>
+    </filter>
+    <filter id="wobble-soft" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency=".03" numOctaves="1" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/>
+    </filter>
+    <filter id="wobble-org" x="-8%" y="-8%" width="116%" height="116%">
+      <feTurbulence type="fractalNoise" baseFrequency=".018" numOctaves="2" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="5"/>
+    </filter>
+    <filter id="wash" x="-40%" y="-40%" width="180%" height="180%">
+      <feTurbulence type="fractalNoise" baseFrequency=".022" numOctaves="3" seed="9" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="28" result="d"/>
+      <feGaussianBlur in="d" stdDeviation="5"/>
+    </filter>
+    <linearGradient id="core-grad" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#A5B7E5"/>
+      <stop offset=".5" stop-color="#4BE470"/>
+      <stop offset="1" stop-color="#F9DA58"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<header class="top band">
+  <div class="wrap">
+    <a class="logo" href="#accueil" aria-label="Coopérative Ideeyet">
+      <svg aria-hidden="true"><use href="#hand"/></svg>
+    </a>
+    <nav class="nav" aria-label="Navigation">
+      <a href="#services"><span class="fr">Services</span><span class="ar">الخدمات</span></a>
+      <a href="#pros"><span class="fr">Professionnels</span><span class="ar">للشركات</span></a>
+      <a href="#valeurs"><span class="fr">Valeurs</span><span class="ar">قيمنا</span></a>
+      <a href="#mission"><span class="fr">Mission</span><span class="ar">مهمتنا</span></a>
+      <a href="#contact"><span class="fr">Contact</span><span class="ar">اتصل بينا</span></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Langue">
+      <button type="button" id="lang-fr" data-lang="fr" aria-pressed="true">FR</button>
+      <span aria-hidden="true">/</span>
+      <button type="button" id="lang-ar" data-lang="ar" aria-pressed="false">تونسي</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero band" id="accueil">
+    <div class="wrap">
+      <div class="hero-copy">
+        <h1 class="wordmark" aria-label="Coopérative Ideeyet">
+          <span class="coop" aria-hidden="true">COOPÉRATIVE</span>
+          <span class="name" aria-hidden="true">ideeyet</span>
+        </h1>
+      </div>
+      <div class="hero-copy">
+        <p class="slogan">
+          <span class="fr"><b>Nos services, votre sérénité.</b><br>Notre coopérative, notre dignité.</span>
+          <span class="ar"><b>خدماتنا، راحتكم.</b><br>تعاونيتنا، كرامتنا.</span>
+        </p>
+        <p class="prose">
+          <span class="fr">Ménage et aide à la personne à Tunis, par des travailleuses domestiques qui possèdent et gouvernent leur coopérative.</span>
+          <span class="ar">تنظيف ومعاونة في الدار في تونس، تعملهم عاملات منازل هوما بيدهم يملكو ويسيّرو التعاونية متاعهم.</span>
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-ink" href="#contact"><span class="fr">Discutons de vos besoins</span><span class="ar">نحكيو على حاجتك</span></a>
+          <a class="btn btn-line" href="#pros"><span class="fr">Espace professionnels</span><span class="ar">للشركات والمناسبات</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
+      <p class="trio" style="padding-bottom:clamp(2rem,5vw,3rem)">
+        <span><i style="background:var(--green)"></i><span class="fr">Propreté</span><span class="ar">النظافة</span></span>
+        <span><i style="background:var(--periwinkle)"></i><span class="fr">Dignité</span><span class="ar">الكرامة</span></span>
+        <span><i style="background:var(--yellow)"></i><span class="fr">Sérénité</span><span class="ar">راحة البال</span></span>
+      </p>
+    </div>
+  </section>
+
+  <!-- LA COOP-ÉRATIVE -->
+  <section class="coop band section" aria-labelledby="coop-title" style="padding-top:clamp(3rem,6vw,5rem)">
+    <div class="wrap">
+      <div class="coop-intro">
+        <h2 class="coop-word" id="coop-title">
+          <span class="fr" style="display:contents"><span>La</span><span><span class="pill">coop</span></span><span style="white-space:nowrap">—érative</span></span>
+          <span class="ar" style="display:contents"><span>ال<span class="pill">تعاون</span>ية</span></span>
+        </h2>
+        <div class="prose">
+          <p><span class="fr">Nous sommes une coopérative tunisienne, <strong>portée et gouvernée par des travailleuses domestiques elles-mêmes</strong>. Pas de patron : les décisions se prennent ensemble, entre membres.</span><span class="ar">احنا تعاونية تونسية، <strong>تسيّرها عاملات المنازل بيدهم</strong>. ما ثمّاش باترون: القرارات ناخذوها مع بعضنا، بين العضوات.</span></p>
+          <p><span class="fr">En choisissant Ideeyet, vous profitez d’un service fiable et éthique, et vous soutenez un modèle où les femmes construisent leur avenir.</span><span class="ar">كي تختار Ideeyet، تاخو خدمة مضمونة ونظيفة، وتعاون نموذج فيه النساء يبنيو مستقبلهم بيدهم.</span></p>
+        </div>
+      </div>
+      <nav class="doors" aria-label="Découvrir">
+        <a class="door" href="#mission">
+          <span class="pic"><svg  viewBox="0 0 200 180" aria-hidden="true">
+            <g filter="url(#wash)" opacity=".85">
+              <ellipse cx="86" cy="106" rx="54" ry="13" fill="#E9B9C6" transform="rotate(-38 86 106)"/>
+              <ellipse cx="110" cy="86" rx="32" ry="10" fill="#F5B04A" transform="rotate(-38 110 86)"/>
+            </g>
+            <g filter="url(#wobble-org)" fill="none" stroke="#141414" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M144 30C146 46 150 50 166 52 150 54 146 58 144 74 142 58 138 54 122 52 138 50 142 46 144 30Z" fill="#F9DA58" stroke="none"/>
+              <path d="M126 60C110 66 96 74 82 78S66 86 58 90"/>
+              <path d="M130 70C114 80 102 92 88 100S68 116 54 126"/>
+              <path d="M138 78C126 92 116 104 104 114S84 130 72 140"/>
+              <path d="M118 92C108 98 100 104 92 108" stroke-width="2.4"/>
+              <path d="M62 34V46M56 40H68" stroke-width="2.4"/>
+              <path d="M164 126V136M159 131H169" stroke-width="2.2"/>
+              <circle cx="44" cy="100" r="2.4" fill="#141414" stroke="none"/><circle cx="178" cy="90" r="2.4" fill="#141414" stroke="none"/><circle cx="116" cy="150" r="2" fill="#141414" stroke="none"/>
+            </g>
+          </svg></span>
+          <span class="label" style="color:#8C9FD6"><span class="fr">Mission</span><span class="ar">مهمتنا</span></span>
+        </a>
+        <a class="door" href="#valeurs">
+          <span class="pic"><svg viewBox="0 0 200 180" aria-hidden="true">
+            <g filter="url(#wash)" opacity=".9">
+              <ellipse cx="100" cy="74" rx="34" ry="32" fill="#F9DA58"/>
+              <ellipse cx="100" cy="78" rx="20" ry="18" fill="#F5B04A"/>
+              <ellipse cx="100" cy="148" rx="82" ry="18" fill="#BFDDE6"/>
+            </g>
+            <g filter="url(#wobble)" fill="none" stroke="#141414" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="100" cy="74" r="26"/>
+              <path d="M88 71Q92 75 96 71M104 71Q108 75 112 71M92 83Q100 90 108 83"/>
+              <path d="M100 38V28M125 49 132 42M136 74H146M75 49 68 42M64 74H54M126 100 132 106M74 100 68 106"/>
+              <path d="M22 138Q37 128 52 138T82 138 112 138 142 138 172 138"/>
+              <path d="M42 156Q57 148 72 156T102 156 132 156 162 156"/>
+              <path d="M28 42Q28 34 36 36 40 28 48 34 56 32 54 42Z"/>
+              <circle cx="170" cy="40" r="2.5" fill="#141414" stroke="none"/><circle cx="160" cy="100" r="2" fill="#141414" stroke="none"/>
+            </g>
+          </svg></span>
+          <span class="label" style="color:#D9B52A"><span class="fr">Valeurs</span><span class="ar">قيمنا</span></span>
+        </a>
+        <a class="door" href="#services">
+          <span class="pic"><img src="assets/illu-maison.webp" alt="" width="398" height="310"></span>
+          <span class="label" style="color:#2FBF55"><span class="fr">Services</span><span class="ar">خدماتنا</span></span>
+        </a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="svc band section" id="services" data-mode="part" aria-labelledby="svc-title">
+    <span id="pros" style="position:relative;top:-2rem;display:block"></span>
+    <div class="wrap">
+      <div class="svc-head">
+        <div>
+          <h2 class="title" id="svc-title"><span class="oval o-green"><span class="fr">Services</span><span class="ar">خدماتنا</span></span></h2>
+          <p class="prose"><span class="fr">Des prestations de ménage de qualité, assurées par des travailleuses qualifiées et formées. Grâce à des formations techniques régulières et du matériel adapté, nous garantissons un service fiable et un suivi personnalisé, pour une confiance qui dure.</span><span class="ar">خدمات تنظيف بجودة عالية، تعملها عاملات متكوّنات وعندهم خبرة. بالتكوين المتواصل والمعدّات المناسبة، نضمنو خدمة مضمونة ومتابعة على قدّك، باش تتبنى ثقة تدوم.</span></p>
+        </div>
+        <div class="illu">
+          <img id="illu-part" src="assets/illu-maison.webp" alt="" width="398" height="310">
+          <svg id="illu-pro" viewBox="0 0 220 190" hidden aria-hidden="true">
+            <g filter="url(#wash)" opacity=".9">
+              <ellipse cx="150" cy="58" rx="46" ry="30" fill="#F5B04A"/>
+              <ellipse cx="128" cy="70" rx="36" ry="22" fill="#F9DA58"/>
+              <ellipse cx="96" cy="170" rx="80" ry="14" fill="#BFDDE6"/>
+            </g>
+            <g class="ln" filter="url(#wobble)" fill="none" stroke="#151515" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M30 172H196"/>
+              <path d="M52 171V58l62-18v131"/>
+              <path d="M114 88h56v83"/>
+              <path d="M68 70h11v11H68zM92 64h11v11H92zM68 98h11v11H68zM92 94h11v11H92zM68 126h11v11H68zM92 122h11v11H92zM128 104h11v11h-11zM150 104h9v11h-9zM128 132h11v11h-11z"/>
+              <path d="M74 171v-20h20v20"/>
+              <path d="M186 22c1 9 4 12 13 13-9 1-12 4-13 13-1-9-4-12-13-13 9-1 12-4 13-13z"/>
+              <path d="M156 60c5-9 15-8 13-1s-11 5-7-4c3-6 10-8 14-4"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Type de client">
+        <button class="tab" role="tab" id="tab-part" aria-controls="panel-part" aria-selected="true"><span class="fr">Particuliers</span><span class="ar">للدار</span></button>
+        <button class="tab" role="tab" id="tab-pro" aria-controls="panel-pro" aria-selected="false"><span class="fr">Professionnels</span><span class="ar">للشركات والمناسبات</span></button>
+      </div>
+
+      <div class="svc-panel" role="tabpanel" id="panel-part" aria-labelledby="tab-part">
+        <ul class="svc-list">
+          <li><h3><span class="fr">Ménage à domicile</span><span class="ar">تنظيف الدار</span></h3><p><span class="fr">Un coup de main ponctuel ou régulier. Confiez votre intérieur à des mains expertes.</span><span class="ar">مرة برك ولا بصفة منتظمة. خلّي دارك في يدين عندها خبرة.</span></p></li>
+          <li><h3><span class="fr">Aide aux personnes âgées</span><span class="ar">العناية بكبار السن</span></h3><p><span class="fr">Présence, aide au quotidien et compagnie pour vos parents, chez eux.</span><span class="ar">حضور، معاونة في الحياة اليومية ونسّة لوالديك، في دارهم.</span></p></li>
+          <li><h3><span class="fr">Garde d’enfants</span><span class="ar">التلهّي بالصغار</span></h3><p><span class="fr">Des membres formées pour veiller sur vos enfants en toute confiance.</span><span class="ar">عضوات متكوّنات يتلهّاو بصغارك وانت مرتاح.</span></p></li>
+          <li><h3><span class="fr">Jardinage</span><span class="ar">الجنينة</span></h3><p><span class="fr">Entretien du jardin, de la terrasse et des plantes.</span><span class="ar">نعتنيو بالجنينة، السطح والنبتات.</span></p></li>
+          <li><h3><span class="fr">Grand ménage</span><span class="ar">تنظيف كبير</span></h3><p><span class="fr">Avant ou après un déménagement, une fête de famille, un changement de saison.</span><span class="ar">قبل ولا بعد التحويل، عرس ولا مناسبة، ولا تبديل الفصل.</span></p></li>
+        </ul>
+        <div class="svc-note">
+          <p><span class="fr">À votre rythme et selon vos besoins.</span><span class="ar">على حسب الوقت اللي يساعدك.</span></p>
+          <a class="btn btn-ink" href="#contact"><span class="fr">Demander un rendez-vous</span><span class="ar">اطلب موعد</span></a>
+        </div>
+      </div>
+
+      <div class="svc-panel" role="tabpanel" id="panel-pro" aria-labelledby="tab-pro" hidden>
+        <div class="pro-why">
+          <div><b><span class="fr">Un achat qui a du sens</span><span class="ar">شراء فيه معنى</span></b><span><span class="fr">Un impact social concret, à valoriser dans votre démarche RSE.</span><span class="ar">تأثير اجتماعي حقيقي، تنجم تحطّو في المسؤولية الاجتماعية متاعك.</span></span></div>
+          <div><b><span class="fr">Une équipe stable</span><span class="ar">فريق ثابت</span></b><span><span class="fr">Les mêmes visages, qui connaissent vos lieux et vos règles.</span><span class="ar">نفس الوجوه، يعرفو بلاصتك وقواعدك.</span></span></div>
+          <div><b><span class="fr">Un seul interlocuteur</span><span class="ar">شخص واحد تحكي معاه</span></b><span><span class="fr">Devis clair, contrat régulier ou intervention unique.</span><span class="ar">ديفي واضح، عقد منتظم ولا خدمة مرة وحدة.</span></span></div>
+        </div>
+        <ul class="svc-list">
+          <li><h3><span class="fr">Bureaux et locaux</span><span class="ar">المكاتب والمحلات</span></h3><p><span class="fr">Entretien régulier de vos espaces de travail, à des horaires adaptés à votre activité.</span><span class="ar">تنظيف منظّم لبلايص الخدمة، في أوقات تناسب خدمتكم.</span></p></li>
+          <li><h3><span class="fr">Événements</span><span class="ar">المناسبات والفعاليات</span></h3><p><span class="fr">Avant, pendant et après : mise en place, service, remise en état des lieux.</span><span class="ar">قبل، وقت، وبعد: تحضير، خدمة، ونرجّعو البلاصة نظيفة.</span></p></li>
+          <li><h3><span class="fr">Hébergements et locations</span><span class="ar">الإقامات والكراء</span></h3><p><span class="fr">Maisons d’hôtes, appartements meublés : remise en état entre deux séjours.</span><span class="ar">دور ضيافة وديار مفروشة: تنظيف بين كراء وكراء.</span></p></li>
+          <li><h3><span class="fr">Associations et institutions</span><span class="ar">الجمعيات والمؤسسات</span></h3><p><span class="fr">Contrats à l’année, sur un ou plusieurs sites.</span><span class="ar">عقود على العام، في بلاصة وحدة ولا برشا.</span></p></li>
+        </ul>
+        <div class="svc-note">
+          <p><span class="fr">Une proposition adaptée à votre structure.</span><span class="ar">اقتراح على قدّ مؤسستك.</span></p>
+          <a class="btn btn-ink" href="#contact" data-pro="1"><span class="fr">Demander un devis</span><span class="ar">اطلب ديفي</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALEURS -->
+  <section class="values band section" id="valeurs" aria-labelledby="val-title" style="padding-top:0">
+    <div class="wrap">
+      <svg class="illu" viewBox="0 0 200 180" aria-hidden="true">
+            <g filter="url(#wash)" opacity=".9">
+              <ellipse cx="100" cy="74" rx="34" ry="32" fill="#F9DA58"/>
+              <ellipse cx="100" cy="78" rx="20" ry="18" fill="#F5B04A"/>
+              <ellipse cx="100" cy="148" rx="82" ry="18" fill="#BFDDE6"/>
+            </g>
+            <g filter="url(#wobble)" fill="none" stroke="#141414" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="100" cy="74" r="26"/>
+              <path d="M88 71Q92 75 96 71M104 71Q108 75 112 71M92 83Q100 90 108 83"/>
+              <path d="M100 38V28M125 49 132 42M136 74H146M75 49 68 42M64 74H54M126 100 132 106M74 100 68 106"/>
+              <path d="M22 138Q37 128 52 138T82 138 112 138 142 138 172 138"/>
+              <path d="M42 156Q57 148 72 156T102 156 132 156 162 156"/>
+              <path d="M28 42Q28 34 36 36 40 28 48 34 56 32 54 42Z"/>
+              <circle cx="170" cy="40" r="2.5" fill="#141414" stroke="none"/><circle cx="160" cy="100" r="2" fill="#141414" stroke="none"/>
+            </g>
+          </svg>
+      <div class="values-text">
+        <h2 class="title" id="val-title"><span class="oval o-yellow"><span class="fr">Valeurs</span><span class="ar">قيمنا</span></span></h2>
+        <p class="prose"><span class="fr">Ideeyet place la confiance, le respect et la sérénité au cœur de ses actions. Nous valorisons la dignité des travailleuses domestiques tout en respectant la vie privée de nos clients.</span><span class="ar">في Ideeyet، الثقة والاحترام وراحة البال في قلب كل خدمة. نثمّنو كرامة عاملات المنازل ونحترمو الحياة الخاصة متاع حرفائنا.</span></p>
+  <svg class="venn" viewBox="0 0 560 520" role="group" aria-label="Propreté, dignité et sérénité se rejoignent au centre, dans la main d’Ideeyet">
+        <defs>
+          <clipPath id="c1"><circle cx="280" cy="190" r="160"/></clipPath>
+          <clipPath id="c2"><circle cx="185" cy="335" r="160"/></clipPath>
+        </defs>
+        <g class="core" clip-path="url(#c1)"><g clip-path="url(#c2)"><circle cx="375" cy="335" r="160" fill="url(#core-grad)"/></g></g>
+        <circle class="ring r-g" data-v="proprete" cx="280" cy="190" r="160" stroke="#4BE470" tabindex="0" role="button" aria-label="Propreté"/>
+        <circle class="ring r-v" data-v="dignite" cx="185" cy="335" r="160" stroke="#A5B7E5" tabindex="0" role="button" aria-label="Dignité"/>
+        <circle class="ring r-y" data-v="serenite" cx="375" cy="335" r="160" stroke="#F9DA58" tabindex="0" role="button" aria-label="Sérénité"/>
+        <svg x="250" y="244" width="62" height="86" viewBox="0 0 130 178" style="color:#FFF6ED;--spark:#4BE470;pointer-events:none"><use href="#hand"/></svg>
+        <text x="280" y="105" text-anchor="middle" fill="#2FBF55"><tspan class="fr">PROPRETÉ</tspan><tspan class="ar">النظافة</tspan></text>
+        <text x="140" y="390" text-anchor="middle" fill="#8C9FD6"><tspan class="fr">DIGNITÉ</tspan><tspan class="ar">الكرامة</tspan></text>
+        <text x="420" y="390" text-anchor="middle" fill="#D9B52A"><tspan class="fr">SÉRÉNITÉ</tspan><tspan class="ar">راحة البال</tspan></text>
+      </svg>
+        <p class="vhint"><span class="fr">Cliquez sur un cercle pour lire sa définition.</span><span class="ar">انقر على دائرة باش تقرا معناها.</span></p>
+        <ul class="vlist" aria-live="polite">
+          <li data-v="proprete" style="--vc:#4BE470"><h3><span class="fr">Propreté</span><span class="ar">النظافة</span></h3><p><span class="fr">Un travail soigné et rigoureux, avec du matériel adapté et des formations techniques régulières.</span><span class="ar">خدمة نظيفة ودقيقة، بمعدّات مناسبة وتكوين تقني متواصل.</span></p></li>
+          <li data-v="dignite" style="--vc:#A5B7E5" hidden><h3><span class="fr">Dignité</span><span class="ar">الكرامة</span></h3><p><span class="fr">Un cadre stable, déclaré et équitable pour celles qui font le travail. Un métier reconnu.</span><span class="ar">إطار ثابت، قانوني وعادل للّي يخدمو. وصنعة معترف بيها.</span></p></li>
+          <li data-v="serenite" style="--vc:#F9DA58" hidden><h3><span class="fr">Sérénité</span><span class="ar">راحة البال</span></h3><p><span class="fr">Des intervenantes de confiance, le respect de votre vie privée, un suivi personnalisé.</span><span class="ar">عاملات تنجم تثق فيهم، احترام لحياتك الخاصة، ومتابعة على قدّك.</span></p></li>
+        </ul>
+        <div class="chips">
+          <span class="fr">Transparence</span><span class="ar">الشفافية</span>
+          <span class="fr">Solidarité</span><span class="ar">التضامن</span>
+          <span class="fr">Gestion participative</span><span class="ar">التسيير التشاركي</span>
+          <span class="fr">Respect des droits</span><span class="ar">احترام الحقوق</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="mission band section" id="mission" aria-labelledby="mis-title">
+    <div class="wrap">
+      <svg class="illu" viewBox="0 0 200 180" aria-hidden="true">
+            <g filter="url(#wash)" opacity=".85">
+              <ellipse cx="86" cy="106" rx="54" ry="13" fill="#E9B9C6" transform="rotate(-38 86 106)"/>
+              <ellipse cx="110" cy="86" rx="32" ry="10" fill="#F5B04A" transform="rotate(-38 110 86)"/>
+            </g>
+            <g filter="url(#wobble-org)" fill="none" stroke="#141414" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M144 30C146 46 150 50 166 52 150 54 146 58 144 74 142 58 138 54 122 52 138 50 142 46 144 30Z" fill="#F9DA58" stroke="none"/>
+              <path d="M126 60C110 66 96 74 82 78S66 86 58 90"/>
+              <path d="M130 70C114 80 102 92 88 100S68 116 54 126"/>
+              <path d="M138 78C126 92 116 104 104 114S84 130 72 140"/>
+              <path d="M118 92C108 98 100 104 92 108" stroke-width="2.4"/>
+              <path d="M62 34V46M56 40H68" stroke-width="2.4"/>
+              <path d="M164 126V136M159 131H169" stroke-width="2.2"/>
+              <circle cx="44" cy="100" r="2.4" fill="#141414" stroke="none"/><circle cx="178" cy="90" r="2.4" fill="#141414" stroke="none"/><circle cx="116" cy="150" r="2" fill="#141414" stroke="none"/>
+            </g>
+          </svg>
+      <div class="mission-text">
+        <h2 class="title" id="mis-title"><span class="oval o-violet"><span class="fr">Mission</span><span class="ar">مهمتنا</span></span></h2>
+        <p class="prose"><span class="fr">Ideeyet dépasse le simple rôle de mise en relation : nous avons une mission sociale. En renforçant l’autonomie des travailleuses domestiques, nous combattons les discriminations et leur ouvrons l’accès à des opportunités stables et justes, pour un marché du travail plus équitable et plus humain.</span><span class="ar">Ideeyet موش مجرّد وسيط: عندنا مهمة اجتماعية. كي نقوّيو استقلالية عاملات المنازل، نحاربو التمييز ونحلّولهم أبواب فرص ثابتة وعادلة، باش يولّي سوق الشغل أعدل وأكثر إنسانية.</span></p>
+        <div class="pillars">
+          <div><b><span class="fr">Indépendance</span><span class="ar">الاستقلالية</span></b><span><span class="fr">Chaque membre garde la main sur son travail.</span><span class="ar">كل عضوة تتحكّم في خدمتها.</span></span></div>
+          <div><b><span class="fr">Soutien collectif</span><span class="ar">السند الجماعي</span></b><span><span class="fr">La force du groupe derrière chacune.</span><span class="ar">قوة المجموعة ورا كل وحدة.</span></span></div>
+          <div><b><span class="fr">Formation et droits</span><span class="ar">التكوين والحقوق</span></b><span><span class="fr">Formations techniques et sensibilisation aux droits.</span><span class="ar">تكوين تقني وتوعية بالحقوق.</span></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTOIRE -->
+  <section class="story band section" id="histoire" aria-labelledby="story-title">
+    <div class="wrap">
+      <div class="portrait" role="img" aria-label="Emplacement photo : Lamia Yarmani"><span class="fr">photo de Lamia à venir</span><span class="ar">تصويرة لمياء قريب</span></div>
+      <div class="story-text">
+        <p class="label" id="story-title"><span class="fr">Depuis 2018 · le chemin de Lamia</span><span class="ar">من 2018 · ثنية لمياء</span></p>
+        <blockquote class="quote"><q class="fr">Aujourd’hui, la Tunisie a besoin de personnes qui prennent soin, qui apportent de l’aide dans les foyers.</q><q class="ar">اليوم، تونس تستحق ناس تعتني، وتعاون في الديار.</q></blockquote>
+        <p class="who"><b>Lamia Yarmani</b> · <span class="fr">membre fondatrice et trésorière</span><span class="ar">عضوة مؤسسة وأمينة مال</span></p>
+        <p class="prose"><span class="fr">Ideeyet est née en 2018 pour sortir le travail domestique de la précarité et des préjugés. Pour Lamia, la coopérative a tout changé : reconnaître son métier, se former, et faire évoluer le regard des autres.</span><span class="ar">Ideeyet تولدت في 2018 باش تخرّج خدمة الديار من الهشاشة والنظرة الخايبة. بالنسبة للمياء، التعاونية بدّلت كل شي: عرفت قيمة صنعتها، تكوّنت، وبدّلت نظرة الناس.</span></p>
+        <a class="more" href="https://bibliotheque.shanti.tn/articles/au-coeur-de-la-cooperative-ideyeet-le-chemin-de-lamia-yarmani/" target="_blank" rel="noopener"><span class="fr">Lire son histoire</span><span class="ar">اقرا حكايتها</span><svg class="flip" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        <p class="partners"><span class="fr">Avec le soutien du projet TAGHYIR, porté par l’ACPP et financé par l’AECID.</span><span class="ar">بدعم من مشروع TAGHYIR، اللي تحملو ACPP وتموّلو AECID.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact band section" id="contact" aria-labelledby="ct-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="contact-info">
+        <h2 class="title" id="ct-title"><span class="fr">Parlons-en</span><span class="ar">نحكيو</span></h2>
+        <p class="prose"><span class="fr">Offrez-vous la tranquillité d’esprit, tout en soutenant un modèle coopératif solidaire.</span><span class="ar">ريّح بالك، وفي نفس الوقت عاون نموذج تعاوني متضامن.</span></p>
+        <p class="phone" id="phone">98 110 691</p>
+        <div class="links">
+          <button type="button" class="icon-btn" id="copy-phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg><span id="copy-label"><span class="fr">Copier</span><span class="ar">انسخ</span></span></button>
+          <a class="icon-btn" href="https://wa.me/21698110691" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="icon-btn" href="https://www.instagram.com/coop.ideeyet/" target="_blank" rel="noopener">Instagram</a>
+          <a class="icon-btn" href="https://www.facebook.com/people/Coop%C3%A9rative-Ideeyet/61574806505032/" target="_blank" rel="noopener">Facebook</a>
+        </div>
+      </div>
+      <form id="contact-form" novalidate>
+        <div class="full seg" role="radiogroup" aria-label="Vous êtes">
+          <label><input type="radio" name="kind" id="kind-part" value="particulier" checked><span class="fr">Particulier</span><span class="ar">فرد</span></label>
+          <label><input type="radio" name="kind" id="kind-pro" value="pro"><span class="fr">Professionnel</span><span class="ar">شركة / مؤسسة</span></label>
+        </div>
+        <label><span class="fr">Nom</span><span class="ar">الاسم</span><input id="f-name" name="name" autocomplete="name"></label>
+        <label><span class="fr">Téléphone</span><span class="ar">التليفون</span><input id="f-tel" name="tel" type="tel" autocomplete="tel" dir="ltr"></label>
+        <label class="full" id="org-field" hidden><span class="fr">Entreprise / organisation</span><span class="ar">الشركة / المؤسسة</span><input id="f-org" name="org" autocomplete="organization"></label>
+        <label class="full"><span class="fr">Votre besoin</span><span class="ar">شنوّة حاجتك؟</span><textarea id="f-msg" name="msg"></textarea></label>
+        <div class="full" style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center">
+          <button class="btn btn-ink" type="submit"><span class="fr">Envoyer</span><span class="ar">ابعث</span></button>
+          <p class="form-note" id="form-note" hidden><span class="fr">Maquette : l’envoi sera branché à la mise en ligne.</span><span class="ar">نسخة تجريبية: الإرسال يتربط كي يطلع السيت.</span></p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="foot band">
+  <div class="wrap">
+    <span><b><span class="fr">Nos services, votre sérénité. Notre coopérative, notre dignité.</span><span class="ar">خدماتنا، راحتكم. تعاونيتنا، كرامتنا.</span></b></span>
+    <span>© Coopérative Ideeyet · Tunis</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+
+  function setLang(l) {
+    root.lang = l === "ar" ? "ar" : "fr";
+    root.dir = l === "ar" ? "rtl" : "ltr";
+    document.querySelectorAll(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.lang === root.lang)); });
+    try { localStorage.setItem("ideeyet-lang", root.lang); } catch (e) {}
+  }
+  document.querySelectorAll(".lang button").forEach(function (b) { b.addEventListener("click", function () { setLang(b.dataset.lang); }); });
+  var saved = null;
+  try { saved = localStorage.getItem("ideeyet-lang"); } catch (e) {}
+  setLang(saved || "fr");
+
+  // onglets particuliers / professionnels
+  var tabs = document.querySelectorAll(".tab");
+  function selectTab(id) {
+    tabs.forEach(function (t) {
+      var on = t.id === id;
+      t.setAttribute("aria-selected", String(on));
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+    });
+    document.getElementById("illu-part").hidden = id !== "tab-part";
+    document.getElementById("illu-pro").toggleAttribute("hidden", id !== "tab-pro");
+    document.getElementById("services").dataset.mode = id === "tab-pro" ? "pro" : "part";
+  }
+  tabs.forEach(function (t) { t.addEventListener("click", function () { selectTab(t.id); }); });
+  document.querySelectorAll('a[href="#pros"]').forEach(function (a) { a.addEventListener("click", function () { selectTab("tab-pro"); }); });
+  function fromHash() {
+    if (location.hash === "#pros") selectTab("tab-pro");
+    if (location.hash === "#services") selectTab("tab-part");
+  }
+  window.addEventListener("hashchange", fromHash);
+  fromHash();
+
+  // clic sur un cercle : sa définition s'affiche sous le texte
+  function showValue(v) {
+    document.querySelectorAll(".vlist li").forEach(function (li) { li.hidden = li.dataset.v !== v; });
+    document.querySelectorAll(".venn .ring").forEach(function (r) { r.classList.toggle("on", r.dataset.v === v); });
+  }
+  document.querySelectorAll(".venn .ring").forEach(function (r) {
+    r.addEventListener("click", function () { showValue(r.dataset.v); });
+    r.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showValue(r.dataset.v); } });
+  });
+  showValue("proprete");
+
+  // contact
+  var orgField = document.getElementById("org-field");
+  document.querySelectorAll('input[name="kind"]').forEach(function (r) {
+    r.addEventListener("change", function () { orgField.hidden = !document.getElementById("kind-pro").checked; });
+  });
+  document.querySelectorAll("[data-pro]").forEach(function (a) {
+    a.addEventListener("click", function () { document.getElementById("kind-pro").checked = true; orgField.hidden = false; });
+  });
+  document.getElementById("copy-phone").addEventListener("click", function () {
+    function done() { document.getElementById("copy-label").innerHTML = '<span class="fr">Copié</span><span class="ar">تنسخ</span>'; }
+    function selectPhone() { var r = document.createRange(); r.selectNodeContents(document.getElementById("phone")); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+    try { navigator.clipboard.writeText("+216 98 110 691").then(done, selectPhone); } catch (e) { selectPhone(); }
+  });
+  document.getElementById("contact-form").addEventListener("submit", function (e) { e.preventDefault(); document.getElementById("form-note").hidden = false; });
+})();
+</script>
+</body>
+</html>
