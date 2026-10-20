@@ -22,6 +22,7 @@
   --green: #4BE470;
   --yellow: #F9DA58;
   --grad: linear-gradient(90deg, var(--yellow) 0%, var(--green) 50%, var(--periwinkle) 100%);
+  --grad-flow: linear-gradient(90deg, var(--yellow), var(--green), var(--periwinkle), var(--green), var(--yellow));
   --grad-soft:
     radial-gradient(60% 60% at 25% 20%, var(--green) 0%, transparent 70%),
     radial-gradient(60% 60% at 80% 30%, var(--periwinkle) 0%, transparent 70%),
@@ -67,7 +68,7 @@ html[lang="ar"] .title { text-transform: none; font-weight: 600; line-height: 1.
 .oval { position: relative; display: inline-block; isolation: isolate; padding: .15em .1em; }
 .oval::before {
   content: ""; position: absolute; inset: -.32em -.55em; border-radius: 50%; padding: 1.5px; z-index: -1;
-  background: var(--o, var(--grad)); transform: rotate(-2.5deg);
+  background: var(--o, var(--grad-flow)); transform: rotate(-2.5deg);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
 }
@@ -82,6 +83,14 @@ html[lang="ar"] .title { text-transform: none; font-weight: 600; line-height: 1.
 .btn-line:hover { background: var(--ink); color: var(--cream); }
 .btn svg { width: 1.05em; height: 1.05em; flex: none; }
 html[lang="ar"] .flip { transform: scaleX(-1); }
+
+/* dégradés vivants : un glissement lent, discret */
+@keyframes flow { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+@keyframes drift { from { background-position: 0% 0%; } to { background-position: 100% 100%; } }
+.wordmark .coop { background-image: var(--grad-flow) !important; background-size: 300% 100% !important; animation: flow 12s ease-in-out infinite alternate; }
+.oval::before, .phone::before, .cert-paper::before, .tab[aria-selected="true"]::after { background-size: 250% 100% !important; animation: flow 10s ease-in-out infinite alternate; }
+.coop-word .pill::before { background-size: 220% 100% !important; animation: flow 11s ease-in-out infinite alternate; }
+.portrait { background-size: 160% 160% !important; animation: drift 16s ease-in-out infinite alternate; }
 
 /* ---------- header ---------- */
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: color-mix(in srgb, var(--cream) 92%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
@@ -150,7 +159,7 @@ html[lang="ar"] .coop-word .pill { font-style: normal; }
 .tabs { display: flex; gap: 2rem; border-bottom: 1px solid var(--line); }
 .tab { border: 0; background: none; cursor: pointer; font: 600 1.05rem var(--f-body); color: var(--grey-soft); padding: 0 0 1rem; position: relative; }
 .tab[aria-selected="true"] { color: var(--ink); }
-.tab[aria-selected="true"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--grad); }
+.tab[aria-selected="true"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--grad-flow); }
 .svc-panel { display: grid; gap: 3rem; }
 .svc-list { list-style: none; margin: 0; padding: 0; }
 .svc-list li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: .5rem 3rem; padding-block: 1.6rem; border-bottom: 1px solid var(--line); align-items: baseline; }
@@ -202,9 +211,10 @@ html[lang="ar"] .vlist h3 { text-transform: none; letter-spacing: 0; font-weight
 @media (max-width: 760px) { .mission .wrap { grid-template-columns: 1fr; } .pillars { grid-template-columns: 1fr; gap: 1.25rem; } }
 
 /* ---------- formations : bandeau qui défile + certificat ---------- */
-.trainings .wrap { display: grid; gap: 2rem; }
-.tr-head { display: grid; gap: 2.25rem; max-width: 46rem; }
-.marquee { overflow: hidden; margin-top: clamp(2.5rem, 5vw, 3.5rem); -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
+.tr-mini { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .5rem 2rem; margin-top: clamp(3.5rem, 7vw, 5.5rem); }
+.tr-hint { font-size: .9rem; color: var(--grey-soft); }
+.mission .fcard { background: var(--cream); }
+.marquee { overflow: hidden; margin-top: 1.25rem; -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
 .track { display: flex; width: max-content; direction: ltr; padding-block: .75rem; animation: defile 45s linear infinite; }
 .marquee:hover .track, .marquee:focus-within .track { animation-play-state: paused; }
 html[dir="rtl"] .track { animation-direction: reverse; }
@@ -222,7 +232,7 @@ html[lang="ar"] .fname { font-weight: 600; }
 .cert { border: 0; padding: 0; background: transparent; max-width: min(40rem, calc(100vw - 32px)); width: 100%; }
 .cert::backdrop { background: rgba(28, 28, 28, .55); backdrop-filter: blur(3px); }
 .cert-paper { position: relative; overflow: hidden; background: #FFFDF8; color: var(--grey); border-radius: 1rem; padding: clamp(2.5rem, 6vw, 3.25rem) clamp(2.25rem, 5vw, 3rem); text-align: center; display: grid; gap: 1rem; justify-items: center; outline: 1px solid var(--line); outline-offset: -12px; box-shadow: 0 30px 80px -30px rgba(0,0,0,.5); }
-.cert-paper::before { content: ""; position: absolute; inset: 18px; border-radius: .6rem; padding: 2px; background: var(--grad); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); pointer-events: none; }
+.cert-paper::before { content: ""; position: absolute; inset: 18px; border-radius: .6rem; padding: 2px; background: var(--grad-flow); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); pointer-events: none; }
 .cert-close { position: absolute; top: 1.4rem; inset-inline-end: 1.4rem; border: 0; background: var(--cream); color: var(--ink); width: 2.4rem; height: 2.4rem; border-radius: 50%; display: grid; place-items: center; cursor: pointer; z-index: 2; }
 .cert-stamp { position: absolute; top: 2.6rem; inset-inline-start: -3rem; transform: rotate(-30deg); background: #F08A7A; color: #FFFDF8; font-family: "Krona One", sans-serif; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; padding: .35rem 4rem; }
 html[dir="rtl"] .cert-stamp { transform: rotate(30deg); }
@@ -238,6 +248,21 @@ html[lang="ar"] .cert h3 { text-transform: none; font-weight: 600; }
 .cert-sign { display: flex; justify-content: space-between; gap: 1.5rem; width: 100%; margin-top: 1.5rem; font-size: .85rem; }
 .cert-sign > span { flex: 1; border-top: 1px solid var(--grey); padding-top: .4rem; }
 .cert-note { font-size: .8rem; font-style: italic; color: var(--grey-soft); }
+
+/* ---------- témoignages ---------- */
+.voices .wrap { display: grid; gap: 1.5rem; }
+.vgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.vcard { margin: 0; padding: 1.75rem; border-radius: 1.5rem; background: var(--paper); border: 1px solid var(--line); display: grid; gap: 1.25rem; align-content: space-between; text-decoration: none; color: var(--grey); min-width: 0; }
+.vcard blockquote { margin: 0; color: var(--ink); font-size: 1.15rem; line-height: 1.5; font-weight: 300; }
+.vcard blockquote::before { content: "“"; display: block; font-family: "Krona One", sans-serif; font-size: 2.6rem; line-height: .8; background: var(--grad-flow); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: flow 14s ease-in-out infinite alternate; }
+.vcard q { quotes: none; }
+.vcard figcaption { font-size: .9rem; border-top: 1px solid var(--line); padding-top: .9rem; }
+.vcard figcaption b { color: var(--ink); font-weight: 600; }
+.vcta { background: transparent; border-style: dashed; transition: border-color .25s; }
+.vcta:hover { border-color: var(--vc); }
+.vcta-t { color: var(--ink); font-weight: 800; font-size: 1.2rem; }
+.vcta .fmore { --fc: var(--vc); }
+@media (max-width: 860px) { .vgrid { grid-template-columns: 1fr; } }
 
 /* ---------- histoire ---------- */
 .story .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
@@ -258,7 +283,7 @@ html[lang="ar"] .quote { letter-spacing: 0; line-height: 1.6; }
 .contact .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
 .contact-info { display: grid; gap: 2rem; min-width: 0; }
 .phone { font-family: "Krona One", sans-serif; font-size: clamp(1.6rem, 1rem + 2.8vw, 2.8rem); color: var(--ink); direction: ltr; unicode-bidi: isolate; user-select: all; position: relative; isolation: isolate; padding: .2em .1em; justify-self: start; }
-.phone::before { content: ""; position: absolute; inset: -.15em -.45em; border-radius: 50%; background: var(--grad); opacity: .55; z-index: -1; transform: rotate(-2deg); }
+.phone::before { content: ""; position: absolute; inset: -.15em -.45em; border-radius: 50%; background: var(--grad-flow); opacity: .55; z-index: -1; transform: rotate(-2deg); }
 .icon-btn { border: 1px solid var(--line); background: var(--paper); border-radius: 999px; padding: .6rem 1rem; font: 600 .9rem var(--f-body); color: var(--ink); cursor: pointer; display: inline-flex; gap: .45rem; align-items: center; text-decoration: none; }
 .icon-btn:hover { border-color: var(--ink); }
 .icon-btn svg { width: 1rem; height: 1rem; }
@@ -310,7 +335,8 @@ textarea { min-height: 5.5rem; resize: vertical; }
       <feDisplacementMap in="SourceGraphic" in2="n" scale="28" result="d"/>
       <feGaussianBlur in="d" stdDeviation="5"/>
     </filter>
-    <linearGradient id="core-grad" x1="0" y1="1" x2="1" y2="0">
+    <linearGradient id="core-grad" x1="0" y1="1" x2="1" y2="0" gradientTransform="rotate(0 .5 .5)">
+      <animateTransform class="smil" attributeName="gradientTransform" type="rotate" values="0 .5 .5;35 .5 .5;-20 .5 .5;0 .5 .5" dur="16s" repeatCount="indefinite"/>
       <stop offset="0" stop-color="#A5B7E5"/>
       <stop offset=".5" stop-color="#4BE470"/>
       <stop offset="1" stop-color="#F9DA58"/>
@@ -328,7 +354,6 @@ textarea { min-height: 5.5rem; resize: vertical; }
       <a href="#pros"><span class="fr">Professionnels</span><span class="ar">للشركات</span></a>
       <a href="#valeurs"><span class="fr">Valeurs</span><span class="ar">قيمنا</span></a>
       <a href="#mission"><span class="fr">Mission</span><span class="ar">مهمتنا</span></a>
-      <a href="#formations"><span class="fr">Formations</span><span class="ar">التكوين</span></a>
       <a href="#contact"><span class="fr">Contact</span><span class="ar">اتصل بينا</span></a>
     </nav>
     <div class="lang" role="group" aria-label="Langue">
@@ -583,15 +608,9 @@ textarea { min-height: 5.5rem; resize: vertical; }
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- FORMATIONS -->
-  <section class="trainings band section" id="formations" aria-labelledby="form-title">
-    <div class="wrap">
-      <div class="tr-head">
-        <h2 class="title" id="form-title"><span class="oval"><span class="fr">Formations</span><span class="ar">التكوين</span></span></h2>
-        <p class="prose"><span class="fr">Les ideeyets se forment tout au long de l’année. Chaque formation suivie est attestée par un certificat. Cliquez sur une formation pour le voir.</span><span class="ar">الـ ideeyets يتكوّنو على طول العام. كل تكوين عندو شهادة. انقر على تكوين باش تشوفها.</span></p>
-      </div>
+    <div class="wrap tr-mini" id="formations">
+      <p class="label"><span class="fr">Nos formations · certificats à l’appui</span><span class="ar">تكويناتنا · بالشهايد</span></p>
+      <p class="tr-hint"><span class="fr">Cliquez sur une formation pour voir son certificat.</span><span class="ar">انقر على تكوين باش تشوف الشهادة متاعو.</span></p>
     </div>
     <div class="marquee">
       <div class="track">
@@ -707,6 +726,28 @@ textarea { min-height: 5.5rem; resize: vertical; }
     </div>
   </section>
 
+  <!-- TÉMOIGNAGES -->
+  <section class="voices band section" id="temoignages" aria-labelledby="voices-title" style="padding-top:0">
+    <div class="wrap">
+      <p class="label" id="voices-title"><span class="fr">Témoignages</span><span class="ar">شهادات</span></p>
+      <div class="vgrid">
+        <figure class="vcard" style="--vc:#A5B7E5">
+          <blockquote><q class="fr">On peut confier ses enfants ou ses parents à nos membres en toute sérénité.</q><q class="ar">تنجم تأمّن صغارك ولا والديك عند عضواتنا وانت مرتاح.</q></blockquote>
+          <figcaption><b>Lamia</b> · <span class="fr">membre fondatrice</span><span class="ar">عضوة مؤسسة</span></figcaption>
+        </figure>
+        <figure class="vcard" style="--vc:#F9DA58">
+          <blockquote><q class="fr">J’ai compris que ce travail est respectable et noble, comme tout autre métier.</q><q class="ar">فهمت اللي الخدمة هذي محترمة وشريفة، كيف أي صنعة أخرى.</q></blockquote>
+          <figcaption><b>Lamia</b> · <span class="fr">membre fondatrice</span><span class="ar">عضوة مؤسسة</span></figcaption>
+        </figure>
+        <a class="vcard vcta" href="#contact" style="--vc:#4BE470">
+          <span class="vcta-t"><span class="fr">Vous avez fait appel à Ideeyet ?</span><span class="ar">خدمت مع Ideeyet؟</span></span>
+          <span><span class="fr">Racontez-nous votre expérience : votre témoignage aidera d’autres familles et entreprises à nous faire confiance.</span><span class="ar">احكيلنا على تجربتك: شهادتك تعاون عايلات وشركات أخرى باش يثقو فينا.</span></span>
+          <span class="fmore"><span class="fr">Laisser un témoignage</span><span class="ar">اترك شهادة</span> →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section class="contact band section" id="contact" aria-labelledby="ct-title" style="padding-top:0">
     <div class="wrap">
@@ -792,6 +833,11 @@ textarea { min-height: 5.5rem; resize: vertical; }
     r.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showValue(r.dataset.v); } });
   });
   showValue("proprete");
+
+  // animations réduites : on coupe aussi le dégradé animé du schéma
+  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.querySelectorAll(".smil").forEach(function (a) { a.remove(); });
+  }
 
   // formations : ouverture du certificat
   var cert = document.getElementById("cert");
