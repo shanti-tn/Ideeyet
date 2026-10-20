@@ -83,10 +83,7 @@ html[lang="ar"] .flip { transform: scaleX(-1); }
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: color-mix(in srgb, var(--cream) 92%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
 .top .wrap { display: flex; align-items: center; gap: 2rem; min-height: 4.5rem; }
 .logo { display: flex; align-items: center; gap: .55rem; text-decoration: none; color: var(--grey); }
-.logo svg { width: 1.9rem; height: 2.6rem; color: var(--periwinkle); flex: none; }
-.logo .lw { display: grid; line-height: .9; direction: ltr; }
-.logo small { font-family: "Krona One", sans-serif; font-size: .46rem; letter-spacing: .12em; }
-.logo b { font-family: "Nunito", sans-serif; font-weight: 800; font-size: 1.45rem; letter-spacing: -.03em; }
+.logo svg { width: 2.1rem; height: 2.9rem; color: var(--periwinkle); flex: none; }
 .nav { display: flex; gap: 1.75rem; margin-inline-start: auto; font-size: .95rem; }
 .nav a { text-decoration: none; }
 .nav a:hover { color: var(--ink); }
@@ -96,28 +93,23 @@ html[lang="ar"] .flip { transform: scaleX(-1); }
 @media (max-width: 900px) { .nav { display: none; } .lang { margin-inline-start: auto; } }
 
 /* ---------- hero ---------- */
-.hero .wrap { display: grid; grid-template-columns: 1.35fr 1fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; padding-block: clamp(3rem, 8vw, 6rem) clamp(2.5rem, 5vw, 4rem); }
+.hero .wrap { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(2rem, 6vw, 6rem); align-items: end; padding-block: clamp(3rem, 8vw, 6rem) clamp(2.5rem, 5vw, 4rem); }
 .hero-copy { display: grid; gap: 2rem; min-width: 0; }
 .wordmark { display: grid; line-height: .82; direction: ltr; justify-items: start; }
 html[lang="ar"] .wordmark { justify-items: end; }
 .wordmark .coop { font-family: "Krona One", sans-serif; font-size: clamp(1rem, .5rem + 2.3vw, 2.25rem); letter-spacing: .02em; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; padding-inline-start: .15em; padding-block: .2em .05em; }
-.wordmark .name { font-family: "Nunito", sans-serif; font-weight: 800; font-size: clamp(4.2rem, 2rem + 11vw, 10rem); letter-spacing: -.05em; color: var(--grey); }
+.wordmark .name { font-family: "Nunito", sans-serif; font-weight: 800; font-size: clamp(4.4rem, 2rem + 12vw, 11.5rem); letter-spacing: -.05em; color: var(--grey); }
 .slogan { font-size: clamp(1.3rem, 1rem + 1.3vw, 1.9rem); line-height: 1.35; color: var(--ink); font-weight: 300; max-width: 30rem; }
 .slogan b { font-weight: 800; }
 html[lang="ar"] .slogan { font-weight: 300; }
 html[lang="ar"] .slogan b { font-weight: 600; }
 .hero-cta { display: flex; flex-wrap: wrap; gap: .75rem; }
-.hero-art { position: relative; justify-self: center; width: min(26rem, 100%); aspect-ratio: 1; max-width: 100%; }
-.orb { position: absolute; inset: 8%; border-radius: 50%; background: var(--grad-soft); filter: blur(2px); }
-.orb::after { content: ""; position: absolute; inset: -10%; border-radius: 50%; background: inherit; filter: blur(40px); opacity: .45; z-index: -1; }
-.hero-art svg { position: absolute; left: 50%; top: 50%; width: 38%; height: auto; transform: translate(-50%, -52%) rotate(-6deg); color: var(--cream); }
 .trio { display: flex; flex-wrap: wrap; gap: .5rem 2rem; font-family: "Krona One", sans-serif; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; }
 html[lang="ar"] .trio { font-family: var(--f-title); letter-spacing: 0; font-size: 1rem; }
 .trio span { display: inline-flex; align-items: center; gap: .6rem; }
 .trio i { width: .6rem; height: .6rem; border-radius: 50%; display: inline-block; }
 @media (max-width: 820px) {
   .hero .wrap { grid-template-columns: 1fr; }
-  .hero-art { width: min(15rem, 70%); justify-self: end; margin-top: -1rem; order: -1; }
 }
 
 /* ---------- la coop-érative ---------- */
@@ -141,10 +133,16 @@ html[lang="ar"] .coop-word .pill { font-style: normal; }
 @media (max-width: 520px) { .doors { grid-template-columns: 1fr; } }
 
 /* ---------- services ---------- */
+.svc { transition: background-color .4s ease, color .4s ease; }
 .svc .wrap { display: grid; gap: 3rem; }
+.svc[data-mode="pro"] { --ink: #FFF6ED; --grey: #CFC8C0; --grey-soft: #9A938C; --line: #4A4846; --paper: #353433; background: #2A2928; color: var(--grey); }
+.svc[data-mode="pro"] .btn-ink { background: var(--cream); color: #1C1C1C; border-color: var(--cream); }
+.svc[data-mode="pro"] .btn-ink:hover { background: transparent; color: var(--cream); }
+.svc[data-mode="pro"] #illu-pro .ln { stroke: #FFF6ED; }
 .svc-head { display: grid; grid-template-columns: 1fr auto; gap: 2rem 3rem; align-items: end; }
 .svc-head > div:first-child { display: grid; gap: 2.25rem; min-width: 0; }
 .svc-head .illu { width: clamp(9rem, 18vw, 14rem); }
+.svc-head .illu img, .svc-head .illu svg { display: block; width: 100%; height: auto; }
 .tabs { display: flex; gap: 2rem; border-bottom: 1px solid var(--line); }
 .tab { border: 0; background: none; cursor: pointer; font: 600 1.05rem var(--f-body); color: var(--grey-soft); padding: 0 0 1rem; position: relative; }
 .tab[aria-selected="true"] { color: var(--ink); }
@@ -168,18 +166,19 @@ html[lang="ar"] .coop-word .pill { font-style: normal; }
 .values .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
 .values-text { display: grid; gap: 2rem; min-width: 0; }
 .venn { width: 100%; max-width: 32rem; justify-self: center; overflow: visible; }
-.venn .ring { fill: transparent; stroke-width: 3; cursor: pointer; transition: stroke-width .2s, fill .3s; }
-.venn .ring:hover, .venn .ring.on { stroke-width: 5; }
+.venn .ring { fill: transparent; stroke-width: 3; transition: stroke-width .2s, fill .3s; }
+.venn .ring.on { stroke-width: 5; }
 .venn .ring.on.r-g { fill: color-mix(in srgb, var(--green) 10%, transparent); }
 .venn .ring.on.r-v { fill: color-mix(in srgb, var(--periwinkle) 14%, transparent); }
 .venn .ring.on.r-y { fill: color-mix(in srgb, var(--yellow) 16%, transparent); }
 .venn text { font-family: "Nunito", sans-serif; font-weight: 800; font-style: italic; font-size: 23px; letter-spacing: .02em; pointer-events: none; }
 html[lang="ar"] .venn text { font-family: "Readex Pro", sans-serif; font-style: normal; font-weight: 600; font-size: 26px; }
-.venn .core { cursor: pointer; }
-.venn-detail { min-height: 9.5rem; display: grid; gap: .6rem; align-content: start; padding-inline-start: 1.25rem; border-inline-start: 2px solid var(--vc, var(--green)); }
-.venn-detail > div { display: grid; gap: .5rem; }
-.venn-detail h3 { font-family: var(--f-title); font-size: 1.1rem; text-transform: uppercase; letter-spacing: .04em; }
-html[lang="ar"] .venn-detail h3 { text-transform: none; letter-spacing: 0; font-weight: 600; font-size: 1.35rem; }
+.vlist { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.4rem; }
+.vlist li { display: grid; gap: .3rem; padding-inline-start: 1.25rem; border-inline-start: 2px solid var(--vc); }
+.vlist h3 { font-family: var(--f-title); font-size: 1rem; text-transform: uppercase; letter-spacing: .06em; }
+html[lang="ar"] .vlist h3 { text-transform: none; letter-spacing: 0; font-weight: 600; font-size: 1.25rem; }
+.vcore { font-size: .95rem; font-style: italic; }
+html[lang="ar"] .vcore { font-style: normal; }
 .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
 .chips span { border: 1px solid var(--line); border-radius: 999px; padding: .35rem .85rem; font-size: .9rem; background: var(--paper); }
 @media (max-width: 860px) { .values .wrap { grid-template-columns: 1fr; } .venn { order: -1; } }
@@ -271,7 +270,6 @@ textarea { min-height: 5.5rem; resize: vertical; }
   <div class="wrap">
     <a class="logo" href="#accueil" aria-label="Coopérative Ideeyet">
       <svg aria-hidden="true"><use href="#hand"/></svg>
-      <span class="lw"><small>COOPÉRATIVE</small><b>ideeyet</b></span>
     </a>
     <nav class="nav" aria-label="Navigation">
       <a href="#services"><span class="fr">Services</span><span class="ar">الخدمات</span></a>
@@ -297,6 +295,8 @@ textarea { min-height: 5.5rem; resize: vertical; }
           <span class="coop" aria-hidden="true">COOPÉRATIVE</span>
           <span class="name" aria-hidden="true">ideeyet</span>
         </h1>
+      </div>
+      <div class="hero-copy">
         <p class="slogan">
           <span class="fr"><b>Nos services, votre sérénité.</b><br>Notre coopérative, notre dignité.</span>
           <span class="ar"><b>خدماتنا، راحتكم.</b><br>تعاونيتنا، كرامتنا.</span>
@@ -309,10 +309,6 @@ textarea { min-height: 5.5rem; resize: vertical; }
           <a class="btn btn-ink" href="#contact"><span class="fr">Discutons de vos besoins</span><span class="ar">نحكيو على حاجتك</span></a>
           <a class="btn btn-line" href="#pros"><span class="fr">Espace professionnels</span><span class="ar">للشركات والمناسبات</span></a>
         </div>
-      </div>
-      <div class="hero-art" aria-hidden="true">
-        <div class="orb"></div>
-        <svg viewBox="0 0 130 178" style="--spark: var(--cream)"><use href="#hand"/></svg>
       </div>
     </div>
     <div class="wrap">
@@ -355,7 +351,7 @@ textarea { min-height: 5.5rem; resize: vertical; }
   </section>
 
   <!-- SERVICES -->
-  <section class="svc band section" id="services" aria-labelledby="svc-title">
+  <section class="svc band section" id="services" data-mode="part" aria-labelledby="svc-title">
     <span id="pros" style="position:relative;top:-2rem;display:block"></span>
     <div class="wrap">
       <div class="svc-head">
@@ -371,7 +367,7 @@ textarea { min-height: 5.5rem; resize: vertical; }
               <ellipse cx="128" cy="70" rx="36" ry="22" fill="#F9DA58"/>
               <ellipse cx="96" cy="170" rx="80" ry="14" fill="#BFDDE6"/>
             </g>
-            <g filter="url(#wobble)" fill="none" stroke="#151515" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+            <g class="ln" filter="url(#wobble)" fill="none" stroke="#151515" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
               <path d="M30 172H196"/>
               <path d="M52 171V58l62-18v131"/>
               <path d="M114 88h56v83"/>
@@ -426,15 +422,15 @@ textarea { min-height: 5.5rem; resize: vertical; }
   <!-- VALEURS -->
   <section class="values band section" id="valeurs" aria-labelledby="val-title" style="padding-top:0">
     <div class="wrap">
-      <svg class="venn" viewBox="0 0 560 520" role="group" aria-label="Propreté, dignité, sérénité">
+      <svg class="venn" viewBox="0 0 560 520" role="img" aria-label="Propreté, dignité et sérénité se rejoignent au centre, dans la main d’Ideeyet">
         <defs>
           <clipPath id="c1"><circle cx="280" cy="190" r="160"/></clipPath>
           <clipPath id="c2"><circle cx="185" cy="335" r="160"/></clipPath>
         </defs>
-        <g class="core" data-v="ideeyet" clip-path="url(#c1)"><g clip-path="url(#c2)"><circle cx="375" cy="335" r="160" fill="url(#core-grad)"/></g></g>
-        <circle class="ring r-g" data-v="proprete" cx="280" cy="190" r="160" stroke="#4BE470" tabindex="0" role="button" aria-label="Propreté"/>
-        <circle class="ring r-v" data-v="dignite" cx="185" cy="335" r="160" stroke="#A5B7E5" tabindex="0" role="button" aria-label="Dignité"/>
-        <circle class="ring r-y" data-v="serenite" cx="375" cy="335" r="160" stroke="#F9DA58" tabindex="0" role="button" aria-label="Sérénité"/>
+        <g class="core" clip-path="url(#c1)"><g clip-path="url(#c2)"><circle cx="375" cy="335" r="160" fill="url(#core-grad)"/></g></g>
+        <circle class="ring r-g" data-v="proprete" cx="280" cy="190" r="160" stroke="#4BE470"/>
+        <circle class="ring r-v" data-v="dignite" cx="185" cy="335" r="160" stroke="#A5B7E5"/>
+        <circle class="ring r-y" data-v="serenite" cx="375" cy="335" r="160" stroke="#F9DA58"/>
         <svg x="250" y="244" width="62" height="86" viewBox="0 0 130 178" style="color:#FFF6ED;--spark:#4BE470;pointer-events:none"><use href="#hand"/></svg>
         <text x="280" y="105" text-anchor="middle" fill="#2FBF55"><tspan class="fr">PROPRETÉ</tspan><tspan class="ar">النظافة</tspan></text>
         <text x="140" y="390" text-anchor="middle" fill="#8C9FD6"><tspan class="fr">DIGNITÉ</tspan><tspan class="ar">الكرامة</tspan></text>
@@ -443,24 +439,12 @@ textarea { min-height: 5.5rem; resize: vertical; }
       <div class="values-text">
         <h2 class="title" id="val-title"><span class="oval o-yellow"><span class="fr">Valeurs</span><span class="ar">قيمنا</span></span></h2>
         <p class="prose"><span class="fr">Ideeyet place la confiance, le respect et la sérénité au cœur de ses actions. Nous valorisons la dignité des travailleuses domestiques tout en respectant la vie privée de nos clients.</span><span class="ar">في Ideeyet، الثقة والاحترام وراحة البال في قلب كل خدمة. نثمّنو كرامة عاملات المنازل ونحترمو الحياة الخاصة متاع حرفائنا.</span></p>
-        <div class="venn-detail" aria-live="polite" id="venn-detail">
-          <div data-d="ideeyet">
-            <h3><span class="fr">Là où tout se rejoint</span><span class="ar">وين الكل يتلاقى</span></h3>
-            <p><span class="fr">La propreté pour vous, la dignité pour celles qui travaillent, la sérénité pour tout le monde. Au centre, la main d’Ideeyet. Touchez un cercle.</span><span class="ar">النظافة ليك، الكرامة للّي تخدم، وراحة البال للكل. في الوسط، يد Ideeyet. انقر على دائرة.</span></p>
-          </div>
-          <div data-d="proprete" hidden>
-            <h3><span class="fr">Propreté</span><span class="ar">النظافة</span></h3>
-            <p><span class="fr">Un travail soigné et rigoureux, avec du matériel adapté et des formations techniques régulières.</span><span class="ar">خدمة نظيفة ودقيقة، بمعدّات مناسبة وتكوين تقني متواصل.</span></p>
-          </div>
-          <div data-d="dignite" hidden>
-            <h3><span class="fr">Dignité</span><span class="ar">الكرامة</span></h3>
-            <p><span class="fr">Un cadre stable, déclaré et équitable pour celles qui font le travail. « Ce travail est respectable et noble, comme tout autre métier. »</span><span class="ar">إطار ثابت، قانوني وعادل للّي يخدمو. « الخدمة هذي محترمة وشريفة، كيف أي صنعة أخرى. »</span></p>
-          </div>
-          <div data-d="serenite" hidden>
-            <h3><span class="fr">Sérénité</span><span class="ar">راحة البال</span></h3>
-            <p><span class="fr">Des intervenantes de confiance, le respect de votre vie privée, un suivi personnalisé. Une sérénité partagée, des deux côtés.</span><span class="ar">عاملات تنجم تثق فيهم، احترام لحياتك الخاصة، ومتابعة على قدّك. راحة بال للزوز.</span></p>
-          </div>
-        </div>
+        <ul class="vlist">
+          <li data-v="proprete" style="--vc:#4BE470"><h3><span class="fr">Propreté</span><span class="ar">النظافة</span></h3><p><span class="fr">Un travail soigné et rigoureux, avec du matériel adapté et des formations techniques régulières.</span><span class="ar">خدمة نظيفة ودقيقة، بمعدّات مناسبة وتكوين تقني متواصل.</span></p></li>
+          <li data-v="dignite" style="--vc:#A5B7E5"><h3><span class="fr">Dignité</span><span class="ar">الكرامة</span></h3><p><span class="fr">Un cadre stable, déclaré et équitable pour celles qui font le travail. Un métier reconnu.</span><span class="ar">إطار ثابت، قانوني وعادل للّي يخدمو. وصنعة معترف بيها.</span></p></li>
+          <li data-v="serenite" style="--vc:#F9DA58"><h3><span class="fr">Sérénité</span><span class="ar">راحة البال</span></h3><p><span class="fr">Des intervenantes de confiance, le respect de votre vie privée, un suivi personnalisé.</span><span class="ar">عاملات تنجم تثق فيهم، احترام لحياتك الخاصة، ومتابعة على قدّك.</span></p></li>
+        </ul>
+        <p class="vcore"><span class="fr">Au centre, là où les trois se rejoignent : la main d’Ideeyet.</span><span class="ar">في الوسط، وين الثلاثة يتلاقاو: يد Ideeyet.</span></p>
         <div class="chips">
           <span class="fr">Transparence</span><span class="ar">الشفافية</span>
           <span class="fr">Solidarité</span><span class="ar">التضامن</span>
@@ -565,7 +549,8 @@ textarea { min-height: 5.5rem; resize: vertical; }
       document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
     });
     document.getElementById("illu-part").hidden = id !== "tab-part";
-    document.getElementById("illu-pro").hidden = id !== "tab-pro";
+    document.getElementById("illu-pro").toggleAttribute("hidden", id !== "tab-pro");
+    document.getElementById("services").dataset.mode = id === "tab-pro" ? "pro" : "part";
   }
   tabs.forEach(function (t) { t.addEventListener("click", function () { selectTab(t.id); }); });
   document.querySelectorAll('a[href="#pros"]').forEach(function (a) { a.addEventListener("click", function () { selectTab("tab-pro"); }); });
@@ -576,17 +561,11 @@ textarea { min-height: 5.5rem; resize: vertical; }
   window.addEventListener("hashchange", fromHash);
   fromHash();
 
-  // diagramme des valeurs
-  var colors = { proprete: "#4BE470", dignite: "#A5B7E5", serenite: "#F9DA58", ideeyet: "#4BE470" };
-  var detail = document.getElementById("venn-detail");
-  function showValue(v) {
-    detail.querySelectorAll("[data-d]").forEach(function (d) { d.hidden = d.dataset.d !== v; });
-    document.querySelectorAll(".venn .ring").forEach(function (r) { r.classList.toggle("on", r.dataset.v === v); });
-    detail.style.setProperty("--vc", colors[v]);
-  }
-  document.querySelectorAll(".venn [data-v]").forEach(function (el) {
-    el.addEventListener("click", function () { showValue(el.dataset.v); });
-    el.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showValue(el.dataset.v); } });
+  // survol d'une valeur : son cercle s'épaissit dans le schéma
+  document.querySelectorAll(".vlist li").forEach(function (li) {
+    var ring = document.querySelector('.venn .ring[data-v="' + li.dataset.v + '"]');
+    li.addEventListener("mouseenter", function () { ring.classList.add("on"); });
+    li.addEventListener("mouseleave", function () { ring.classList.remove("on"); });
   });
 
   // contact
