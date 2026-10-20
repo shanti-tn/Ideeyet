@@ -4,10 +4,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Krona+One&family=Nunito:wght@400;600;800&display=swap">
 <style>
-/* Planche de recherche : une ligne par thème, l'illustration actuelle puis 3 pistes dans le même style. */
+/* Planche de recherche, tour 2 : variations de la comète et de la maison, valeur B retenue. */
 :root {
   --cream: #FFF6ED; --paper: #FFFBF6; --ink: #1C1C1C; --grey: #606060; --line: #EADFD2;
-  --periwinkle: #A5B7E5; --green: #4BE470; --yellow: #F9DA58;
   --f-title: "Krona One", system-ui, sans-serif;
   --f-body: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
   color-scheme: light;
@@ -23,16 +22,20 @@ header p { margin: 0; }
 .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
 figure { margin: 0; background: var(--paper); border-radius: 1.5rem; padding: 1.25rem 1rem 1rem; display: grid; gap: .75rem; justify-items: center; border: 1px solid transparent; }
 figure.now { background: transparent; border: 1px dashed var(--line); }
-figure .pic { height: 10rem; width: 100%; display: grid; place-items: center; }
+figure.pick { border: 2px solid #F9DA58; }
+figure .pic { width: 100%; display: grid; place-items: center; }
 figure svg, figure img { height: 10rem; width: auto; max-width: 100%; object-fit: contain; }
-@media (max-width: 380px) { figure svg, figure img { height: 8rem; } }
 figcaption { display: grid; justify-items: center; text-align: center; gap: .1rem; }
 figcaption b { color: var(--ink); font-weight: 800; font-size: .95rem; }
 figcaption span { font-size: .85rem; }
 @media (max-width: 860px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 380px) { figure .pic { height: 8rem; } }
+@media (max-width: 380px) { figure svg, figure img { height: 8rem; } }
 .ln { fill: none; stroke: #141414; stroke-width: 3.3; stroke-linecap: round; stroke-linejoin: round; }
+.thin { stroke-width: 2.2; }
 .dot { fill: #141414; }
+.big .ln { stroke-width: 4.2; }
+.big .ln.thin { stroke-width: 2.8; }
+#mission-grid .ln { stroke-width: 3.8; }
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -53,115 +56,93 @@ figcaption span { font-size: .85rem; }
 
 <div class="wrap">
   <header>
-    <h1>Pistes d’illustrations</h1>
-    <p>Pour chaque thème : l’illustration actuelle, puis trois pistes dans le même style (trait noir tremblé, taches d’aquarelle jaune, orange et bleu pâle). Dites-moi la lettre que vous préférez, ou ce qu’il faut mélanger.</p>
+    <h1>Pistes d’illustrations · tour 2</h1>
+    <p>Valeurs : le soleil (B) est retenu et déjà intégré à la maquette. Pour Mission et Services, voici trois variations de vos illustrations actuelles. Dites-moi la lettre que vous préférez.</p>
   </header>
 
-  <!-- MISSION -->
+  <!-- MISSION : variations de la comète -->
   <section class="row" aria-labelledby="t-mission">
-    <h2 id="t-mission" style="color:#8C9FD6">Mission</h2>
-    <div class="grid">
+    <h2 id="t-mission" style="color:#8C9FD6">Mission · la comète</h2>
+    <div class="grid" id="mission-grid">
       <figure class="now">
         <div class="pic"><img src="assets/illu-mission.webp" alt="Comète, illustration actuelle"></div>
-        <figcaption><b>Actuelle</b><span>La comète</span></figcaption>
+        <figcaption><b>Actuelle</b><span>Pour comparer</span></figcaption>
       </figure>
 
       <figure>
-        <div class="pic"><svg viewBox="0 0 200 180" role="img" aria-label="Avion en papier">
-          <g filter="url(#wash)" opacity=".9">
-            <ellipse cx="122" cy="76" rx="42" ry="26" fill="#F9DA58"/>
-            <ellipse cx="140" cy="62" rx="24" ry="16" fill="#F5B04A"/>
-            <ellipse cx="52" cy="140" rx="34" ry="16" fill="#E9B9C6"/>
+        <div class="pic"><svg viewBox="0 0 200 180" role="img" aria-label="Comète redessinée, traînée colorée">
+          <g filter="url(#wash)" opacity=".85">
+            <ellipse cx="88" cy="104" rx="52" ry="15" fill="#E9B9C6" transform="rotate(-38 88 104)"/>
+            <ellipse cx="112" cy="82" rx="30" ry="11" fill="#F5B04A" transform="rotate(-38 112 82)"/>
+            <ellipse cx="138" cy="58" rx="16" ry="12" fill="#F9DA58"/>
           </g>
           <g filter="url(#wobble)">
-            <path class="ln" d="M62 96 160 48 118 126 104 101Z"/>
-            <path class="ln" d="M104 101 160 48M104 101 100 122 112 112"/>
-            <path class="ln" d="M60 101C34 110 22 138 44 148S70 126 46 128" stroke-dasharray="7 8"/>
-            <use class="ln" href="#ast" transform="translate(172 28)"/>
-            <use class="ln" href="#spk" transform="translate(36 52) scale(.7)"/>
-            <circle class="dot" cx="150" cy="142" r="2.5"/><circle class="dot" cx="84" cy="40" r="2.5"/><circle class="dot" cx="182" cy="96" r="2"/>
+            <path class="dot" d="M128 60C125 47 140 38 151 44 160 50 153 65 141 67 134 68 129 64 128 60Z"/>
+            <path class="ln" d="M124 52C104 62 86 72 58 82"/>
+            <path class="ln" d="M126 64C100 82 80 100 48 122"/>
+            <path class="ln" d="M134 70C112 92 94 110 64 134"/>
+            <path class="ln" d="M142 70C124 96 110 116 84 144"/>
+            <path class="ln thin" d="M116 80 98 86 106 94 84 102"/>
+            <path class="ln thin" d="M108 104 92 112 100 118 78 128"/>
+            <use class="ln" href="#ast" transform="translate(56 40)"/>
+            <use class="ln" href="#ast" transform="translate(158 136) scale(.8)"/>
+            <circle class="dot" cx="40" cy="88" r="2.5"/><circle class="dot" cx="176" cy="66" r="2.5"/><circle class="dot" cx="120" cy="150" r="2"/><circle class="dot" cx="96" cy="30" r="2"/>
           </g>
         </svg></div>
-        <figcaption><b>A · L’avion en papier</b><span>Prendre son envol, à sa façon</span></figcaption>
+        <figcaption><b>A · La comète, plus nette</b><span>Même élan, traits plus lisibles en petit</span></figcaption>
       </figure>
 
       <figure>
-        <div class="pic"><svg viewBox="0 0 200 180" role="img" aria-label="Fusée qui décolle">
-          <g filter="url(#wash)" opacity=".9">
-            <ellipse cx="100" cy="138" rx="26" ry="20" fill="#F5B04A"/>
-            <ellipse cx="100" cy="126" rx="16" ry="12" fill="#F9DA58"/>
-            <ellipse cx="58" cy="156" rx="40" ry="12" fill="#BFDDE6"/>
-            <ellipse cx="146" cy="158" rx="34" ry="11" fill="#BFDDE6"/>
+        <div class="pic"><svg viewBox="0 0 200 180" role="img" aria-label="Comète dont la tête est l'étincelle du logo">
+          <g filter="url(#wash)" opacity=".85">
+            <ellipse cx="86" cy="106" rx="54" ry="14" fill="#E9B9C6" transform="rotate(-38 86 106)"/>
+            <ellipse cx="108" cy="88" rx="34" ry="11" fill="#F5B04A" transform="rotate(-38 108 88)"/>
           </g>
           <g filter="url(#wobble)">
-            <path class="ln" d="M100 22C121 42 125 80 118 110H82C75 80 79 42 100 22Z"/>
-            <circle class="ln" cx="100" cy="64" r="10"/>
-            <path class="ln" d="M82 96 66 118 84 113M118 96 134 118 116 113"/>
-            <path class="ln" d="M92 118C89 130 96 138 93 148M100 118V152M108 118C111 130 104 138 107 148"/>
-            <path class="ln" d="M36 160Q30 148 44 146 50 136 62 142 72 136 78 148 88 150 84 160Z"/>
-            <path class="ln" d="M126 162Q122 152 134 150 140 142 150 148 160 144 164 154 172 156 168 162Z"/>
-            <use class="ln" href="#spk" transform="translate(156 40) scale(.8)"/>
-            <use class="ln" href="#ast" transform="translate(42 54) scale(.8)"/>
-            <circle class="dot" cx="64" cy="92" r="2.5"/><circle class="dot" cx="148" cy="84" r="2"/>
+            <use href="#spk" transform="translate(144 52) scale(1.7)" fill="#F9DA58" stroke="#141414" stroke-width="1.8" stroke-linejoin="round"/>
+            <path class="ln" d="M126 58C104 70 86 78 58 88"/>
+            <path class="ln" d="M130 68C104 86 84 104 52 126"/>
+            <path class="ln" d="M140 76C118 98 100 116 70 140"/>
+            <path class="ln thin" d="M118 84 100 90 108 98 86 106"/>
+            <path class="ln thin" d="M112 108 94 116 102 122 80 132"/>
+            <use class="ln" href="#ast" transform="translate(60 42) scale(.9)"/>
+            <use class="ln" href="#ast" transform="translate(162 132) scale(.8)"/>
+            <circle class="dot" cx="42" cy="96" r="2.5"/><circle class="dot" cx="178" cy="92" r="2.5"/><circle class="dot" cx="118" cy="152" r="2"/>
           </g>
         </svg></div>
-        <figcaption><b>B · La fusée</b><span>Avancer, ensemble, vers plus loin</span></figcaption>
+        <figcaption><b>B · La comète étincelle</b><span>La tête reprend l’étincelle du logo</span></figcaption>
       </figure>
 
       <figure>
-        <div class="pic"><svg viewBox="0 0 200 180" role="img" aria-label="Montagne avec un drapeau au sommet">
-          <g filter="url(#wash)" opacity=".9">
-            <ellipse cx="152" cy="48" rx="24" ry="24" fill="#F9DA58"/>
-            <ellipse cx="148" cy="52" rx="13" ry="13" fill="#F5B04A"/>
-            <ellipse cx="100" cy="152" rx="80" ry="12" fill="#BFDDE6"/>
-            <ellipse cx="96" cy="40" rx="14" ry="9" fill="#E9B9C6"/>
+        <div class="pic"><svg viewBox="0 0 200 180" role="img" aria-label="Comète qui monte en arc vers le haut">
+          <g filter="url(#wash)" opacity=".85">
+            <ellipse cx="70" cy="128" rx="46" ry="13" fill="#E9B9C6" transform="rotate(-30 70 128)"/>
+            <ellipse cx="116" cy="92" rx="34" ry="11" fill="#F5B04A" transform="rotate(-50 116 92)"/>
+            <ellipse cx="150" cy="44" rx="16" ry="12" fill="#F9DA58"/>
           </g>
           <g filter="url(#wobble)">
-            <path class="ln" d="M18 150 80 60 104 94 124 68 182 150"/>
-            <path class="ln" d="M68 78 79 85 90 76"/>
-            <path class="ln" d="M80 60V26"/>
-            <path class="ln" d="M80 28C90 23 97 34 109 29V44C97 49 90 38 80 43"/>
-            <path class="ln" d="M38 150C58 132 48 124 68 108" stroke-dasharray="6 7"/>
-            <path class="ln" d="M152 14V20M176 30 171 34M184 54H178M128 30 133 34"/>
-            <circle class="dot" cx="34" cy="62" r="2.5"/><circle class="dot" cx="186" cy="100" r="2"/>
+            <path class="dot" d="M140 46C139 35 152 28 161 34 168 40 162 53 151 54 145 55 141 51 140 46Z"/>
+            <path class="ln" d="M139 50C120 82 90 124 30 150"/>
+            <path class="ln" d="M146 56C130 92 104 130 52 160"/>
+            <path class="ln" d="M134 44C112 70 86 98 34 120"/>
+            <path class="ln thin" d="M118 90 104 104 114 108 96 122"/>
+            <circle class="ln thin" cx="58" cy="48" r="11"/>
+            <ellipse class="ln thin" cx="58" cy="48" rx="20" ry="6" transform="rotate(-18 58 48)"/>
+            <use class="ln" href="#ast" transform="translate(176 92) scale(.8)"/>
+            <use class="ln" href="#spk" transform="translate(110 22) scale(.55)"/>
+            <circle class="dot" cx="96" cy="58" r="2.5"/><circle class="dot" cx="168" cy="140" r="2.5"/><circle class="dot" cx="26" cy="86" r="2"/>
           </g>
         </svg></div>
-        <figcaption><b>C · Le sommet</b><span>Un chemin, un cap, une victoire</span></figcaption>
+        <figcaption><b>C · La comète qui monte</b><span>Une trajectoire vers le haut, une petite planète</span></figcaption>
       </figure>
     </div>
   </section>
 
-  <!-- VALEURS -->
+  <!-- VALEURS : retenue -->
   <section class="row" aria-labelledby="t-valeurs">
-    <h2 id="t-valeurs" style="color:#D9B52A">Valeurs</h2>
+    <h2 id="t-valeurs" style="color:#D9B52A">Valeurs · retenue</h2>
     <div class="grid">
-      <figure class="now">
-        <div class="pic"><img src="assets/illu-serenite.webp" alt="Personnage serein, illustration actuelle"></div>
-        <figcaption><b>Actuelle</b><span>La sérénité</span></figcaption>
-      </figure>
-
-      <figure>
-        <div class="pic"><svg viewBox="0 0 200 180" role="img" aria-label="Deux mains qui portent un cœur">
-          <g filter="url(#wash)" opacity=".9">
-            <ellipse cx="100" cy="66" rx="34" ry="26" fill="#F9DA58"/>
-            <ellipse cx="104" cy="72" rx="20" ry="16" fill="#F5B04A"/>
-            <ellipse cx="100" cy="146" rx="72" ry="14" fill="#BFDDE6"/>
-          </g>
-          <g filter="url(#wobble)">
-            <path class="ln" d="M100 92C70 70 72 44 90 45 97 45 100 53 100 56 100 53 103 45 110 45 128 44 130 70 100 92Z"/>
-            <path class="ln" d="M44 102C48 136 70 150 100 150S152 136 156 102"/>
-            <path class="ln" d="M44 102C40 93 47 87 53 93L61 105M53 93C51 84 59 80 63 89L69 103"/>
-            <path class="ln" d="M156 102C160 93 153 87 147 93L139 105M147 93C149 84 141 80 137 89L131 103"/>
-            <path class="ln" d="M70 122C80 113 91 113 100 119 109 113 120 113 130 122"/>
-            <use class="ln" href="#spk" transform="translate(152 40) scale(.75)"/>
-            <use class="ln" href="#spk" transform="translate(48 56) scale(.5)"/>
-            <circle class="dot" cx="130" cy="24" r="2.5"/><circle class="dot" cx="70" cy="30" r="2"/>
-          </g>
-        </svg></div>
-        <figcaption><b>A · Les mains et le cœur</b><span>Solidarité, soin, confiance</span></figcaption>
-      </figure>
-
-      <figure>
+      <figure class="pick">
         <div class="pic"><svg viewBox="0 0 200 180" role="img" aria-label="Soleil souriant au-dessus de vagues calmes">
           <g filter="url(#wash)" opacity=".9">
             <ellipse cx="100" cy="74" rx="34" ry="32" fill="#F9DA58"/>
@@ -178,102 +159,81 @@ figcaption span { font-size: .85rem; }
             <circle class="dot" cx="170" cy="40" r="2.5"/><circle class="dot" cx="160" cy="100" r="2"/>
           </g>
         </svg></div>
-        <figcaption><b>B · Le soleil tranquille</b><span>Sérénité pour tout le monde</span></figcaption>
-      </figure>
-
-      <figure>
-        <div class="pic"><svg viewBox="0 0 200 180" role="img" aria-label="Tasse de thé fumante avec un petit cœur">
-          <g filter="url(#wash)" opacity=".9">
-            <ellipse cx="95" cy="104" rx="40" ry="14" fill="#F5B04A"/>
-            <ellipse cx="100" cy="42" rx="22" ry="18" fill="#F9DA58"/>
-            <ellipse cx="96" cy="152" rx="70" ry="12" fill="#BFDDE6"/>
-          </g>
-          <g filter="url(#wobble)">
-            <path class="ln" d="M55 100H135C135 130 120 147 95 147S55 130 55 100Z"/>
-            <path class="ln" d="M135 108C156 103 158 128 132 130"/>
-            <path class="ln" d="M38 150C60 163 130 163 152 150"/>
-            <path class="ln" d="M84 88C77 77 91 70 84 60M106 88C99 77 113 70 106 60"/>
-            <path class="ln" d="M96 48C86 40 87 30 94 31 96 31 96 34 96 35 96 34 97 31 99 31 106 30 106 40 96 48Z"/>
-            <use class="ln" href="#spk" transform="translate(150 50) scale(.6)"/>
-            <circle class="dot" cx="46" cy="64" r="2.5"/><circle class="dot" cx="166" cy="84" r="2"/>
-          </g>
-        </svg></div>
-        <figcaption><b>C · Le thé partagé</b><span>Respect, chaleur, maison</span></figcaption>
+        <figcaption><b>B · Le soleil tranquille</b><span>Intégré à la maquette</span></figcaption>
       </figure>
     </div>
   </section>
 
-  <!-- SERVICES -->
+  <!-- SERVICES : variations de la maison -->
   <section class="row" aria-labelledby="t-services">
-    <h2 id="t-services" style="color:#2FBF55">Services</h2>
+    <h2 id="t-services" style="color:#2FBF55">Services · la maison</h2>
     <div class="grid">
       <figure class="now">
         <div class="pic"><img src="assets/illu-maison.webp" alt="Maison, illustration actuelle"></div>
-        <figcaption><b>Actuelle</b><span>La maison</span></figcaption>
+        <figcaption><b>Actuelle</b><span>Pour comparer</span></figcaption>
       </figure>
 
       <figure>
-        <div class="pic"><svg viewBox="0 0 200 180" role="img" aria-label="Seau plein de mousse et une éponge">
-          <g filter="url(#wash)" opacity=".9">
-            <ellipse cx="100" cy="56" rx="50" ry="20" fill="#BFDDE6"/>
-            <ellipse cx="114" cy="50" rx="20" ry="13" fill="#F9DA58"/>
-            <ellipse cx="162" cy="128" rx="18" ry="12" fill="#F5B04A"/>
+        <div class="pic"><svg viewBox="0 0 200 180" role="img" aria-label="Maison avec éponge et bulles">
+          <g filter="url(#wash)" opacity=".92">
+            <ellipse cx="104" cy="70" rx="58" ry="30" fill="#F5B04A"/>
+            <ellipse cx="54" cy="78" rx="30" ry="24" fill="#BFDDE6"/>
+            <ellipse cx="96" cy="72" rx="26" ry="14" fill="#F9DA58"/>
           </g>
-          <g filter="url(#wobble)">
-            <path class="ln" d="M58 70 68 150H132L142 70Z"/>
-            <path class="ln" d="M52 70H148"/>
-            <path class="ln" d="M60 72C62 28 138 28 140 72"/>
-            <circle class="ln" cx="80" cy="58" r="10"/><circle class="ln" cx="101" cy="50" r="13"/><circle class="ln" cx="123" cy="59" r="9"/>
-            <circle class="ln" cx="142" cy="38" r="6"/><circle class="ln" cx="66" cy="38" r="4.5"/>
-            <path class="ln" d="M148 122 172 113 179 132 155 141Z"/>
-            <circle class="dot" cx="158" cy="126" r="2"/><circle class="dot" cx="168" cy="126" r="2"/><circle class="dot" cx="164" cy="134" r="2"/>
-            <use class="ln" href="#spk" transform="translate(36 112) scale(.7)"/>
+          <g filter="url(#wobble)" class="big">
+            <path class="ln" d="M22 168 24 98 92 18 150 62"/>
+            <path class="ln" d="M150 118C153 146 152 160 142 168H22"/>
+            <path class="ln" d="M84 168V130C84 118 110 118 110 130V168M97 124V168M84 147H110"/>
+            <use class="ln" href="#spk" transform="translate(38 100) scale(.85)"/>
+            <path class="ln thin" d="M46 54C54 42 70 46 66 56S50 60 56 50C62 40 78 38 86 46"/>
+            <path class="ln thin" d="M68 104 74 98 76 106 82 98"/>
+            <path class="ln" d="M150 30 176 20 182 36 156 46Z"/>
+            <circle class="dot" cx="162" cy="32" r="2"/><circle class="dot" cx="172" cy="30" r="2"/><circle class="dot" cx="168" cy="38" r="2"/>
+            <circle class="ln thin" cx="136" cy="62" r="7"/><circle class="ln thin" cx="150" cy="80" r="5"/><circle class="ln thin" cx="124" cy="44" r="4"/>
           </g>
         </svg></div>
-        <figcaption><b>A · Le seau et l’éponge</b><span>Le ménage, simple et joyeux</span></figcaption>
+        <figcaption><b>A · Éponge et bulles</b><span>Même maison, l’outil devient une éponge</span></figcaption>
       </figure>
-
       <figure>
-        <div class="pic"><svg viewBox="0 0 200 180" role="img" aria-label="Balai qui balaie des étincelles">
-          <g filter="url(#wash)" opacity=".9">
-            <ellipse cx="62" cy="146" rx="42" ry="14" fill="#F9DA58"/>
-            <ellipse cx="50" cy="140" rx="20" ry="10" fill="#F5B04A"/>
-            <ellipse cx="128" cy="154" rx="60" ry="10" fill="#BFDDE6"/>
+        <div class="pic"><svg viewBox="0 0 200 180" role="img" aria-label="Maison aux couleurs de la charte">
+          <g filter="url(#wash)" opacity=".92">
+            <ellipse cx="108" cy="66" rx="56" ry="28" fill="#A5B7E5"/>
+            <ellipse cx="56" cy="80" rx="30" ry="24" fill="#8FE8A4"/>
+            <ellipse cx="118" cy="82" rx="30" ry="16" fill="#F9DA58"/>
           </g>
-          <g filter="url(#wobble)">
-            <path class="ln" d="M152 18 106 108"/>
-            <path class="ln" d="M90 102 122 116 108 150 66 138Z"/>
-            <path class="ln" d="M94 110 120 122"/>
-            <path class="ln" d="M74 140 79 127M84 143 89 130M95 146 99 132M105 149 107 136"/>
-            <use class="ln" href="#spk" transform="translate(40 110) scale(.8)"/>
-            <use class="ln" href="#spk" transform="translate(22 140) scale(.45)"/>
-            <path class="ln" d="M26 164Q36 158 46 164"/>
-            <circle class="dot" cx="58" cy="118" r="2.5"/><circle class="dot" cx="30" cy="124" r="2"/>
+          <g filter="url(#wobble)" class="big">
+            <path class="ln" d="M22 168 24 98 92 18 150 62"/>
+            <path class="ln" d="M150 118C153 146 152 160 142 168H22"/>
+            <path class="ln" d="M84 168V130C84 118 110 118 110 130V168M97 124V168M84 147H110"/>
+            <use class="ln" href="#spk" transform="translate(38 100) scale(.85)"/>
+            <path class="ln thin" d="M46 54C54 42 70 46 66 56S50 60 56 50C62 40 78 38 86 46"/>
+            <path class="ln thin" d="M68 104 74 98 76 106 82 98"/>
+            <path class="ln" d="M148 42 178 20 182 26 152 48Z"/>
+            <path class="ln thin" d="M146 46C130 60 136 104 144 96 152 88 144 64 152 54"/>
           </g>
         </svg></div>
-        <figcaption><b>B · Le balai qui brille</b><span>Le geste, et le résultat</span></figcaption>
+        <figcaption><b>B · Aux couleurs de la charte</b><span>Même dessin, aquarelle vert, pervenche et jaune</span></figcaption>
       </figure>
-
       <figure>
-        <div class="pic"><svg viewBox="0 0 200 180" role="img" aria-label="Vaporisateur et brume étincelante">
-          <g filter="url(#wash)" opacity=".9">
-            <ellipse cx="52" cy="62" rx="32" ry="22" fill="#BFDDE6"/>
-            <ellipse cx="120" cy="130" rx="22" ry="18" fill="#F9DA58"/>
-            <ellipse cx="126" cy="138" rx="12" ry="10" fill="#F5B04A"/>
+        <div class="pic"><svg viewBox="0 0 200 180" role="img" aria-label="Maison avec un cœur et le pinceau">
+          <g filter="url(#wash)" opacity=".92">
+            <ellipse cx="104" cy="70" rx="58" ry="30" fill="#F5B04A"/>
+            <ellipse cx="54" cy="78" rx="30" ry="24" fill="#BFDDE6"/>
+            <ellipse cx="96" cy="72" rx="26" ry="14" fill="#F9DA58"/>
           </g>
-          <g filter="url(#wobble)">
-            <path class="ln" d="M100 86H140L146 155H94Z"/>
-            <path class="ln" d="M108 86V72H132V86"/>
-            <path class="ln" d="M98 52H140V72H104Z"/>
-            <path class="ln" d="M98 54 84 57 98 63"/>
-            <path class="ln" d="M112 72C108 80 105 86 111 92"/>
-            <path class="ln" d="M74 50 62 44M74 58H58M74 66 62 72"/>
-            <circle class="dot" cx="48" cy="40" r="2.5"/><circle class="dot" cx="44" cy="58" r="2.5"/><circle class="dot" cx="50" cy="76" r="2.5"/>
-            <use class="ln" href="#spk" transform="translate(32 96) scale(.7)"/>
-            <use class="ln" href="#spk" transform="translate(166 40) scale(.55)"/>
+          <g filter="url(#wobble)" class="big">
+            <path class="ln" d="M22 168 24 98 92 18 150 62"/>
+            <path class="ln" d="M150 118C153 146 152 160 142 168H22"/>
+            <path class="ln" d="M84 168V130C84 118 110 118 110 130V168M97 124V168M84 147H110"/>
+            <path class="ln" d="M100 76C86 66 87 54 95 55 98 55 100 59 100 60 100 59 102 55 105 55 113 54 114 66 100 76Z"/>
+            <use class="ln" href="#spk" transform="translate(38 100) scale(.85)"/>
+            <path class="ln thin" d="M46 54C54 42 70 46 66 56S50 60 56 50"/>
+            <path class="ln" d="M148 42 178 20 182 26 152 48Z"/>
+            <path class="ln thin" d="M146 46C130 60 136 104 144 96 152 88 144 64 152 54"/>
+            <use class="ln thin" href="#spk" transform="translate(170 70) scale(.5)"/>
           </g>
         </svg></div>
-        <figcaption><b>C · Le vaporisateur</b><span>Propreté, précision, soin</span></figcaption>
+        <figcaption><b>C · Le cœur et le pinceau</b><span>L’original, avec un cœur dans la tache</span></figcaption>
       </figure>
     </div>
   </section>

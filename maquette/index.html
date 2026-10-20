@@ -166,14 +166,16 @@ html[lang="ar"] .coop-word .pill { font-style: normal; }
 .values .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
 .values-text { display: grid; gap: 2rem; min-width: 0; }
 .venn { width: 100%; max-width: 32rem; justify-self: center; overflow: visible; }
-.venn .ring { fill: transparent; stroke-width: 3; transition: stroke-width .2s, fill .3s; }
-.venn .ring.on { stroke-width: 5; }
+.venn .ring { fill: transparent; stroke-width: 3; cursor: pointer; transition: stroke-width .2s, fill .3s; outline: none; }
+.venn .ring:hover, .venn .ring:focus-visible { stroke-width: 4.5; }
+.venn .ring.on { stroke-width: 6; }
 .venn .ring.on.r-g { fill: color-mix(in srgb, var(--green) 10%, transparent); }
 .venn .ring.on.r-v { fill: color-mix(in srgb, var(--periwinkle) 14%, transparent); }
 .venn .ring.on.r-y { fill: color-mix(in srgb, var(--yellow) 16%, transparent); }
 .venn text { font-family: "Nunito", sans-serif; font-weight: 800; font-style: italic; font-size: 23px; letter-spacing: .02em; pointer-events: none; }
 html[lang="ar"] .venn text { font-family: "Readex Pro", sans-serif; font-style: normal; font-weight: 600; font-size: 26px; }
-.vlist { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.4rem; }
+.vlist { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.4rem; min-height: 6.5rem; }
+.vhint { font-size: .9rem; color: var(--grey-soft); margin-bottom: -1rem; }
 .vlist li { display: grid; gap: .3rem; padding-inline-start: 1.25rem; border-inline-start: 2px solid var(--vc); }
 .vlist h3 { font-family: var(--f-title); font-size: 1rem; text-transform: uppercase; letter-spacing: .06em; }
 html[lang="ar"] .vlist h3 { text-transform: none; letter-spacing: 0; font-weight: 600; font-size: 1.25rem; }
@@ -339,7 +341,22 @@ textarea { min-height: 5.5rem; resize: vertical; }
           <span class="label" style="color:#8C9FD6"><span class="fr">Mission</span><span class="ar">مهمتنا</span></span>
         </a>
         <a class="door" href="#valeurs">
-          <span class="pic"><img src="assets/illu-serenite.webp" alt="" width="411" height="345"></span>
+          <span class="pic"><svg viewBox="0 0 200 180" aria-hidden="true">
+            <g filter="url(#wash)" opacity=".9">
+              <ellipse cx="100" cy="74" rx="34" ry="32" fill="#F9DA58"/>
+              <ellipse cx="100" cy="78" rx="20" ry="18" fill="#F5B04A"/>
+              <ellipse cx="100" cy="148" rx="82" ry="18" fill="#BFDDE6"/>
+            </g>
+            <g filter="url(#wobble)" fill="none" stroke="#141414" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="100" cy="74" r="26"/>
+              <path d="M88 71Q92 75 96 71M104 71Q108 75 112 71M92 83Q100 90 108 83"/>
+              <path d="M100 38V28M125 49 132 42M136 74H146M75 49 68 42M64 74H54M126 100 132 106M74 100 68 106"/>
+              <path d="M22 138Q37 128 52 138T82 138 112 138 142 138 172 138"/>
+              <path d="M42 156Q57 148 72 156T102 156 132 156 162 156"/>
+              <path d="M28 42Q28 34 36 36 40 28 48 34 56 32 54 42Z"/>
+              <circle cx="170" cy="40" r="2.5" fill="#141414" stroke="none"/><circle cx="160" cy="100" r="2" fill="#141414" stroke="none"/>
+            </g>
+          </svg></span>
           <span class="label" style="color:#D9B52A"><span class="fr">Valeurs</span><span class="ar">قيمنا</span></span>
         </a>
         <a class="door" href="#services">
@@ -428,9 +445,9 @@ textarea { min-height: 5.5rem; resize: vertical; }
           <clipPath id="c2"><circle cx="185" cy="335" r="160"/></clipPath>
         </defs>
         <g class="core" clip-path="url(#c1)"><g clip-path="url(#c2)"><circle cx="375" cy="335" r="160" fill="url(#core-grad)"/></g></g>
-        <circle class="ring r-g" data-v="proprete" cx="280" cy="190" r="160" stroke="#4BE470"/>
-        <circle class="ring r-v" data-v="dignite" cx="185" cy="335" r="160" stroke="#A5B7E5"/>
-        <circle class="ring r-y" data-v="serenite" cx="375" cy="335" r="160" stroke="#F9DA58"/>
+        <circle class="ring r-g" data-v="proprete" cx="280" cy="190" r="160" stroke="#4BE470" tabindex="0" role="button" aria-label="Propreté"/>
+        <circle class="ring r-v" data-v="dignite" cx="185" cy="335" r="160" stroke="#A5B7E5" tabindex="0" role="button" aria-label="Dignité"/>
+        <circle class="ring r-y" data-v="serenite" cx="375" cy="335" r="160" stroke="#F9DA58" tabindex="0" role="button" aria-label="Sérénité"/>
         <svg x="250" y="244" width="62" height="86" viewBox="0 0 130 178" style="color:#FFF6ED;--spark:#4BE470;pointer-events:none"><use href="#hand"/></svg>
         <text x="280" y="105" text-anchor="middle" fill="#2FBF55"><tspan class="fr">PROPRETÉ</tspan><tspan class="ar">النظافة</tspan></text>
         <text x="140" y="390" text-anchor="middle" fill="#8C9FD6"><tspan class="fr">DIGNITÉ</tspan><tspan class="ar">الكرامة</tspan></text>
@@ -439,10 +456,11 @@ textarea { min-height: 5.5rem; resize: vertical; }
       <div class="values-text">
         <h2 class="title" id="val-title"><span class="oval o-yellow"><span class="fr">Valeurs</span><span class="ar">قيمنا</span></span></h2>
         <p class="prose"><span class="fr">Ideeyet place la confiance, le respect et la sérénité au cœur de ses actions. Nous valorisons la dignité des travailleuses domestiques tout en respectant la vie privée de nos clients.</span><span class="ar">في Ideeyet، الثقة والاحترام وراحة البال في قلب كل خدمة. نثمّنو كرامة عاملات المنازل ونحترمو الحياة الخاصة متاع حرفائنا.</span></p>
-        <ul class="vlist">
+        <p class="vhint"><span class="fr">Cliquez sur un cercle pour lire sa définition.</span><span class="ar">انقر على دائرة باش تقرا معناها.</span></p>
+        <ul class="vlist" aria-live="polite">
           <li data-v="proprete" style="--vc:#4BE470"><h3><span class="fr">Propreté</span><span class="ar">النظافة</span></h3><p><span class="fr">Un travail soigné et rigoureux, avec du matériel adapté et des formations techniques régulières.</span><span class="ar">خدمة نظيفة ودقيقة، بمعدّات مناسبة وتكوين تقني متواصل.</span></p></li>
-          <li data-v="dignite" style="--vc:#A5B7E5"><h3><span class="fr">Dignité</span><span class="ar">الكرامة</span></h3><p><span class="fr">Un cadre stable, déclaré et équitable pour celles qui font le travail. Un métier reconnu.</span><span class="ar">إطار ثابت، قانوني وعادل للّي يخدمو. وصنعة معترف بيها.</span></p></li>
-          <li data-v="serenite" style="--vc:#F9DA58"><h3><span class="fr">Sérénité</span><span class="ar">راحة البال</span></h3><p><span class="fr">Des intervenantes de confiance, le respect de votre vie privée, un suivi personnalisé.</span><span class="ar">عاملات تنجم تثق فيهم، احترام لحياتك الخاصة، ومتابعة على قدّك.</span></p></li>
+          <li data-v="dignite" style="--vc:#A5B7E5" hidden><h3><span class="fr">Dignité</span><span class="ar">الكرامة</span></h3><p><span class="fr">Un cadre stable, déclaré et équitable pour celles qui font le travail. Un métier reconnu.</span><span class="ar">إطار ثابت، قانوني وعادل للّي يخدمو. وصنعة معترف بيها.</span></p></li>
+          <li data-v="serenite" style="--vc:#F9DA58" hidden><h3><span class="fr">Sérénité</span><span class="ar">راحة البال</span></h3><p><span class="fr">Des intervenantes de confiance, le respect de votre vie privée, un suivi personnalisé.</span><span class="ar">عاملات تنجم تثق فيهم، احترام لحياتك الخاصة، ومتابعة على قدّك.</span></p></li>
         </ul>
         <p class="vcore"><span class="fr">Au centre, là où les trois se rejoignent : la main d’Ideeyet.</span><span class="ar">في الوسط، وين الثلاثة يتلاقاو: يد Ideeyet.</span></p>
         <div class="chips">
@@ -561,12 +579,16 @@ textarea { min-height: 5.5rem; resize: vertical; }
   window.addEventListener("hashchange", fromHash);
   fromHash();
 
-  // survol d'une valeur : son cercle s'épaissit dans le schéma
-  document.querySelectorAll(".vlist li").forEach(function (li) {
-    var ring = document.querySelector('.venn .ring[data-v="' + li.dataset.v + '"]');
-    li.addEventListener("mouseenter", function () { ring.classList.add("on"); });
-    li.addEventListener("mouseleave", function () { ring.classList.remove("on"); });
+  // clic sur un cercle : sa définition s'affiche sous le texte
+  function showValue(v) {
+    document.querySelectorAll(".vlist li").forEach(function (li) { li.hidden = li.dataset.v !== v; });
+    document.querySelectorAll(".venn .ring").forEach(function (r) { r.classList.toggle("on", r.dataset.v === v); });
+  }
+  document.querySelectorAll(".venn .ring").forEach(function (r) {
+    r.addEventListener("click", function () { showValue(r.dataset.v); });
+    r.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showValue(r.dataset.v); } });
   });
+  showValue("proprete");
 
   // contact
   var orgField = document.getElementById("org-field");
