@@ -201,6 +201,44 @@ html[lang="ar"] .vlist h3 { text-transform: none; letter-spacing: 0; font-weight
 .pillars span { font-size: .95rem; }
 @media (max-width: 760px) { .mission .wrap { grid-template-columns: 1fr; } .pillars { grid-template-columns: 1fr; gap: 1.25rem; } }
 
+/* ---------- formations : bandeau qui défile + certificat ---------- */
+.trainings .wrap { display: grid; gap: 2rem; }
+.tr-head { display: grid; gap: 2.25rem; max-width: 46rem; }
+.marquee { overflow: hidden; margin-top: clamp(2.5rem, 5vw, 3.5rem); -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
+.track { display: flex; width: max-content; direction: ltr; padding-block: .75rem; animation: defile 45s linear infinite; }
+.marquee:hover .track, .marquee:focus-within .track { animation-play-state: paused; }
+html[dir="rtl"] .track { animation-direction: reverse; }
+@keyframes defile { to { transform: translateX(-50%); } }
+.fcard { width: 17rem; margin-right: 1rem; display: grid; gap: .6rem; align-content: start; text-align: start; padding: 1.5rem; border-radius: 1.5rem; border: 1px solid var(--line); background: var(--paper); color: var(--grey); font: inherit; cursor: pointer; transition: transform .25s ease, border-color .25s ease; }
+html[dir="rtl"] .fcard { direction: rtl; }
+.fcard:hover { transform: translateY(-4px) rotate(-.6deg); border-color: var(--fc); }
+.fdot { width: 2.4rem; height: 2.4rem; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFFBF6 0 12%, var(--fc) 13% 100%); }
+.fname { color: var(--ink); font-weight: 800; font-size: 1.2rem; line-height: 1.25; }
+html[lang="ar"] .fname { font-weight: 600; }
+.fdesc { font-size: .95rem; line-height: 1.55; }
+.fmore { font-weight: 600; font-size: .9rem; color: var(--ink); text-decoration: underline; text-decoration-color: var(--fc); text-decoration-thickness: 2px; text-underline-offset: .3em; }
+@media (prefers-reduced-motion: reduce) { .marquee { overflow-x: auto; } .track { animation: none; } }
+
+.cert { border: 0; padding: 0; background: transparent; max-width: min(40rem, calc(100vw - 32px)); width: 100%; }
+.cert::backdrop { background: rgba(28, 28, 28, .55); backdrop-filter: blur(3px); }
+.cert-paper { position: relative; overflow: hidden; background: #FFFDF8; color: var(--grey); border-radius: 1rem; padding: clamp(2.5rem, 6vw, 3.25rem) clamp(2.25rem, 5vw, 3rem); text-align: center; display: grid; gap: 1rem; justify-items: center; outline: 1px solid var(--line); outline-offset: -12px; box-shadow: 0 30px 80px -30px rgba(0,0,0,.5); }
+.cert-paper::before { content: ""; position: absolute; inset: 18px; border-radius: .6rem; padding: 2px; background: var(--grad); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); pointer-events: none; }
+.cert-close { position: absolute; top: 1.4rem; inset-inline-end: 1.4rem; border: 0; background: var(--cream); color: var(--ink); width: 2.4rem; height: 2.4rem; border-radius: 50%; display: grid; place-items: center; cursor: pointer; z-index: 2; }
+.cert-stamp { position: absolute; top: 2.6rem; inset-inline-start: -3rem; transform: rotate(-30deg); background: #F08A7A; color: #FFFDF8; font-family: "Krona One", sans-serif; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; padding: .35rem 4rem; }
+html[dir="rtl"] .cert-stamp { transform: rotate(30deg); }
+.cert-logo { width: 2.4rem; height: auto; color: var(--periwinkle); }
+.cert-kicker { font-family: "Krona One", sans-serif; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; }
+html[lang="ar"] .cert-kicker { font-family: var(--f-body); letter-spacing: 0; font-size: 1rem; }
+.cert h3 { font-family: var(--f-title); font-size: clamp(1.4rem, 1rem + 2vw, 2.2rem); text-transform: uppercase; line-height: 1.15; }
+html[lang="ar"] .cert h3 { text-transform: none; font-weight: 600; }
+.cert-text { max-width: 26rem; }
+.cert-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; width: 100%; margin: .5rem 0 0; border-block: 1px solid var(--line); padding-block: 1rem; }
+.cert-fields dt { font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; }
+.cert-fields dd { margin: 0; color: var(--ink); font-weight: 600; }
+.cert-sign { display: flex; justify-content: space-between; gap: 1.5rem; width: 100%; margin-top: 1.5rem; font-size: .85rem; }
+.cert-sign > span { flex: 1; border-top: 1px solid var(--grey); padding-top: .4rem; }
+.cert-note { font-size: .8rem; font-style: italic; color: var(--grey-soft); }
+
 /* ---------- histoire ---------- */
 .story .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
 .portrait { position: relative; aspect-ratio: 4 / 5; max-width: 100%; border-radius: 999px 999px 1.5rem 1.5rem; background: var(--grad-soft); overflow: hidden; display: grid; place-items: center; }
@@ -290,6 +328,7 @@ textarea { min-height: 5.5rem; resize: vertical; }
       <a href="#pros"><span class="fr">Professionnels</span><span class="ar">للشركات</span></a>
       <a href="#valeurs"><span class="fr">Valeurs</span><span class="ar">قيمنا</span></a>
       <a href="#mission"><span class="fr">Mission</span><span class="ar">مهمتنا</span></a>
+      <a href="#formations"><span class="fr">Formations</span><span class="ar">التكوين</span></a>
       <a href="#contact"><span class="fr">Contact</span><span class="ar">اتصل بينا</span></a>
     </nav>
     <div class="lang" role="group" aria-label="Langue">
@@ -546,6 +585,113 @@ textarea { min-height: 5.5rem; resize: vertical; }
     </div>
   </section>
 
+  <!-- FORMATIONS -->
+  <section class="trainings band section" id="formations" aria-labelledby="form-title">
+    <div class="wrap">
+      <div class="tr-head">
+        <h2 class="title" id="form-title"><span class="oval"><span class="fr">Formations</span><span class="ar">التكوين</span></span></h2>
+        <p class="prose"><span class="fr">Les ideeyets se forment tout au long de l’année. Chaque formation suivie est attestée par un certificat. Cliquez sur une formation pour le voir.</span><span class="ar">الـ ideeyets يتكوّنو على طول العام. كل تكوين عندو شهادة. انقر على تكوين باش تشوفها.</span></p>
+      </div>
+    </div>
+    <div class="marquee">
+      <div class="track">
+          <button type="button" class="fcard" data-cert="hygiene" data-fr="Hygiène et propreté" data-ar="النظافة والصحة" style="--fc:#4BE470">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Hygiène et propreté</span><span class="ar">النظافة والصحة</span></span>
+            <span class="fdesc"><span class="fr">Produits, gestes et protocoles pour un nettoyage sûr et efficace.</span><span class="ar">المواد، الحركات والطرق باش التنظيف يكون آمن ومضبوط.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+          <button type="button" class="fcard" data-cert="cuisine" data-fr="Cuisine" data-ar="الطبخ" style="--fc:#F9DA58">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Cuisine</span><span class="ar">الطبخ</span></span>
+            <span class="fdesc"><span class="fr">Préparer des repas équilibrés, dans le respect de l’hygiène alimentaire.</span><span class="ar">نحضّرو ماكلة متوازنة، مع احترام نظافة الماكلة.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+          <button type="button" class="fcard" data-cert="aide" data-fr="Aide à la personne" data-ar="العناية بالأشخاص" style="--fc:#A5B7E5">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Aide à la personne</span><span class="ar">العناية بالأشخاص</span></span>
+            <span class="fdesc"><span class="fr">Accompagner les personnes âgées ou dépendantes au quotidien.</span><span class="ar">نرافقو كبار السن والناس اللي تستحق معاونة في حياتهم اليومية.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+          <button type="button" class="fcard" data-cert="enfants" data-fr="Garde d’enfants" data-ar="التلهّي بالصغار" style="--fc:#4BE470">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Garde d’enfants</span><span class="ar">التلهّي بالصغار</span></span>
+            <span class="fdesc"><span class="fr">Veiller sur les enfants, les occuper, assurer leur sécurité.</span><span class="ar">نتلهّاو بالصغار، نلهّيوهم، ونحافظو على سلامتهم.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+          <button type="button" class="fcard" data-cert="secours" data-fr="Premiers secours" data-ar="الإسعافات الأولية" style="--fc:#F9DA58">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Premiers secours</span><span class="ar">الإسعافات الأولية</span></span>
+            <span class="fdesc"><span class="fr">Réagir face à une chute, une brûlure ou un malaise.</span><span class="ar">كيفاش نتصرّفو كي يصير طيحة، حرقة ولا تعب مفاجئ.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+          <button type="button" class="fcard" data-cert="droits" data-fr="Droits des travailleuses" data-ar="حقوق العاملات" style="--fc:#A5B7E5">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Droits des travailleuses</span><span class="ar">حقوق العاملات</span></span>
+            <span class="fdesc"><span class="fr">Connaître ses droits, son contrat et sa protection sociale.</span><span class="ar">نعرفو حقوقنا، العقد متاعنا والتغطية الاجتماعية.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+          <button type="button" class="fcard" data-cert="hygiene" data-fr="Hygiène et propreté" data-ar="النظافة والصحة" style="--fc:#4BE470" tabindex="-1" aria-hidden="true">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Hygiène et propreté</span><span class="ar">النظافة والصحة</span></span>
+            <span class="fdesc"><span class="fr">Produits, gestes et protocoles pour un nettoyage sûr et efficace.</span><span class="ar">المواد، الحركات والطرق باش التنظيف يكون آمن ومضبوط.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+          <button type="button" class="fcard" data-cert="cuisine" data-fr="Cuisine" data-ar="الطبخ" style="--fc:#F9DA58" tabindex="-1" aria-hidden="true">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Cuisine</span><span class="ar">الطبخ</span></span>
+            <span class="fdesc"><span class="fr">Préparer des repas équilibrés, dans le respect de l’hygiène alimentaire.</span><span class="ar">نحضّرو ماكلة متوازنة، مع احترام نظافة الماكلة.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+          <button type="button" class="fcard" data-cert="aide" data-fr="Aide à la personne" data-ar="العناية بالأشخاص" style="--fc:#A5B7E5" tabindex="-1" aria-hidden="true">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Aide à la personne</span><span class="ar">العناية بالأشخاص</span></span>
+            <span class="fdesc"><span class="fr">Accompagner les personnes âgées ou dépendantes au quotidien.</span><span class="ar">نرافقو كبار السن والناس اللي تستحق معاونة في حياتهم اليومية.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+          <button type="button" class="fcard" data-cert="enfants" data-fr="Garde d’enfants" data-ar="التلهّي بالصغار" style="--fc:#4BE470" tabindex="-1" aria-hidden="true">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Garde d’enfants</span><span class="ar">التلهّي بالصغار</span></span>
+            <span class="fdesc"><span class="fr">Veiller sur les enfants, les occuper, assurer leur sécurité.</span><span class="ar">نتلهّاو بالصغار، نلهّيوهم، ونحافظو على سلامتهم.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+          <button type="button" class="fcard" data-cert="secours" data-fr="Premiers secours" data-ar="الإسعافات الأولية" style="--fc:#F9DA58" tabindex="-1" aria-hidden="true">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Premiers secours</span><span class="ar">الإسعافات الأولية</span></span>
+            <span class="fdesc"><span class="fr">Réagir face à une chute, une brûlure ou un malaise.</span><span class="ar">كيفاش نتصرّفو كي يصير طيحة، حرقة ولا تعب مفاجئ.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+          <button type="button" class="fcard" data-cert="droits" data-fr="Droits des travailleuses" data-ar="حقوق العاملات" style="--fc:#A5B7E5" tabindex="-1" aria-hidden="true">
+            <span class="fdot" aria-hidden="true"></span>
+            <span class="fname"><span class="fr">Droits des travailleuses</span><span class="ar">حقوق العاملات</span></span>
+            <span class="fdesc"><span class="fr">Connaître ses droits, son contrat et sa protection sociale.</span><span class="ar">نعرفو حقوقنا، العقد متاعنا والتغطية الاجتماعية.</span></span>
+            <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
+          </button>
+      </div>
+    </div>
+  </section>
+
+  <dialog class="cert" id="cert" aria-labelledby="cert-title">
+    <div class="cert-paper">
+      <button type="button" class="cert-close" id="cert-close" aria-label="Fermer"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      <span class="cert-stamp" aria-hidden="true"><span class="fr">Exemple</span><span class="ar">مثال</span></span>
+      <svg class="cert-logo" viewBox="0 0 130 178" aria-hidden="true"><use href="#hand"/></svg>
+      <p class="cert-kicker"><span class="fr">Certificat de formation</span><span class="ar">شهادة تكوين</span></p>
+      <h3 id="cert-title"></h3>
+      <p class="cert-text"><span class="fr">Délivré à une membre de la Coopérative Ideeyet, qui a suivi avec succès l’ensemble de la formation.</span><span class="ar">تعطات لعضوة في تعاونية Ideeyet، كمّلت التكوين بنجاح.</span></p>
+      <dl class="cert-fields">
+        <div><dt><span class="fr">Organisme</span><span class="ar">الهيكل</span></dt><dd>—</dd></div>
+        <div><dt><span class="fr">Durée</span><span class="ar">المدة</span></dt><dd>—</dd></div>
+        <div><dt><span class="fr">Date</span><span class="ar">التاريخ</span></dt><dd>—</dd></div>
+      </dl>
+      <div class="cert-sign">
+        <span><span class="fr">L’organisme de formation</span><span class="ar">هيكل التكوين</span></span>
+        <span><span class="fr">Coopérative Ideeyet</span><span class="ar">تعاونية Ideeyet</span></span>
+      </div>
+      <p class="cert-note"><span class="fr">Mise en page d’exemple : le certificat réel sera ajouté ici.</span><span class="ar">هذا مثال برك: الشهادة الحقيقية باش تتحط هنا.</span></p>
+    </div>
+  </dialog>
+
   <!-- HISTOIRE -->
   <section class="story band section" id="histoire" aria-labelledby="story-title">
     <div class="wrap">
@@ -646,6 +792,18 @@ textarea { min-height: 5.5rem; resize: vertical; }
     r.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showValue(r.dataset.v); } });
   });
   showValue("proprete");
+
+  // formations : ouverture du certificat
+  var cert = document.getElementById("cert");
+  document.querySelectorAll(".fcard").forEach(function (c) {
+    c.addEventListener("click", function () {
+      // Plus tard : remplacer ce faux certificat par l'image réelle (ex. assets/certificats/hygiene.jpg)
+      document.getElementById("cert-title").innerHTML = '<span class="fr">' + c.dataset.fr + '</span><span class="ar">' + c.dataset.ar + '</span>';
+      if (cert.showModal) cert.showModal(); else cert.setAttribute("open", "");
+    });
+  });
+  document.getElementById("cert-close").addEventListener("click", function () { cert.close(); });
+  cert.addEventListener("click", function (e) { if (e.target === cert) cert.close(); });
 
   // contact
   var orgField = document.getElementById("org-field");
