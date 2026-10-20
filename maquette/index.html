@@ -180,8 +180,6 @@ html[lang="ar"] .venn text { font-family: "Readex Pro", sans-serif; font-style: 
 .vlist li { display: grid; gap: .3rem; padding-inline-start: 1.25rem; border-inline-start: 2px solid var(--vc); }
 .vlist h3 { font-family: var(--f-title); font-size: 1rem; text-transform: uppercase; letter-spacing: .06em; }
 html[lang="ar"] .vlist h3 { text-transform: none; letter-spacing: 0; font-weight: 600; font-size: 1.25rem; }
-.vcore { font-size: .95rem; font-style: italic; }
-html[lang="ar"] .vcore { font-style: normal; }
 .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
 .chips span { border: 1px solid var(--line); border-radius: 999px; padding: .35rem .85rem; font-size: .9rem; background: var(--paper); }
 
@@ -257,6 +255,10 @@ textarea { min-height: 5.5rem; resize: vertical; }
     <filter id="wobble-soft" x="-5%" y="-5%" width="110%" height="110%">
       <feTurbulence type="fractalNoise" baseFrequency=".03" numOctaves="1" seed="4" result="n"/>
       <feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/>
+    </filter>
+    <filter id="wobble-org" x="-8%" y="-8%" width="116%" height="116%">
+      <feTurbulence type="fractalNoise" baseFrequency=".018" numOctaves="2" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="5"/>
     </filter>
     <filter id="wash" x="-40%" y="-40%" width="180%" height="180%">
       <feTurbulence type="fractalNoise" baseFrequency=".022" numOctaves="3" seed="9" result="n"/>
@@ -347,12 +349,12 @@ textarea { min-height: 5.5rem; resize: vertical; }
               <ellipse cx="86" cy="106" rx="54" ry="13" fill="#E9B9C6" transform="rotate(-38 86 106)"/>
               <ellipse cx="110" cy="86" rx="32" ry="10" fill="#F5B04A" transform="rotate(-38 110 86)"/>
             </g>
-            <g filter="url(#wobble-soft)" fill="none" stroke="#141414" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M144 32C146 46 150 50 164 52 150 54 146 58 144 72 142 58 138 54 124 52 138 50 142 46 144 32Z" fill="#F9DA58" stroke-width="2.4"/>
-              <path d="M126 60C106 72 88 80 60 90"/>
-              <path d="M130 70C106 88 86 104 56 124"/>
-              <path d="M138 78C118 100 100 116 74 138"/>
-              <path d="M112 96 98 104 106 108 90 116" stroke-width="2.2"/>
+            <g filter="url(#wobble-org)" fill="none" stroke="#141414" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M144 30C146 46 150 50 166 52 150 54 146 58 144 74 142 58 138 54 122 52 138 50 142 46 144 30Z" fill="#F9DA58" stroke="none"/>
+              <path d="M126 60C110 66 96 74 82 78S66 86 58 90"/>
+              <path d="M130 70C114 80 102 92 88 100S68 116 54 126"/>
+              <path d="M138 78C126 92 116 104 104 114S84 130 72 140"/>
+              <path d="M118 92C108 98 100 104 92 108" stroke-width="2.4"/>
               <path d="M62 34V46M56 40H68" stroke-width="2.4"/>
               <path d="M164 126V136M159 131H169" stroke-width="2.2"/>
               <circle cx="44" cy="100" r="2.4" fill="#141414" stroke="none"/><circle cx="178" cy="90" r="2.4" fill="#141414" stroke="none"/><circle cx="116" cy="150" r="2" fill="#141414" stroke="none"/>
@@ -482,7 +484,6 @@ textarea { min-height: 5.5rem; resize: vertical; }
           <li data-v="dignite" style="--vc:#A5B7E5" hidden><h3><span class="fr">Dignité</span><span class="ar">الكرامة</span></h3><p><span class="fr">Un cadre stable, déclaré et équitable pour celles qui font le travail. Un métier reconnu.</span><span class="ar">إطار ثابت، قانوني وعادل للّي يخدمو. وصنعة معترف بيها.</span></p></li>
           <li data-v="serenite" style="--vc:#F9DA58" hidden><h3><span class="fr">Sérénité</span><span class="ar">راحة البال</span></h3><p><span class="fr">Des intervenantes de confiance, le respect de votre vie privée, un suivi personnalisé.</span><span class="ar">عاملات تنجم تثق فيهم، احترام لحياتك الخاصة، ومتابعة على قدّك.</span></p></li>
         </ul>
-        <p class="vcore"><span class="fr">Au centre, là où les trois se rejoignent : la main d’Ideeyet.</span><span class="ar">في الوسط، وين الثلاثة يتلاقاو: يد Ideeyet.</span></p>
         <div class="chips">
           <span class="fr">Transparence</span><span class="ar">الشفافية</span>
           <span class="fr">Solidarité</span><span class="ar">التضامن</span>
@@ -501,12 +502,12 @@ textarea { min-height: 5.5rem; resize: vertical; }
               <ellipse cx="86" cy="106" rx="54" ry="13" fill="#E9B9C6" transform="rotate(-38 86 106)"/>
               <ellipse cx="110" cy="86" rx="32" ry="10" fill="#F5B04A" transform="rotate(-38 110 86)"/>
             </g>
-            <g filter="url(#wobble-soft)" fill="none" stroke="#141414" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M144 32C146 46 150 50 164 52 150 54 146 58 144 72 142 58 138 54 124 52 138 50 142 46 144 32Z" fill="#F9DA58" stroke-width="2.4"/>
-              <path d="M126 60C106 72 88 80 60 90"/>
-              <path d="M130 70C106 88 86 104 56 124"/>
-              <path d="M138 78C118 100 100 116 74 138"/>
-              <path d="M112 96 98 104 106 108 90 116" stroke-width="2.2"/>
+            <g filter="url(#wobble-org)" fill="none" stroke="#141414" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M144 30C146 46 150 50 166 52 150 54 146 58 144 74 142 58 138 54 122 52 138 50 142 46 144 30Z" fill="#F9DA58" stroke="none"/>
+              <path d="M126 60C110 66 96 74 82 78S66 86 58 90"/>
+              <path d="M130 70C114 80 102 92 88 100S68 116 54 126"/>
+              <path d="M138 78C126 92 116 104 104 114S84 130 72 140"/>
+              <path d="M118 92C108 98 100 104 92 108" stroke-width="2.4"/>
               <path d="M62 34V46M56 40H68" stroke-width="2.4"/>
               <path d="M164 126V136M159 131H169" stroke-width="2.2"/>
               <circle cx="44" cy="100" r="2.4" fill="#141414" stroke="none"/><circle cx="178" cy="90" r="2.4" fill="#141414" stroke="none"/><circle cx="116" cy="150" r="2" fill="#141414" stroke="none"/>
