@@ -258,6 +258,8 @@ html[lang="ar"] .cert h3 { text-transform: none; font-weight: 600; }
 .vcard q { quotes: none; }
 .vcard figcaption { font-size: .9rem; border-top: 1px solid var(--line); padding-top: .9rem; }
 .vcard figcaption b { color: var(--ink); font-weight: 600; }
+.vcard { position: relative; }
+.vtag { position: absolute; top: 1.25rem; inset-inline-end: 1.25rem; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--grey-soft); border: 1px dashed var(--line); border-radius: 999px; padding: .15rem .55rem; }
 .vcta { background: transparent; border-style: dashed; transition: border-color .25s; }
 .vcta:hover { border-color: var(--vc); }
 .vcta-t { color: var(--ink); font-weight: 800; font-size: 1.2rem; }
@@ -732,18 +734,20 @@ textarea { min-height: 5.5rem; resize: vertical; }
       <p class="label" id="voices-title"><span class="fr">Témoignages</span><span class="ar">شهادات</span></p>
       <div class="vgrid">
         <figure class="vcard" style="--vc:#A5B7E5">
-          <blockquote><q class="fr">On peut confier ses enfants ou ses parents à nos membres en toute sérénité.</q><q class="ar">تنجم تأمّن صغارك ولا والديك عند عضواتنا وانت مرتاح.</q></blockquote>
-          <figcaption><b>Lamia</b> · <span class="fr">membre fondatrice</span><span class="ar">عضوة مؤسسة</span></figcaption>
+          <span class="vtag"><span class="fr">Exemple</span><span class="ar">مثال</span></span>
+          <blockquote><q class="fr">Une aide précieuse pour ma mère. La même personne vient chaque semaine, elle est attentive et ma mère l’attend avec plaisir.</q><q class="ar">معاونة غالية لأمي. نفس العاملة تجي كل جمعة، تهتمّ بيها، وأمي تستنّاها بفرحة.</q></blockquote>
+          <figcaption><span class="fr"><b>Cliente particulière</b> · aide à une personne âgée</span><span class="ar"><b>حريفة</b> · العناية بكبار السن</span></figcaption>
+        </figure>
+        <figure class="vcard" style="--vc:#4BE470">
+          <span class="vtag"><span class="fr">Exemple</span><span class="ar">مثال</span></span>
+          <blockquote><q class="fr">Nos bureaux sont entretenus deux fois par semaine. L’équipe est ponctuelle et sérieuse, et nous savons à qui profite notre contrat.</q><q class="ar">المكاتب متاعنا تتنظّف مرتين في الجمعة. الفريق يجي في الوقت وجدّي، ونعرفو لمن يمشي العقد متاعنا.</q></blockquote>
+          <figcaption><span class="fr"><b>Entreprise</b> · entretien de bureaux</span><span class="ar"><b>شركة</b> · تنظيف المكاتب</span></figcaption>
         </figure>
         <figure class="vcard" style="--vc:#F9DA58">
-          <blockquote><q class="fr">J’ai compris que ce travail est respectable et noble, comme tout autre métier.</q><q class="ar">فهمت اللي الخدمة هذي محترمة وشريفة، كيف أي صنعة أخرى.</q></blockquote>
-          <figcaption><b>Lamia</b> · <span class="fr">membre fondatrice</span><span class="ar">عضوة مؤسسة</span></figcaption>
+          <span class="vtag"><span class="fr">Exemple</span><span class="ar">مثال</span></span>
+          <blockquote><q class="fr">Pour notre événement, l’équipe a tout géré : mise en place, service, puis remise en état. Efficace et souriante.</q><q class="ar">في المناسبة متاعنا، الفريق تلهّى بكل شي: التحضير، الخدمة، والتنظيف من بعد. خدمة مضبوطة وبالضحكة.</q></blockquote>
+          <figcaption><span class="fr"><b>Association</b> · événement</span><span class="ar"><b>جمعية</b> · مناسبة</span></figcaption>
         </figure>
-        <a class="vcard vcta" href="#contact" style="--vc:#4BE470">
-          <span class="vcta-t"><span class="fr">Vous avez fait appel à Ideeyet ?</span><span class="ar">خدمت مع Ideeyet؟</span></span>
-          <span><span class="fr">Racontez-nous votre expérience : votre témoignage aidera d’autres familles et entreprises à nous faire confiance.</span><span class="ar">احكيلنا على تجربتك: شهادتك تعاون عايلات وشركات أخرى باش يثقو فينا.</span></span>
-          <span class="fmore"><span class="fr">Laisser un témoignage</span><span class="ar">اترك شهادة</span> →</span>
-        </a>
       </div>
     </div>
   </section>
