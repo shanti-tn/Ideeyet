@@ -90,7 +90,6 @@ html[lang="ar"] .flip { transform: scaleX(-1); }
 .wordmark .coop { background-image: var(--grad-flow) !important; background-size: 400% 100% !important; animation: flow 6s ease-in-out infinite alternate; }
 .oval::before, .phone::before, .cert-paper::before, .tab[aria-selected="true"]::after { background-size: 400% 100% !important; animation: flow 6s ease-in-out infinite alternate; }
 .coop-word .pill::before { background-image: var(--grad-flow) !important; background-size: 400% 100% !important; animation: flow 7s ease-in-out infinite alternate; }
-.portrait { background-size: 220% 220% !important; animation: drift 8s ease-in-out infinite alternate; }
 
 /* ---------- header ---------- */
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: color-mix(in srgb, var(--cream) 92%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
@@ -135,6 +134,10 @@ html[lang="ar"] .coop-word .pill { font-style: normal; }
 .coop-intro { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: end; }
 .coop-intro .prose { display: grid; gap: 1.2rem; }
 .coop-intro strong { color: var(--ink); font-weight: 600; }
+.team { margin: 0; position: relative; }
+.team img { width: 100%; aspect-ratio: 1080 / 560; object-fit: cover; border-radius: 2rem; }
+.team figcaption { position: absolute; bottom: 1.25rem; inset-inline-start: 1.25rem; background: color-mix(in srgb, var(--cream) 90%, transparent); color: var(--ink); font-weight: 600; font-size: .9rem; padding: .4rem .9rem; border-radius: 999px; }
+@media (max-width: 520px) { .team img { border-radius: 1.25rem; aspect-ratio: 4 / 3; } }
 .doors { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
 .door { display: grid; justify-items: center; gap: 1.25rem; text-decoration: none; padding-block: 1rem; border-radius: 1.5rem; transition: background-color .25s; }
 .door:hover { background: var(--paper); }
@@ -267,8 +270,8 @@ html[lang="ar"] .cert h3 { text-transform: none; font-weight: 600; }
 /* ---------- histoire ---------- */
 .story .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
 .portrait { position: relative; aspect-ratio: 4 / 5; max-width: 100%; border-radius: 999px 999px 1.5rem 1.5rem; background: var(--grad-soft); overflow: hidden; display: grid; place-items: center; }
-.portrait::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 55%, color-mix(in srgb, var(--cream) 50%, transparent)); }
-.portrait span { position: relative; z-index: 1; font-size: .85rem; background: color-mix(in srgb, var(--cream) 85%, transparent); padding: .35rem .8rem; border-radius: 999px; }
+.portrait { margin: 0; }
+.portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
 .story-text { display: grid; gap: 2rem; min-width: 0; }
 .quote { font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.5rem); line-height: 1.3; color: var(--ink); font-weight: 300; letter-spacing: -.01em; margin: 0; }
 html[lang="ar"] .quote { letter-spacing: 0; line-height: 1.6; }
@@ -411,6 +414,10 @@ textarea { min-height: 5.5rem; resize: vertical; }
           <p><span class="fr">En choisissant Ideeyet, vous profitez d’un service fiable et éthique, et vous soutenez un modèle où les femmes construisent leur avenir.</span><span class="ar">كي تختار Ideeyet، تاخو خدمة مضمونة ونظيفة، وتعاون نموذج فيه النساء يبنيو مستقبلهم بيدهم.</span></p>
         </div>
       </div>
+      <figure class="team">
+        <img src="assets/photos/ideeyets.webp" alt="Cinq membres de la coopérative Ideeyet, souriantes, en tablier Ideeyet, derrière un stand" width="1080" height="560" loading="lazy">
+        <figcaption><span class="fr">Les ideeyets</span><span class="ar">الـ ideeyets</span></figcaption>
+      </figure>
       <nav class="doors" aria-label="Découvrir">
         <a class="door" href="#mission">
           <span class="pic"><svg  viewBox="0 0 200 180" aria-hidden="true">
@@ -702,7 +709,7 @@ textarea { min-height: 5.5rem; resize: vertical; }
   <!-- HISTOIRE -->
   <section class="story band section" id="histoire" aria-labelledby="story-title">
     <div class="wrap">
-      <div class="portrait" role="img" aria-label="Emplacement photo : Lamia Yarmani"><span class="fr">photo de Lamia à venir</span><span class="ar">تصويرة لمياء قريب</span></div>
+      <figure class="portrait"><img src="assets/photos/lamia.webp" alt="Lamia Yarmani, membre fondatrice de la coopérative Ideeyet, en blouse blanche" width="800" height="1044" loading="lazy"></figure>
       <div class="story-text">
         <p class="label" id="story-title"><span class="fr">Depuis 2018 · le chemin de Lamia</span><span class="ar">من 2018 · ثنية لمياء</span></p>
         <blockquote class="quote"><q class="fr">Aujourd’hui, la Tunisie a besoin de personnes qui prennent soin, qui apportent de l’aide dans les foyers.</q><q class="ar">اليوم، تونس تستحق ناس تعتني، وتعاون في الديار.</q></blockquote>
