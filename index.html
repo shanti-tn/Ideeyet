@@ -87,10 +87,10 @@ html[lang="ar"] .flip { transform: scaleX(-1); }
 /* dégradés vivants : un glissement lent, discret */
 @keyframes flow { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
 @keyframes drift { from { background-position: 0% 0%; } to { background-position: 100% 100%; } }
-.wordmark .coop { background-image: var(--grad-flow) !important; background-size: 300% 100% !important; animation: flow 12s ease-in-out infinite alternate; }
-.oval::before, .phone::before, .cert-paper::before, .tab[aria-selected="true"]::after { background-size: 250% 100% !important; animation: flow 10s ease-in-out infinite alternate; }
-.coop-word .pill::before { background-size: 220% 100% !important; animation: flow 11s ease-in-out infinite alternate; }
-.portrait { background-size: 160% 160% !important; animation: drift 16s ease-in-out infinite alternate; }
+.wordmark .coop { background-image: var(--grad-flow) !important; background-size: 400% 100% !important; animation: flow 6s ease-in-out infinite alternate; }
+.oval::before, .phone::before, .cert-paper::before, .tab[aria-selected="true"]::after { background-size: 400% 100% !important; animation: flow 6s ease-in-out infinite alternate; }
+.coop-word .pill::before { background-image: var(--grad-flow) !important; background-size: 400% 100% !important; animation: flow 7s ease-in-out infinite alternate; }
+.portrait { background-size: 220% 220% !important; animation: drift 8s ease-in-out infinite alternate; }
 
 /* ---------- header ---------- */
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: color-mix(in srgb, var(--cream) 92%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
@@ -222,12 +222,10 @@ html[dir="rtl"] .track { animation-direction: reverse; }
 .fcard { width: 17rem; margin-right: 1rem; display: grid; gap: .6rem; align-content: start; text-align: start; padding: 1.5rem; border-radius: 1.5rem; border: 1px solid var(--line); background: var(--paper); color: var(--grey); font: inherit; cursor: pointer; transition: transform .25s ease, border-color .25s ease; }
 html[dir="rtl"] .fcard { direction: rtl; }
 .fcard:hover { transform: translateY(-4px) rotate(-.6deg); border-color: var(--fc); }
-.fdot { width: 2.4rem; height: 2.4rem; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFFBF6 0 12%, var(--fc) 13% 100%); }
 .fname { color: var(--ink); font-weight: 800; font-size: 1.2rem; line-height: 1.25; }
 html[lang="ar"] .fname { font-weight: 600; }
 .fdesc { font-size: .95rem; line-height: 1.55; }
 .fmore { font-weight: 600; font-size: .9rem; color: var(--ink); text-decoration: underline; text-decoration-color: var(--fc); text-decoration-thickness: 2px; text-underline-offset: .3em; }
-@media (prefers-reduced-motion: reduce) { .marquee { overflow-x: auto; } .track { animation: none; } }
 
 .cert { border: 0; padding: 0; background: transparent; max-width: min(40rem, calc(100vw - 32px)); width: 100%; }
 .cert::backdrop { background: rgba(28, 28, 28, .55); backdrop-filter: blur(3px); }
@@ -254,7 +252,7 @@ html[lang="ar"] .cert h3 { text-transform: none; font-weight: 600; }
 .vgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
 .vcard { margin: 0; padding: 1.75rem; border-radius: 1.5rem; background: var(--paper); border: 1px solid var(--line); display: grid; gap: 1.25rem; align-content: space-between; text-decoration: none; color: var(--grey); min-width: 0; }
 .vcard blockquote { margin: 0; color: var(--ink); font-size: 1.15rem; line-height: 1.5; font-weight: 300; }
-.vcard blockquote::before { content: "“"; display: block; font-family: "Krona One", sans-serif; font-size: 2.6rem; line-height: .8; background: var(--grad-flow); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: flow 14s ease-in-out infinite alternate; }
+.vcard blockquote::before { content: "“"; display: block; font-family: "Krona One", sans-serif; font-size: 2.6rem; line-height: .8; background: var(--grad-flow); background-size: 400% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: flow 6s ease-in-out infinite alternate; }
 .vcard q { quotes: none; }
 .vcard figcaption { font-size: .9rem; border-top: 1px solid var(--line); padding-top: .9rem; }
 .vcard figcaption b { color: var(--ink); font-weight: 600; }
@@ -308,7 +306,7 @@ textarea { min-height: 5.5rem; resize: vertical; }
 .foot .wrap { border-top: 1px solid var(--line); padding-block: 2rem 2.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; font-size: .9rem; }
 .foot b { color: var(--ink); font-weight: 600; }
 
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } html { scroll-behavior: auto; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } html { scroll-behavior: auto; } }
 </style>
 </head>
 <body>
@@ -338,7 +336,7 @@ textarea { min-height: 5.5rem; resize: vertical; }
       <feGaussianBlur in="d" stdDeviation="5"/>
     </filter>
     <linearGradient id="core-grad" x1="0" y1="1" x2="1" y2="0" gradientTransform="rotate(0 .5 .5)">
-      <animateTransform class="smil" attributeName="gradientTransform" type="rotate" values="0 .5 .5;35 .5 .5;-20 .5 .5;0 .5 .5" dur="16s" repeatCount="indefinite"/>
+      <animateTransform class="smil" attributeName="gradientTransform" type="rotate" values="0 .5 .5;80 .5 .5;-60 .5 .5;0 .5 .5" dur="9s" repeatCount="indefinite"/>
       <stop offset="0" stop-color="#A5B7E5"/>
       <stop offset=".5" stop-color="#4BE470"/>
       <stop offset="1" stop-color="#F9DA58"/>
@@ -617,73 +615,61 @@ textarea { min-height: 5.5rem; resize: vertical; }
     <div class="marquee">
       <div class="track">
           <button type="button" class="fcard" data-cert="hygiene" data-fr="Hygiène et propreté" data-ar="النظافة والصحة" style="--fc:#4BE470">
-            <span class="fdot" aria-hidden="true"></span>
             <span class="fname"><span class="fr">Hygiène et propreté</span><span class="ar">النظافة والصحة</span></span>
             <span class="fdesc"><span class="fr">Produits, gestes et protocoles pour un nettoyage sûr et efficace.</span><span class="ar">المواد، الحركات والطرق باش التنظيف يكون آمن ومضبوط.</span></span>
             <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
           </button>
           <button type="button" class="fcard" data-cert="cuisine" data-fr="Cuisine" data-ar="الطبخ" style="--fc:#F9DA58">
-            <span class="fdot" aria-hidden="true"></span>
             <span class="fname"><span class="fr">Cuisine</span><span class="ar">الطبخ</span></span>
             <span class="fdesc"><span class="fr">Préparer des repas équilibrés, dans le respect de l’hygiène alimentaire.</span><span class="ar">نحضّرو ماكلة متوازنة، مع احترام نظافة الماكلة.</span></span>
             <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
           </button>
           <button type="button" class="fcard" data-cert="aide" data-fr="Aide à la personne" data-ar="العناية بالأشخاص" style="--fc:#A5B7E5">
-            <span class="fdot" aria-hidden="true"></span>
             <span class="fname"><span class="fr">Aide à la personne</span><span class="ar">العناية بالأشخاص</span></span>
             <span class="fdesc"><span class="fr">Accompagner les personnes âgées ou dépendantes au quotidien.</span><span class="ar">نرافقو كبار السن والناس اللي تستحق معاونة في حياتهم اليومية.</span></span>
             <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
           </button>
           <button type="button" class="fcard" data-cert="enfants" data-fr="Garde d’enfants" data-ar="التلهّي بالصغار" style="--fc:#4BE470">
-            <span class="fdot" aria-hidden="true"></span>
             <span class="fname"><span class="fr">Garde d’enfants</span><span class="ar">التلهّي بالصغار</span></span>
             <span class="fdesc"><span class="fr">Veiller sur les enfants, les occuper, assurer leur sécurité.</span><span class="ar">نتلهّاو بالصغار، نلهّيوهم، ونحافظو على سلامتهم.</span></span>
             <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
           </button>
           <button type="button" class="fcard" data-cert="secours" data-fr="Premiers secours" data-ar="الإسعافات الأولية" style="--fc:#F9DA58">
-            <span class="fdot" aria-hidden="true"></span>
             <span class="fname"><span class="fr">Premiers secours</span><span class="ar">الإسعافات الأولية</span></span>
             <span class="fdesc"><span class="fr">Réagir face à une chute, une brûlure ou un malaise.</span><span class="ar">كيفاش نتصرّفو كي يصير طيحة، حرقة ولا تعب مفاجئ.</span></span>
             <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
           </button>
           <button type="button" class="fcard" data-cert="droits" data-fr="Droits des travailleuses" data-ar="حقوق العاملات" style="--fc:#A5B7E5">
-            <span class="fdot" aria-hidden="true"></span>
             <span class="fname"><span class="fr">Droits des travailleuses</span><span class="ar">حقوق العاملات</span></span>
             <span class="fdesc"><span class="fr">Connaître ses droits, son contrat et sa protection sociale.</span><span class="ar">نعرفو حقوقنا، العقد متاعنا والتغطية الاجتماعية.</span></span>
             <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
           </button>
           <button type="button" class="fcard" data-cert="hygiene" data-fr="Hygiène et propreté" data-ar="النظافة والصحة" style="--fc:#4BE470" tabindex="-1" aria-hidden="true">
-            <span class="fdot" aria-hidden="true"></span>
             <span class="fname"><span class="fr">Hygiène et propreté</span><span class="ar">النظافة والصحة</span></span>
             <span class="fdesc"><span class="fr">Produits, gestes et protocoles pour un nettoyage sûr et efficace.</span><span class="ar">المواد، الحركات والطرق باش التنظيف يكون آمن ومضبوط.</span></span>
             <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
           </button>
           <button type="button" class="fcard" data-cert="cuisine" data-fr="Cuisine" data-ar="الطبخ" style="--fc:#F9DA58" tabindex="-1" aria-hidden="true">
-            <span class="fdot" aria-hidden="true"></span>
             <span class="fname"><span class="fr">Cuisine</span><span class="ar">الطبخ</span></span>
             <span class="fdesc"><span class="fr">Préparer des repas équilibrés, dans le respect de l’hygiène alimentaire.</span><span class="ar">نحضّرو ماكلة متوازنة، مع احترام نظافة الماكلة.</span></span>
             <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
           </button>
           <button type="button" class="fcard" data-cert="aide" data-fr="Aide à la personne" data-ar="العناية بالأشخاص" style="--fc:#A5B7E5" tabindex="-1" aria-hidden="true">
-            <span class="fdot" aria-hidden="true"></span>
             <span class="fname"><span class="fr">Aide à la personne</span><span class="ar">العناية بالأشخاص</span></span>
             <span class="fdesc"><span class="fr">Accompagner les personnes âgées ou dépendantes au quotidien.</span><span class="ar">نرافقو كبار السن والناس اللي تستحق معاونة في حياتهم اليومية.</span></span>
             <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
           </button>
           <button type="button" class="fcard" data-cert="enfants" data-fr="Garde d’enfants" data-ar="التلهّي بالصغار" style="--fc:#4BE470" tabindex="-1" aria-hidden="true">
-            <span class="fdot" aria-hidden="true"></span>
             <span class="fname"><span class="fr">Garde d’enfants</span><span class="ar">التلهّي بالصغار</span></span>
             <span class="fdesc"><span class="fr">Veiller sur les enfants, les occuper, assurer leur sécurité.</span><span class="ar">نتلهّاو بالصغار، نلهّيوهم، ونحافظو على سلامتهم.</span></span>
             <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
           </button>
           <button type="button" class="fcard" data-cert="secours" data-fr="Premiers secours" data-ar="الإسعافات الأولية" style="--fc:#F9DA58" tabindex="-1" aria-hidden="true">
-            <span class="fdot" aria-hidden="true"></span>
             <span class="fname"><span class="fr">Premiers secours</span><span class="ar">الإسعافات الأولية</span></span>
             <span class="fdesc"><span class="fr">Réagir face à une chute, une brûlure ou un malaise.</span><span class="ar">كيفاش نتصرّفو كي يصير طيحة، حرقة ولا تعب مفاجئ.</span></span>
             <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
           </button>
           <button type="button" class="fcard" data-cert="droits" data-fr="Droits des travailleuses" data-ar="حقوق العاملات" style="--fc:#A5B7E5" tabindex="-1" aria-hidden="true">
-            <span class="fdot" aria-hidden="true"></span>
             <span class="fname"><span class="fr">Droits des travailleuses</span><span class="ar">حقوق العاملات</span></span>
             <span class="fdesc"><span class="fr">Connaître ses droits, son contrat et sa protection sociale.</span><span class="ar">نعرفو حقوقنا، العقد متاعنا والتغطية الاجتماعية.</span></span>
             <span class="fmore"><span class="fr">Voir le certificat</span><span class="ar">شوف الشهادة</span> →</span>
@@ -837,11 +823,6 @@ textarea { min-height: 5.5rem; resize: vertical; }
     r.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showValue(r.dataset.v); } });
   });
   showValue("proprete");
-
-  // animations réduites : on coupe aussi le dégradé animé du schéma
-  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    document.querySelectorAll(".smil").forEach(function (a) { a.remove(); });
-  }
 
   // formations : ouverture du certificat
   var cert = document.getElementById("cert");
