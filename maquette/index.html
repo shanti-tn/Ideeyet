@@ -163,7 +163,9 @@ html[lang="ar"] .coop-word .pill { font-style: normal; }
 }
 
 /* ---------- valeurs : le venn ---------- */
-.values .wrap { display: grid; }
+.values .wrap { display: grid; grid-template-columns: auto minmax(0, 46rem); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+.values .illu { width: clamp(9rem, 18vw, 14rem); height: auto; margin-top: 1rem; }
+@media (max-width: 760px) { .values .wrap { grid-template-columns: 1fr; } .values .illu { width: 9rem; justify-self: end; margin-bottom: -2rem; } }
 .values .values-text { max-width: 46rem; }
 .values-text { display: grid; gap: 2rem; min-width: 0; }
 .venn { width: 100%; max-width: 30rem; justify-self: center; overflow: visible; margin-block: .5rem 1rem; }
@@ -461,6 +463,22 @@ textarea { min-height: 5.5rem; resize: vertical; }
   <!-- VALEURS -->
   <section class="values band section" id="valeurs" aria-labelledby="val-title" style="padding-top:0">
     <div class="wrap">
+      <svg class="illu" viewBox="0 0 200 180" aria-hidden="true">
+            <g filter="url(#wash)" opacity=".9">
+              <ellipse cx="100" cy="74" rx="34" ry="32" fill="#F9DA58"/>
+              <ellipse cx="100" cy="78" rx="20" ry="18" fill="#F5B04A"/>
+              <ellipse cx="100" cy="148" rx="82" ry="18" fill="#BFDDE6"/>
+            </g>
+            <g filter="url(#wobble)" fill="none" stroke="#141414" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="100" cy="74" r="26"/>
+              <path d="M88 71Q92 75 96 71M104 71Q108 75 112 71M92 83Q100 90 108 83"/>
+              <path d="M100 38V28M125 49 132 42M136 74H146M75 49 68 42M64 74H54M126 100 132 106M74 100 68 106"/>
+              <path d="M22 138Q37 128 52 138T82 138 112 138 142 138 172 138"/>
+              <path d="M42 156Q57 148 72 156T102 156 132 156 162 156"/>
+              <path d="M28 42Q28 34 36 36 40 28 48 34 56 32 54 42Z"/>
+              <circle cx="170" cy="40" r="2.5" fill="#141414" stroke="none"/><circle cx="160" cy="100" r="2" fill="#141414" stroke="none"/>
+            </g>
+          </svg>
       <div class="values-text">
         <h2 class="title" id="val-title"><span class="oval o-yellow"><span class="fr">Valeurs</span><span class="ar">قيمنا</span></span></h2>
         <p class="prose"><span class="fr">Ideeyet place la confiance, le respect et la sérénité au cœur de ses actions. Nous valorisons la dignité des travailleuses domestiques tout en respectant la vie privée de nos clients.</span><span class="ar">في Ideeyet، الثقة والاحترام وراحة البال في قلب كل خدمة. نثمّنو كرامة عاملات المنازل ونحترمو الحياة الخاصة متاع حرفائنا.</span></p>
@@ -551,7 +569,7 @@ textarea { min-height: 5.5rem; resize: vertical; }
           <button type="button" class="icon-btn" id="copy-phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg><span id="copy-label"><span class="fr">Copier</span><span class="ar">انسخ</span></span></button>
           <a class="icon-btn" href="https://wa.me/21698110691" target="_blank" rel="noopener">WhatsApp</a>
           <a class="icon-btn" href="https://www.instagram.com/coop.ideeyet/" target="_blank" rel="noopener">Instagram</a>
-          <a class="icon-btn" href="#" aria-disabled="true">Facebook</a>
+          <a class="icon-btn" href="https://www.facebook.com/people/Coop%C3%A9rative-Ideeyet/61574806505032/" target="_blank" rel="noopener">Facebook</a>
         </div>
       </div>
       <form id="contact-form" novalidate>
